@@ -6,85 +6,157 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{problem}[theorem]{Open Problem}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
 \title{Arithmetic Configuration Factorization}
 \author{Raeez Lorgat}
 \date{}
 \hypersetup{
   pdftitle={Arithmetic Configuration Factorization},
   pdfauthor={Raeez Lorgat},
-  pdfsubject={Squarefree residue factorization and positive Euler products}
+  pdfsubject={Chinese-remainder factorization and prime-tuple singular products}
 }
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Prime-tuple calculations have a finite algebraic layer and an analytic layer.
-We isolate the former: for a squarefree modulus, admissible residue
-configurations factor exactly over its prime divisors.  We then state the
-summability condition under which the normalized local densities define a
-positive Euler product.  Neither statement supplies distribution of primes in
-progressions; that analytic input remains separate.
+For a finite set of integral shifts, the residue classes on which every
+translate is invertible factor exactly over coprime squarefree moduli.  The
+associated normalized local densities therefore form a positive convergent
+Euler product whenever the set of shifts is admissible.  Convergence is
+automatic: outside finitely many primes, the local factor differs from one by
+$O_k(p^{-2})$.  The pair of shifts $\{0,2\}$ exhibits both the exceptional
+prime and the resulting product.  These finite and convergent factorizations
+do not by themselves imply the occurrence of prime tuples.
 \end{abstract}
 
-\section{The finite factorization problem}
+\section{The finite product map}
 
-Let $\mathcal H=\{h_1,\ldots,h_k\}\subset\mathbb Z$.  For a prime $p$, put
+Fix a nonempty finite set of distinct integers
+$\mathcal H=\{h_1,\ldots,h_k\}$.  For a positive integer $q$, set
 \[
- \Omega_p(\mathcal H)=\{-h_i\bmod p:1\leq i\leq k\}\subset\mathbb F_p
+ R_q=\mathbb Z/q\mathbb Z,
+ \qquad
+ G_q(\mathcal H)
+ =\bigl\{a\in R_q:a+h_i\in R_q^\times\text{ for }1\leq i\leq k\bigr\}.
 \]
-and let $G_p=\mathbb F_p\setminus\Omega_p(\mathcal H)$.  Thus $a\in G_p$
-exactly when none of the translates $a+h_i$ vanishes modulo $p$.
+If $q_1$ and $q_2$ are coprime, the Chinese-remainder ring isomorphism is
+\[
+ c_{q_1,q_2}:R_{q_1q_2}\longrightarrow R_{q_1}\times R_{q_2},
+ \qquad
+ [a]_{q_1q_2}\longmapsto([a]_{q_1},[a]_{q_2}).
+\]
 
-\begin{proposition}[Squarefree configuration factorization]
-If $q=\prod_{p\mid q}p$ is a positive squarefree integer, the
-Chinese-remainder isomorphism
-identifies
+\begin{proposition}[Coprime configuration factorization]
+For coprime positive integers $q_1,q_2$, restriction of $c_{q_1,q_2}$ gives
+the bijection
 \[
- G_q:=\{a\in\mathbb Z/q\mathbb Z:(a+h_i,q)=1\text{ for every }i\}
- \quad\text{with}\quad \prod_{p\mid q}G_p.
+ \gamma_{q_1,q_2}:G_{q_1q_2}(\mathcal H)
+ \xrightarrow{\ \sim\ }
+ G_{q_1}(\mathcal H)\times G_{q_2}(\mathcal H).
 \]
-Consequently
-\[
- |G_q|=\prod_{p\mid q}\bigl(p-|\Omega_p(\mathcal H)|\bigr).
-\]
+For three pairwise coprime moduli, the two iterated product maps agree after
+the canonical identification of the two parenthesizations.
 \end{proposition}
 
 \begin{proof}
-The Chinese-remainder map sends $a$ to $(a\bmod p)_{p\mid q}$.  Since $q$ is
-squarefree, $(a+h_i,q)=1$ holds if and only if $a+h_i\not\equiv0\pmod p$
-for every $p\mid q$.  These conditions are independent in the product, which
-gives the asserted bijection and cardinality.
+An element $a+h_i$ is a unit in $R_{q_1q_2}$ if and only if its two images
+are units in $R_{q_1}$ and $R_{q_2}$.  The ring isomorphism therefore carries
+the defining conditions for $G_{q_1q_2}(\mathcal H)$ precisely to the defining
+conditions for the displayed product.  The associativity statement follows
+because either iterated map sends $[a]_{q_1q_2q_3}$ to
+$([a]_{q_1},[a]_{q_2},[a]_{q_3})$.
 \end{proof}
 
-This factorization is tensorial only across coprime residue rings.  It does not
-create an infinitesimal diagonal or an operator product expansion.
-
-\section{A positive local product}
-
-Write $\nu_p=|\Omega_p(\mathcal H)|$ and, whenever $\nu_p<p$, define
+For a prime $p$, define
 \[
- \sigma_p=\frac{1-\nu_p/p}{(1-1/p)^k}.
+ \Omega_p(\mathcal H)=\{-h_i\bmod p:1\leq i\leq k\}\subset\mathbb F_p,
+ \qquad \nu_p(\mathcal H)=|\Omega_p(\mathcal H)|.
+\]
+Then $G_p(\mathcal H)=\mathbb F_p\setminus\Omega_p(\mathcal H)$.  Iterating
+$\gamma$ gives, for every positive squarefree $q$, a specified bijection
+\[
+ G_q(\mathcal H)\xrightarrow{\ \sim\ }
+ \prod_{p\mid q}\bigl(\mathbb F_p\setminus\Omega_p(\mathcal H)\bigr),
+ \qquad
+ |G_q(\mathcal H)|=\prod_{p\mid q}(p-\nu_p(\mathcal H)).
 \]
 
-\begin{lemma}[Elementary convergence criterion]
-Suppose $\sigma_p>0$ for every prime and
-$\sum_p|\sigma_p-1|<\infty$.  Then $\prod_p\sigma_p$ converges to a finite,
-strictly positive number.
-\end{lemma}
+\section{The infinite product}
+
+\begin{definition}
+The set $\mathcal H$ is \emph{admissible} if
+$\nu_p(\mathcal H)<p$ for every prime $p$.  Its local factor is
+\[
+ \sigma_p(\mathcal H)
+ =\frac{1-\nu_p(\mathcal H)/p}{(1-1/p)^k}.
+\]
+\end{definition}
+
+Admissibility is exactly the positivity of every local factor.  It removes
+all congruence obstructions, but it asserts no distribution theorem.
+
+\begin{theorem}[Positive singular product]
+If $\mathcal H$ is admissible, then
+\[
+ \mathfrak S(\mathcal H)=\prod_p\sigma_p(\mathcal H)
+\]
+converges to a finite, strictly positive real number.  More precisely,
+\[
+ \sigma_p(\mathcal H)=1-\frac{k(k-1)}{2p^2}+O_k(p^{-3})
+\]
+outside a finite set of primes.
+\end{theorem}
 
 \begin{proof}
-For all sufficiently large $p$, $|\sigma_p-1|\leq1/2$, and hence
-$|\log\sigma_p|\leq2|\sigma_p-1|$.  The logarithmic series converges
-absolutely.  Exponentiating it and multiplying the finitely many remaining
-positive factors proves the claim.
+Put
+\[
+ \Delta_{\mathcal H}=\prod_{1\leq i<j\leq k}|h_i-h_j|,
+\]
+with the empty product equal to $1$.  If $p\nmid\Delta_{\mathcal H}$, the
+reductions of the $h_i$ are distinct, so $\nu_p(\mathcal H)=k$.  Thus, for all
+but finitely many primes,
+\[
+ \sigma_p=(1-k/p)(1-1/p)^{-k}.
+\]
+For $p>k$, the convergent power series for the logarithm gives
+\[
+ \log\sigma_p
+ =-\sum_{n\geq2}\frac{k^n-k}{n p^n}
+ =-\frac{k(k-1)}{2p^2}+O_k(p^{-3}).
+\]
+Exponentiation gives the asserted expansion and, in particular,
+$|\sigma_p-1|=O_k(p^{-2})$.  Hence
+$\sum_p|\sigma_p-1|<\infty$.  Eventually $|\sigma_p-1|\leq1/2$, and then
+$|\log\sigma_p|\leq2|\sigma_p-1|$.  The logarithmic series therefore
+converges absolutely.  All its factors are positive by admissibility, so the
+product is finite and strictly positive.
 \end{proof}
 
-\begin{problem}
-Construct a functorial interface from these finite incidence algebras to the
-Selberg--Maynard quadratic forms, with all normalizations explicit, and prove
-which estimates require an independent level-of-distribution theorem.
-\end{problem}
+\begin{example}[The shifts $\{0,2\}$]
+Let $\mathcal H=\{0,2\}$.  At the exceptional prime $2$, the two forbidden
+classes coincide:
+\[
+ \Omega_2(\mathcal H)=\{0\},\qquad
+ G_2(\mathcal H)=\{1\},\qquad
+ \sigma_2=\frac{1-1/2}{(1-1/2)^2}=2.
+\]
+For every odd prime $p$, the forbidden classes $0$ and $-2$ are distinct, so
+\[
+ |G_p(\mathcal H)|=p-2,
+ \qquad
+ \sigma_p=\frac{1-2/p}{(1-1/p)^2}
+ =\frac{p(p-2)}{(p-1)^2}
+ =1-\frac{1}{(p-1)^2}.
+\]
+Consequently
+\[
+ \mathfrak S(\{0,2\})
+ =2\prod_{p>2}\left(1-\frac{1}{(p-1)^2}\right)>0.
+\]
+The positivity and convergence of this constant are local statements.  The
+assertion that infinitely many integers $n$ make both $n$ and $n+2$ prime is
+not a consequence of them.
+\end{example}
 
 \end{document}
