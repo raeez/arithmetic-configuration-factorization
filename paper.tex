@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1.15in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{Open Problem}
+\newtheorem{definition}[theorem]{Definition}
+\title{Arithmetic Configuration Factorization}
+\author{Raeez Lorgat}
+\date{}
+\hypersetup{
+  pdftitle={Arithmetic Configuration Factorization},
+  pdfauthor={Raeez Lorgat},
+  pdfsubject={Squarefree residue factorization and positive Euler products}
+}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Prime-tuple calculations have a finite algebraic layer and an analytic layer.
+We isolate the former: for a squarefree modulus, admissible residue
+configurations factor exactly over its prime divisors.  We then state the
+summability condition under which the normalized local densities define a
+positive Euler product.  Neither statement supplies distribution of primes in
+progressions; that analytic input remains separate.
+\end{abstract}
+
+\section{The finite factorization problem}
+
+Let $\mathcal H=\{h_1,\ldots,h_k\}\subset\mathbb Z$.  For a prime $p$, put
+\[
+ \Omega_p(\mathcal H)=\{-h_i\bmod p:1\leq i\leq k\}\subset\mathbb F_p
+\]
+and let $G_p=\mathbb F_p\setminus\Omega_p(\mathcal H)$.  Thus $a\in G_p$
+exactly when none of the translates $a+h_i$ vanishes modulo $p$.
+
+\begin{proposition}[Squarefree configuration factorization]
+If $q=\prod_{p\mid q}p$ is a positive squarefree integer, the
+Chinese-remainder isomorphism
+identifies
+\[
+ G_q:=\{a\in\mathbb Z/q\mathbb Z:(a+h_i,q)=1\text{ for every }i\}
+ \quad\text{with}\quad \prod_{p\mid q}G_p.
+\]
+Consequently
+\[
+ |G_q|=\prod_{p\mid q}\bigl(p-|\Omega_p(\mathcal H)|\bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+The Chinese-remainder map sends $a$ to $(a\bmod p)_{p\mid q}$.  Since $q$ is
+squarefree, $(a+h_i,q)=1$ holds if and only if $a+h_i\not\equiv0\pmod p$
+for every $p\mid q$.  These conditions are independent in the product, which
+gives the asserted bijection and cardinality.
+\end{proof}
+
+This factorization is tensorial only across coprime residue rings.  It does not
+create an infinitesimal diagonal or an operator product expansion.
+
+\section{A positive local product}
+
+Write $\nu_p=|\Omega_p(\mathcal H)|$ and, whenever $\nu_p<p$, define
+\[
+ \sigma_p=\frac{1-\nu_p/p}{(1-1/p)^k}.
+\]
+
+\begin{lemma}[Elementary convergence criterion]
+Suppose $\sigma_p>0$ for every prime and
+$\sum_p|\sigma_p-1|<\infty$.  Then $\prod_p\sigma_p$ converges to a finite,
+strictly positive number.
+\end{lemma}
+
+\begin{proof}
+For all sufficiently large $p$, $|\sigma_p-1|\leq1/2$, and hence
+$|\log\sigma_p|\leq2|\sigma_p-1|$.  The logarithmic series converges
+absolutely.  Exponentiating it and multiplying the finitely many remaining
+positive factors proves the claim.
+\end{proof}
+
+\begin{problem}
+Construct a functorial interface from these finite incidence algebras to the
+Selberg--Maynard quadratic forms, with all normalizations explicit, and prove
+which estimates require an independent level-of-distribution theorem.
+\end{problem}
+
+\end{document}
