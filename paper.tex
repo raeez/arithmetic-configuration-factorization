@@ -26,8 +26,11 @@ associated normalized local densities therefore form a positive convergent
 Euler product whenever the set of shifts is admissible.  Convergence is
 automatic: outside finitely many primes, the local factor differs from one by
 $O_k(p^{-2})$.  The pair of shifts $\{0,2\}$ exhibits both the exceptional
-prime and the resulting product.  These finite and convergent factorizations
-do not by themselves imply the occurrence of prime tuples.
+prime and the resulting product.  Admissibility also supplies a finite
+congruence carrier on which a divisor-incidence transform gives a generalized
+Rayleigh quotient; a value above an integer $m$ forces at least $m+1$ prime
+translates in the sampled interval.  Neither the carrier nor the local product
+forces the quotient above a threshold.
 \end{abstract}
 
 \section{The finite product map}
@@ -158,5 +161,140 @@ The positivity and convergence of this constant are local statements.  The
 assertion that infinitely many integers $n$ make both $n$ and $n+2$ prime is
 not a consequence of them.
 \end{example}
+
+\section{A finite divisor-sum criterion}
+
+Let $\mathcal H$ be admissible, and let $W$ be a positive squarefree integer
+divisible by every prime factor of $\Delta_{\mathcal H}$.  The finite product
+map gives
+\[
+ |G_W(\mathcal H)|=\prod_{p\mid W}(p-\nu_p(\mathcal H))>0.
+\]
+Choose an integer $v_0=v_0(W)$ whose class lies in $G_W(\mathcal H)$.  Thus
+$\gcd(v_0+h_i,W)=1$ for every $i$.  Let $N$ be a positive integer such that
+\[
+ I_N=\{n\in\mathbb Z:N\leq n<2N,\ n\equiv v_0\pmod W\}
+\]
+is nonempty and $n+h_i\geq2$ for $n\in I_N$ and all $i$.  Let
+$\mathcal D\subset\mathbb N^k$ be finite, contain
+$\boldsymbol 1=(1,\ldots,1)$, and satisfy
+\[
+ \mu^2(d_1\cdots d_k)=1,
+ \qquad \gcd(d_1\cdots d_k,W)=1
+ \quad(\boldsymbol d\in\mathcal D).
+\]
+The divisor-incidence map
+\[
+ T:\mathbb R^{\mathcal D}\longrightarrow\mathbb R^{I_N},
+ \qquad
+ (T\lambda)(n)=
+ \sum_{\substack{\boldsymbol d\in\mathcal D\\
+                  d_i\mid n+h_i\ (1\leq i\leq k)}}
+ \lambda_{\boldsymbol d}
+\]
+is the finite algebra underlying the multidimensional Selberg weights in
+\cite[(2.4), (4.2)--(4.3)]{Maynard}.  Put
+\[
+ R_{\mathcal H}(n)=\sum_{i=1}^k\mathbf 1_{\mathbb P}(n+h_i),
+ \qquad (M_Rf)(n)=R_{\mathcal H}(n)f(n),
+\]
+where $\mathbb P$ is the set of positive primes, and define
+\[
+ A=T^*T,\qquad B=T^*M_RT,
+\]
+with respect to the standard Euclidean inner products.
+
+\begin{proposition}[Finite divisor-sum Rayleigh principle]
+For $\boldsymbol d,\boldsymbol e\in\mathcal D$, set
+$q_i=\operatorname{lcm}(d_i,e_i)$.  The matrix entries are
+\[
+ A_{\boldsymbol d,\boldsymbol e}
+ =\#\{n\in I_N:q_i\mid n+h_i\text{ for }1\leq i\leq k\}
+\]
+and, when the $q_i$ are pairwise coprime,
+\[
+ \left|A_{\boldsymbol d,\boldsymbol e}
+       -\frac{N}{W\prod_{i=1}^kq_i}\right|\leq1.
+\]
+If they are not pairwise coprime, then
+$A_{\boldsymbol d,\boldsymbol e}=0$.  Moreover,
+\[
+ B_{\boldsymbol d,\boldsymbol e}
+ =\sum_{\substack{n\in I_N\\q_i\mid n+h_i\ (1\leq i\leq k)}}
+ R_{\mathcal H}(n).
+\]
+For $\lambda\in\mathbb R^{\mathcal D}$, write
+\[
+ S_1(\lambda)=\|T\lambda\|_2^2,
+ \qquad
+ S_2(\lambda)=\langle T\lambda,M_RT\lambda\rangle.
+\]
+If $V=(\ker T)^\perp$ and $A_V,B_V$ denote the restrictions to $V$, then
+$A_V$ is positive definite and
+\[
+ \max_{\lambda\notin\ker T}\frac{S_2(\lambda)}{S_1(\lambda)}
+ =\lambda_{\max}\!\left(A_V^{-1/2}B_VA_V^{-1/2}\right)
+ \leq \max_{n\in I_N}R_{\mathcal H}(n)\leq k.
+\]
+Consequently, if $m$ is a nonnegative integer and some $\lambda$ satisfies
+\[
+ S_1(\lambda)>0,
+ \qquad S_2(\lambda)>mS_1(\lambda),
+\]
+then at least $m+1$ of $n+h_1,\ldots,n+h_k$ are prime for some $n\in I_N$.
+\end{proposition}
+
+\begin{proof}
+The conditions on $\mathcal D$ imply that $W,q_1,\ldots,q_k$ are individually
+squarefree and that $\gcd(W,q_i)=1$.  If a prime $p$ divides both $q_i$ and
+$q_j$ with $i\ne j$, simultaneous divisibility would give
+$h_i\equiv h_j\pmod p$.  But then $p\mid\Delta_{\mathcal H}$, hence $p\mid W$,
+contrary to $\gcd(W,q_iq_j)=1$.  Thus the congruences counted by
+$A_{\boldsymbol d,\boldsymbol e}$ are inconsistent unless the $q_i$ are
+pairwise coprime.  In the remaining case, the Chinese remainder theorem gives
+one residue class modulo $W\prod_iq_i$.  Its intersection with an interval of
+$N$ consecutive integers has cardinality differing from
+$N/(W\prod_iq_i)$ by at most $1$.  Expanding the two inner products gives the
+displayed entries of $A$ and $B$.
+
+Since $\boldsymbol 1\in\mathcal D$ and $I_N$ is nonempty, $T$ is nonzero.  If
+$0\ne x\in V$, then
+\[
+ \langle x,A_Vx\rangle=\|Tx\|_2^2>0,
+\]
+so $A_V$ is positive definite.  Both $A$ and $B$ annihilate $\ker T$ and
+preserve $V$.  Orthogonal projection onto $V$, followed by the substitution
+$y=A_V^{1/2}x$, therefore reduces the generalized quotient to
+\[
+ \frac{\langle x,B_Vx\rangle}{\langle x,A_Vx\rangle}
+ =\frac{\langle y,A_V^{-1/2}B_VA_V^{-1/2}y\rangle}
+        {\langle y,y\rangle}.
+\]
+Rayleigh--Ritz gives the equality with the largest eigenvalue.  Finally,
+\[
+ S_2(\lambda)
+ =\sum_{n\in I_N}R_{\mathcal H}(n)|(T\lambda)(n)|^2
+ \leq\left(\max_{n\in I_N}R_{\mathcal H}(n)\right)S_1(\lambda).
+\]
+If $S_2(\lambda)>mS_1(\lambda)$, some term with
+$(T\lambda)(n)\ne0$ has $R_{\mathcal H}(n)>m$.  This integer-valued prime
+count is therefore at least $m+1$.
+\end{proof}
+
+Admissibility supplies the carrier $v_0$, but it supplies no strict inequality
+between $S_2$ and $mS_1$.  Neither positivity of
+$\mathfrak S(\mathcal H)$ nor the finite identities above implies the threshold
+inequality.  No limiting operator or asymptotic estimate is asserted here.
+
+\begin{thebibliography}{1}
+
+\bibitem{Maynard}
+J. Maynard,
+\emph{Small gaps between primes},
+Ann. of Math. (2) \textbf{181} (2015), no.~1, 383--413,
+\href{https://doi.org/10.4007/annals.2015.181.1.7}
+{doi:10.4007/annals.2015.181.1.7}.
+
+\end{thebibliography}
 
 \end{document}

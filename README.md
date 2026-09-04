@@ -5,8 +5,10 @@ local admissibility projectors and singular-series calculations. It does not
 identify a discrete prime set with Beilinson--Drinfeld chiral geometry, and it
 does not infer bounded gaps from formal Euler products.
 
-The initial note proves only the squarefree Chinese-remainder factorization and
-a basic convergence criterion. Interfaces with Selberg--Maynard operators,
+The note proves the squarefree Chinese-remainder factorization, convergence of
+the associated singular product, and a finite divisor-incidence Rayleigh
+principle on an admissible residue class. The finite principle does not provide
+a lower bound for its Rayleigh quotient. Limiting variational operators,
 distribution in progressions, and prismatic finite-place geometry remain
 separate mathematical questions.
 
