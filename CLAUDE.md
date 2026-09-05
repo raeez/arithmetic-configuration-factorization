@@ -1,8 +1,6 @@
 # Repository Instructions
 
-## Golden rule: no project management at any scale whatsoever in the manuscript
+Read and follow [AGENTS.md](AGENTS.md), the canonical local contract.
+It includes inherited safety rules, manuscript boundaries, and research standards.
 
-The rules in `AGENTS.md` are binding. In particular, there is no project
-management at any scale whatsoever in `paper.tex` or any future reader-facing
-manuscript. Archive material supplies questions only. Mathematical claims need
-independent proof or exact primary sources, and compilation is not proof.
+For Claude model controls or loading behavior, consult `~/ecosystem/CLAUDE-HARNESS.md` when that guidance affects the task.
