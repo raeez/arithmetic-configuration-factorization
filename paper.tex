@@ -1,0 +1,353 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1.15in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\title{Arithmetic Configuration Factorization}
+\author{Raeez Lorgat}
+\date{}
+\hypersetup{
+  pdftitle={Arithmetic Configuration Factorization},
+  pdfauthor={Raeez Lorgat},
+  pdfsubject={Chinese-remainder factorization and prime-tuple singular products}
+}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a finite set of integral shifts, the residue classes on which every
+translate is invertible factor exactly over coprime squarefree moduli.  The
+associated normalized local densities therefore form a positive convergent
+Euler product whenever the set of shifts is admissible.  Convergence is
+automatic: outside finitely many primes, the local factor differs from one by
+$O_k(p^{-2})$.  The pair of shifts $\{0,2\}$ exhibits both the exceptional
+prime and the resulting product.  Admissibility also supplies a residue
+class on which a divisor-incidence map gives a generalized
+Rayleigh quotient.  A value above an integer $m$ forces at least $m+1$ prime
+translates in the sampled interval.  Neither the residue class nor the local product
+forces the quotient above a threshold.
+\end{abstract}
+
+\section{The finite product map}
+
+For fixed integer shifts, which residue classes make every translate coprime
+to a given modulus?  Coprimality to a product of coprime moduli is equivalent
+to coprimality to each factor.  The Chinese remainder theorem then separates
+the allowed classes into a product of finite sets.
+
+Fix a nonempty finite set of distinct integers
+$\mathcal H=\{h_1,\ldots,h_k\}$.  For a positive integer $q$, set
+\[
+ R_q=\mathbb Z/q\mathbb Z,
+ \qquad
+ G_q(\mathcal H)
+ =\bigl\{a\in R_q:a+h_i\in R_q^\times\text{ for }1\leq i\leq k\bigr\}.
+\]
+If $q_1$ and $q_2$ are coprime, the Chinese-remainder ring isomorphism is
+\[
+ c_{q_1,q_2}:R_{q_1q_2}\longrightarrow R_{q_1}\times R_{q_2},
+ \qquad
+ [a]_{q_1q_2}\longmapsto([a]_{q_1},[a]_{q_2}).
+\]
+
+\begin{proposition}[Coprime configuration factorization]
+For coprime positive integers $q_1,q_2$, restriction of $c_{q_1,q_2}$ gives
+the bijection
+\[
+ \gamma_{q_1,q_2}:G_{q_1q_2}(\mathcal H)
+ \xrightarrow{\ \sim\ }
+ G_{q_1}(\mathcal H)\times G_{q_2}(\mathcal H).
+\]
+For three pairwise coprime moduli, the two iterated product maps agree after
+the canonical identification of the two parenthesizations.
+\end{proposition}
+
+\begin{proof}
+An element $a+h_i$ is a unit in $R_{q_1q_2}$ if and only if its two images
+are units in $R_{q_1}$ and $R_{q_2}$.  The ring isomorphism therefore carries
+the defining conditions for $G_{q_1q_2}(\mathcal H)$ precisely to the defining
+conditions for the displayed product.  The associativity statement follows
+because either iterated map sends $[a]_{q_1q_2q_3}$ to
+$([a]_{q_1},[a]_{q_2},[a]_{q_3})$.
+\end{proof}
+
+For a prime $p$, define
+\[
+ \Omega_p(\mathcal H)=\{-h_i\bmod p:1\leq i\leq k\}\subset\mathbb F_p,
+ \qquad \nu_p(\mathcal H)=|\Omega_p(\mathcal H)|.
+\]
+Then $G_p(\mathcal H)=\mathbb F_p\setminus\Omega_p(\mathcal H)$.  Iterating
+$\gamma$ gives, for every positive squarefree $q$, a specified bijection
+\[
+ G_q(\mathcal H)\xrightarrow{\ \sim\ }
+ \prod_{p\mid q}\bigl(\mathbb F_p\setminus\Omega_p(\mathcal H)\bigr),
+ \qquad
+ |G_q(\mathcal H)|=\prod_{p\mid q}(p-\nu_p(\mathcal H)).
+\]
+
+\section{The infinite product}
+
+For a prime $p$, the proportion of allowed residue classes is
+$1-\nu_p(\mathcal H)/p$.  Each separate condition $a+h_i\not\equiv0\pmod p$
+holds on a proportion $1-1/p$ of the classes.  Dividing the joint proportion
+by the product of these separate proportions gives the following local
+factor.  This normalization makes no assertion that the conditions are
+independent.
+
+\begin{definition}
+The set $\mathcal H$ is \emph{admissible} if
+$\nu_p(\mathcal H)<p$ for every prime $p$.  Its local factor is
+\[
+ \sigma_p(\mathcal H)
+ =\frac{1-\nu_p(\mathcal H)/p}{(1-1/p)^k}.
+\]
+\end{definition}
+
+Admissibility is exactly the positivity of every local factor.  It removes
+all congruence obstructions, but it asserts no distribution theorem.
+
+\begin{theorem}[Positive singular product]
+If $\mathcal H$ is admissible, then
+\[
+ \mathfrak S(\mathcal H)=\prod_p\sigma_p(\mathcal H)
+\]
+converges to a finite, strictly positive real number.  More precisely,
+\[
+ \sigma_p(\mathcal H)=1-\frac{k(k-1)}{2p^2}+O_k(p^{-3})
+\]
+outside a finite set of primes.
+\end{theorem}
+
+\begin{proof}
+Put
+\[
+ \Delta_{\mathcal H}=\prod_{1\leq i<j\leq k}|h_i-h_j|,
+\]
+with the empty product equal to $1$.  If $p\nmid\Delta_{\mathcal H}$, the
+reductions of the $h_i$ are distinct, so $\nu_p(\mathcal H)=k$.  Thus, for all
+but finitely many primes,
+\[
+ \sigma_p=(1-k/p)(1-1/p)^{-k}.
+\]
+For $p>k$, the convergent power series for the logarithm gives
+\[
+ \log\sigma_p
+ =-\sum_{n\geq2}\frac{k^n-k}{n p^n}
+ =-\frac{k(k-1)}{2p^2}+O_k(p^{-3}).
+\]
+Exponentiation gives the asserted expansion and, in particular,
+$|\sigma_p-1|=O_k(p^{-2})$.  Hence
+$\sum_p|\sigma_p-1|<\infty$.  Eventually $|\sigma_p-1|\leq1/2$, and then
+$|\log\sigma_p|\leq2|\sigma_p-1|$.  The logarithmic series therefore
+converges absolutely.  All its factors are positive by admissibility, so the
+product is finite and strictly positive.
+\end{proof}
+
+\begin{example}[The shifts $\{0,2\}$]
+Let $\mathcal H=\{0,2\}$.  At the exceptional prime $2$, the two forbidden
+classes coincide:
+\[
+ \Omega_2(\mathcal H)=\{0\},\qquad
+ G_2(\mathcal H)=\{1\},\qquad
+ \sigma_2=\frac{1-1/2}{(1-1/2)^2}=2.
+\]
+For every odd prime $p$, the forbidden classes $0$ and $-2$ are distinct, so
+\[
+ |G_p(\mathcal H)|=p-2,
+ \qquad
+ \sigma_p=\frac{1-2/p}{(1-1/p)^2}
+ =\frac{p(p-2)}{(p-1)^2}
+ =1-\frac{1}{(p-1)^2}.
+\]
+Consequently
+\[
+ \mathfrak S(\{0,2\})
+ =2\prod_{p>2}\left(1-\frac{1}{(p-1)^2}\right)>0.
+\]
+The positivity and convergence of this constant are local statements.  The
+assertion that infinitely many integers $n$ make both $n$ and $n+2$ prime is
+not a consequence of them.
+\end{example}
+
+\section{A finite divisor-sum criterion}
+
+To detect several prime translates at one integer, one can compare a
+nonnegative weighted prime count with the total weight.  If the weighted
+average exceeds an integer $m$, some integer with positive weight has more
+than $m$ prime translates.  Squared divisor sums provide nonnegative weights
+whose total weight can be computed from congruences.
+
+Let $\mathcal H$ be admissible, and let $W$ be a positive squarefree integer
+divisible by every prime factor of $\Delta_{\mathcal H}$.  The finite product
+map gives
+\[
+ |G_W(\mathcal H)|=\prod_{p\mid W}(p-\nu_p(\mathcal H))>0.
+\]
+Choose an integer $v_0=v_0(W)$ whose class lies in $G_W(\mathcal H)$.  Thus
+$\gcd(v_0+h_i,W)=1$ for every $i$.  Let $N$ be a positive integer such that
+\[
+ I_N=\{n\in\mathbb Z:N\leq n<2N,\ n\equiv v_0\pmod W\}
+\]
+is nonempty and $n+h_i\geq2$ for $n\in I_N$ and all $i$.  Let
+$\mathcal D$ be a finite set of $k$-tuples of positive integers containing
+$\boldsymbol 1=(1,\ldots,1)$.  Require
+\[
+ d_1\cdots d_k\text{ to be squarefree},
+ \qquad \gcd(d_1\cdots d_k,W)=1
+ \quad(\boldsymbol d\in\mathcal D).
+\]
+Define the divisor-incidence map by
+\[
+ T:\mathbb R^{\mathcal D}\longrightarrow\mathbb R^{I_N},
+ \qquad
+ (T\lambda)(n)=
+ \sum_{\substack{\boldsymbol d\in\mathcal D\\
+                  d_i\mid n+h_i\ (1\leq i\leq k)}}
+ \lambda_{\boldsymbol d}
+\]
+and assign to $n\in I_N$ the weight
+\[
+ w_\lambda(n)=|(T\lambda)(n)|^2\geq0.
+\]
+These squared divisor sums are finite multidimensional Selberg weights
+as in \cite[(2.4), (4.2)--(4.3)]{Maynard}.  To count prime translates, put
+\[
+ R_{\mathcal H}(n)=\sum_{i=1}^k\mathbf 1_{\mathbb P}(n+h_i),
+ \qquad (M_Rf)(n)=R_{\mathcal H}(n)f(n),
+\]
+where $\mathbb P$ is the set of positive primes, and define
+\[
+ A=T^*T,\qquad B=T^*M_RT,
+\]
+with respect to the standard Euclidean inner products.
+
+\begin{proposition}[Finite divisor-sum Rayleigh principle]
+For $\boldsymbol d,\boldsymbol e\in\mathcal D$, set
+$q_i=\operatorname{lcm}(d_i,e_i)$.  The matrix entries are
+\[
+ A_{\boldsymbol d,\boldsymbol e}
+ =\#\{n\in I_N:q_i\mid n+h_i\text{ for }1\leq i\leq k\}
+\]
+and, when the $q_i$ are pairwise coprime,
+\[
+ \left|A_{\boldsymbol d,\boldsymbol e}
+       -\frac{N}{W\prod_{i=1}^kq_i}\right|\leq1.
+\]
+If they are not pairwise coprime, then
+$A_{\boldsymbol d,\boldsymbol e}=0$.  Moreover,
+\[
+ B_{\boldsymbol d,\boldsymbol e}
+ =\sum_{\substack{n\in I_N\\q_i\mid n+h_i\ (1\leq i\leq k)}}
+ R_{\mathcal H}(n).
+\]
+For $\lambda\in\mathbb R^{\mathcal D}$, write
+\[
+ S_1(\lambda)=\|T\lambda\|_2^2,
+ \qquad
+ S_2(\lambda)=\langle T\lambda,M_RT\lambda\rangle.
+\]
+If $V=(\ker T)^\perp$ and $A_V,B_V$ denote the restrictions to $V$, then
+$A_V$ is positive definite and
+\[
+ \max_{\lambda\notin\ker T}\frac{S_2(\lambda)}{S_1(\lambda)}
+ =\lambda_{\max}\!\left(A_V^{-1/2}B_VA_V^{-1/2}\right)
+ \leq \max_{n\in I_N}R_{\mathcal H}(n)\leq k.
+\]
+Consequently, if $m$ is a nonnegative integer and some $\lambda$ satisfies
+\[
+ S_1(\lambda)>0,
+ \qquad S_2(\lambda)>mS_1(\lambda),
+\]
+then at least $m+1$ of $n+h_1,\ldots,n+h_k$ are prime for some $n\in I_N$.
+\end{proposition}
+
+\begin{proof}
+The conditions on $\mathcal D$ imply that $W,q_1,\ldots,q_k$ are individually
+squarefree and that $\gcd(W,q_i)=1$.  If a prime $p$ divides both $q_i$ and
+$q_j$ with $i\ne j$, simultaneous divisibility would give
+$h_i\equiv h_j\pmod p$.  But then $p\mid\Delta_{\mathcal H}$, hence $p\mid W$,
+contrary to $\gcd(W,q_iq_j)=1$.  Thus the congruences counted by
+$A_{\boldsymbol d,\boldsymbol e}$ are inconsistent unless the $q_i$ are
+pairwise coprime.  In the remaining case, the Chinese remainder theorem gives
+one residue class modulo $W\prod_iq_i$.  Its intersection with an interval of
+$N$ consecutive integers has cardinality differing from
+$N/(W\prod_iq_i)$ by at most $1$.  Expanding the two inner products gives the
+displayed entries of $A$ and $B$.
+
+Since $\boldsymbol 1\in\mathcal D$ and $I_N$ is nonempty, $T$ is nonzero.  If
+$0\ne x\in V$, then
+\[
+ \langle x,A_Vx\rangle=\|Tx\|_2^2>0,
+\]
+so $A_V$ is positive definite.  Both $A$ and $B$ annihilate $\ker T$ and
+preserve $V$.  Orthogonal projection onto $V$, followed by the substitution
+$y=A_V^{1/2}x$, therefore reduces the generalized quotient to
+\[
+ \frac{\langle x,B_Vx\rangle}{\langle x,A_Vx\rangle}
+ =\frac{\langle y,A_V^{-1/2}B_VA_V^{-1/2}y\rangle}
+        {\langle y,y\rangle}.
+\]
+Rayleigh--Ritz gives the equality with the largest eigenvalue.  Finally,
+\[
+ S_2(\lambda)
+ =\sum_{n\in I_N}R_{\mathcal H}(n)|(T\lambda)(n)|^2
+ \leq\left(\max_{n\in I_N}R_{\mathcal H}(n)\right)S_1(\lambda).
+\]
+If $S_2(\lambda)>mS_1(\lambda)$, some term with
+$(T\lambda)(n)\ne0$ has $R_{\mathcal H}(n)>m$.  This integer-valued prime
+count is therefore at least $m+1$.
+\end{proof}
+
+\begin{example}[Two divisor coefficients]
+Take $\mathcal H=\{0,2\}$, $W=2$, $v_0=1$, $N=5$, and
+$\mathcal D=\{(1,1),(3,1)\}$.  Then $I_N=\{5,7,9\}$.
+The first divisor tuple contributes at every sample.  The second contributes
+only at $n=9$, since $3\mid9$ but $3\nmid5,7$.  With rows ordered as
+$5,7,9$ and columns as $(1,1),(3,1)$, this gives
+\[
+ T=\begin{pmatrix}1&0\\1&0\\1&1\end{pmatrix},
+ \qquad
+ (R_{\mathcal H}(5),R_{\mathcal H}(7),R_{\mathcal H}(9))=(2,1,1).
+\]
+Indeed, the pairs of translates are $(5,7)$, $(7,9)$, and $(9,11)$.
+Thus
+\[
+ A=\begin{pmatrix}3&1\\1&1\end{pmatrix},\qquad
+ B=\begin{pmatrix}4&1\\1&1\end{pmatrix}.
+\]
+For $\lambda=(a,b)$, the weights are $a^2,a^2,(a+b)^2$, so
+\[
+ \frac{S_2(\lambda)}{S_1(\lambda)}
+ =\frac{3a^2+(a+b)^2}{2a^2+(a+b)^2}
+ \leq\frac32\qquad(\lambda\ne0).
+\]
+Equality holds at $(a,b)=(1,-1)$, where $S_1=2$ and $S_2=3$.
+The strict threshold with $m=1$ therefore detects a pair of prime translates
+in this interval, realized at $n=5$.  The maximum $3/2$ is smaller than the
+largest sampled prime count, which is $2$.  Every permitted weight gives
+equal mass to $5$ and $7$, so these weights cannot isolate the sample $5$.
+This finite calculation supplies no asymptotic prime-count estimate.
+\end{example}
+
+Admissibility supplies the residue class $v_0\pmod W$, but it supplies no strict inequality
+between $S_2$ and $mS_1$.  Neither positivity of
+$\mathfrak S(\mathcal H)$ nor the finite identities above implies the threshold
+inequality.  No limiting operator or asymptotic estimate is asserted here.
+
+\begin{thebibliography}{1}
+
+\bibitem{Maynard}
+J. Maynard,
+\emph{Small gaps between primes},
+Ann. of Math. (2) \textbf{181} (2015), no.~1, 383--413,
+\href{https://doi.org/10.4007/annals.2015.181.1.7}
+{doi:10.4007/annals.2015.181.1.7}.
+
+\end{thebibliography}
+
+\end{document}
