@@ -1,0 +1,546 @@
+\section{Reconstruction in the simplex Hilbert space}
+\label{acfr:section}
+
+The distribution hypothesis gives a uniform reconstruction of the coefficient
+quotient in one dimension.
+Divisor-density diagonalization gives the required norm estimate on every
+coefficient direction.  Ordered intervals then place those directions in
+$H_1=L^2([0,1],dt;\mathbb R)$.
+Cell averages extend the reverse map to this Hilbert space.
+In higher dimensions, controlled subspaces give a corresponding completion,
+while concentrated samples obstruct a direct extension of point sampling.
+
+\subsection{A uniform divisor-density estimate}
+
+First take $k=1$ and one fixed nonnegative shift $h$.
+Use the finite parameters of Theorem~\ref{acfd:exact}, and abbreviate
+$\mathcal D=\{r<R:\mu^2(r)=1,\ (r,W)=1\}$.
+For $y,z\in\mathbb R^{\mathcal D}$, put
+\[
+ D(y,z)=\sum_{r\in\mathcal D}\frac{y_rz_r}{\varphi(r)},\qquad
+ \ell=1+\log R,\qquad d_N=\frac{eWR^2\ell^3}{N}.
+\]
+Here $d_N$ is the relative counting error for the one-dimensional reconstruction.
+
+\begin{proposition}[Uniform mass comparison in one dimension]
+For\label{acfr:density} all $y,z\in\mathbb R^{\mathcal D}$,
+\begin{align}
+ \sum_{d,e\in\mathcal D}\frac{(Ly)_d(Lz)_e}{[d,e]}
+       &=D(y,z),\label{acfr:diagonal}\\
+ \left|S_1(Ly,Lz)-\frac NW D(y,z)\right|
+       &\leq eR^2\ell^3\sqrt{D(y,y)D(z,z)}.\label{acfr:relative-mass}
+\end{align}
+If $d_N<1$, the incidence map $T$ is injective.
+For $W=W_N$ and $R=N^\rho$, with fixed $0<\rho<1/2$, one has $d_N\to0$.
+\end{proposition}
+
+\begin{proof}
+The identity $\gcd(d,e)=\sum_{r\mid d,e}\varphi(r)$ gives
+\[
+ \sum_{d,e}\frac{\lambda_d\gamma_e}{[d,e]}
+ =\sum_r\varphi(r)
+       \left(\sum_{r\mid d}\frac{\lambda_d}{d}\right)
+       \left(\sum_{r\mid e}\frac{\gamma_e}{e}\right).
+\]
+The inverse transform \eqref{eq:mobius-U} makes the right side $D(y,z)$
+when $\lambda=Ly$ and $\gamma=Lz$.
+All indices remain in the divisor-closed set $\mathcal D$.
+
+Writing $\sigma_1(r)=\sum_{d\mid r}d$, the direct transform gives
+\[
+ \|Ly\|_1\leq\sum_{r\in\mathcal D}
+       \frac{|y_r|\sigma_1(r)}{\varphi(r)}
+ \leq\sqrt{D(y,y)}
+       \left(\sum_{r<R}\frac{\sigma_1(r)^2}{\varphi(r)}\right)^{1/2}.
+\]
+The elementary bounds
+$\sigma_1(r)\leq r(1+\log r)$ and
+$r/\varphi(r)\leq e(1+\log r)$ imply
+\[
+ \sum_{r<R}\frac{\sigma_1(r)^2}{\varphi(r)}
+       \leq e\ell^3\sum_{r<R}r\leq eR^2\ell^3.
+\]
+Apply \eqref{acfd:mass-spine} and \eqref{acfr:diagonal}.
+If $TLy=0$ and $d_N<1$, then
+$0\geq (N/W)(1-d_N)D(y,y)$, so $y=0$.
+Invertibility of $L$ proves injectivity of $T$.
+Finally $W_N=N^{o(1)}$ and $2\rho<1$ give $d_N\to0$.
+\end{proof}
+
+\subsection{The intervals for the divisor values}
+
+The interval lengths require a uniform estimate for their total mass.
+For squarefree $W\geq1$ and real $x\geq1$, set
+\[
+ G_W(x)=\sum_{\substack{r\leq x\\(r,W)=1}}
+               \frac{\mu^2(r)}{\varphi(r)},\qquad
+ E(W)=e^2\frac W{\varphi(W)}(10+\log W).
+\]
+
+\begin{lemma}[A uniform weighted harmonic sum]\label{acfr:harmonic}
+For every such $W,x$,
+\begin{equation}\label{acfr:harmonic-bound}
+ \left|G_W(x)-\frac{\varphi(W)}W\log x\right|\leq E(W).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $b_W$ be multiplicative, with $b_W(1)=1$.
+For $p\nmid W$, its nonzero prime-power values are
+\[
+ b_W(p)=\frac1{p(p-1)},\qquad b_W(p^2)=-\frac1{p(p-1)}.
+\]
+For $p\mid W$, its only nonzero positive prime-power value is
+$b_W(p)=-1/p$.
+Checking prime powers proves the convolution identity
+\[
+ \frac{\mu^2(n)\mathbf1_{(n,W)=1}}{\varphi(n)}
+       =\sum_{d\mid n}\frac{b_W(d)}{n/d}.
+\]
+Absolute Euler products give
+\[
+ A_W:=\sum_d|b_W(d)|
+ \leq e^2\prod_{p\mid W}(1+1/p)
+ \leq e^2\frac W{\varphi(W)},\qquad
+ \sum_d b_W(d)=\frac{\varphi(W)}W.
+\]
+For the logarithmic moment, expand the nonnegative Euler products and
+sum one prime contribution at a time.  This gives
+\[
+ \sum_d|b_W(d)|\log d
+ \leq A_W\left(\sum_{p\mid W}\frac{\log p}{p}
+          +3\sum_p\frac{\log p}{p(p-1)}\right)
+ \leq A_W(\log W+9).
+\]
+The last prime sum is smaller than
+$2\sum_{n\geq2}(\log n)/n^2<3$.
+The final inequality follows by comparing this decreasing summand with
+its integral from $2$ to infinity.
+Truncation and monotone convergence justify the expansions.
+
+Write $H_m=\sum_{j=1}^m1/j$.
+The convolution identity yields
+$G_W(x)=\sum_{d\leq x}b_W(d)H_{\lfloor x/d\rfloor}$.
+For $u\geq1$, one has $0\leq H_{\lfloor u\rfloor}-\log u\leq1$.
+Subtract $(\sum_db_W(d))\log x$.
+The terms with $d\leq x$ are bounded by $|b_W(d)|(1+\log d)$.
+For $d>x$, use $\log x\leq\log d$.
+The preceding two moment bounds prove \eqref{acfr:harmonic-bound}.
+\end{proof}
+
+Return to the one-dimensional asymptotic parameters and write
+\[
+ B_N=\frac{\varphi(W_N)}{W_N}\log R_N,\qquad
+ G_N=\sum_{r\in\mathcal D_N}\frac1{\varphi(r)},\qquad
+ C_N=\frac N{W_N}B_N.
+\]
+Order $\mathcal D_N$ increasingly and put $x_r=\log r/\log R_N$.
+Partition $[0,1)$ into consecutive half-open intervals $J_{r,N}$ of lengths
+\[
+ q_{r,N}=\frac1{\varphi(r)G_N}.
+\]
+Their endpoints follow the increasing order of $r$.
+Define $D_Ny\in H_1$ to have value $y_r$ on $J_{r,N}$.
+The symbol $D_N$ here denotes this step-function map.
+
+\begin{lemma}[Location of the intervals]\label{acfr:cells}
+One has $G_N/B_N\to1$.
+With
+\[
+ h_N=\frac{2E(W_N)+1}{G_N},
+\]
+every $t\in J_{r,N}$ satisfies $|t-x_r|\leq h_N$.
+In particular, $h_N\to0$ and the largest interval length tends to zero.
+\end{lemma}
+
+\begin{proof}
+The strict cutoff $r<R_N$ changes $G_{W_N}(R_N)$ by at most one.
+Thus $|G_N-B_N|\leq E(W_N)+1$.
+The bound $W/\varphi(W)\leq e(1+\log W)$ gives
+\[
+ \frac{E(W_N)+1}{B_N}
+ \ll\frac{(1+\log W_N)^3}{\log R_N}\longrightarrow0.
+\]
+Indeed, $\log W_N\leq D_0\log D_0$ and $\log R_N=\rho\log N$.
+
+Let $H_N(t)=\sum_{x_r\leq t}q_{r,N}$ for $0\leq t\leq1$.
+For $t<1$, its numerator is $G_{W_N}(R_N^t)$.
+Equation~\eqref{acfr:harmonic-bound} therefore gives
+$|H_N(t)-t|\leq h_N$.
+The same bound holds at $t=1$, since $H_N(1)=1$.
+The left and right endpoints of $J_{r,N}$ are $H_N(x_r^-)$ and $H_N(x_r)$.
+For $r=1$, the left endpoint is zero.
+For every other interval, take a left limit to obtain the claimed location.
+\end{proof}
+
+\subsection{The full one-dimensional reconstruction}
+
+Let $\Pi_N=\#\{n\in I_N:n+h\in\mathbb P\}$ and put
+\[
+ \kappa_N=\frac{\Pi_NW_NG_N}{\rho N},\qquad
+ \beta_N=\left(\frac{\kappa_NG_N}{B_N}\right)^{1/2}.
+\]
+The following statements use the distribution hypothesis \eqref{eq:lod}
+and the fixed parameters of Theorem~\ref{thm:forms}.
+
+\begin{theorem}[Reconstruction of the full quotient in one dimension]
+\label{acfr:full-one}
+For all sufficiently large $N$, the map
+\begin{equation}\label{acfr:reconstruction}
+ R_N^\sharp:\mathcal Q_N\longrightarrow H_1,\qquad
+ R_N^\sharp[\lambda]=\beta_N D_N(U_N\lambda)
+\end{equation}
+is defined and injective.  Moreover, $\kappa_N\to1$, $\beta_N\to1$, and
+\begin{align}
+ \frac{\kappa_N}{1+d_N}\|z\|_N^2
+ &\leq\|R_N^\sharp z\|_2^2
+ \leq\frac{\kappa_N}{1-d_N}\|z\|_N^2,
+                                      \label{acfr:norm-control}\\
+ \frac{S_2(\lambda,\gamma)}{\rho C_N}
+ &=\langle R_N^\sharp[\lambda],K_1R_N^\sharp[\gamma]\rangle.
+                                      \label{acfr:full-prime}
+\end{align}
+For each fixed $F\in\mathcal X_1$,
+$R_N^\sharp[E_NF]\to F$ in $H_1$.
+The unrestricted normalized maximum satisfies
+\begin{equation}\label{acfr:full-maximum}
+ \frac{\kappa_N}{1+d_N}\leq\mathcal R_N
+       \leq\frac{\kappa_N}{1-d_N},\qquad
+ \mathcal R_N\longrightarrow1=M_1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{acfr:density} makes $T_N$ injective eventually.
+Thus the quotient has a unique coefficient representative at those indices.
+For $y=U_N\lambda$,
+\[
+ \|D_Ny\|_2^2=\frac{D(y,y)}{G_N},\qquad
+ \int_0^1D_Ny=\frac{\lambda_1}{G_N}.
+\]
+The second identity follows from $(L_Ny)_1=\sum_ry_r/\varphi(r)$.
+Every prime translate $n+h$, with $n\in I_N$, exceeds every supported divisor other than one.
+Consequently $S_2(\lambda,\gamma)=\Pi_N\lambda_1\gamma_1$.
+These identities prove \eqref{acfr:full-prime} whenever $\Pi_N>0$.
+The mass comparison proves \eqref{acfr:norm-control}.
+
+It remains to determine the scalar $\kappa_N$.
+Choose a fixed nonnegative $F\in\mathcal X_1$ with $\int F>0$.
+The interval-location lemma implies
+$D_NP_NF\to F$ uniformly, since $F$ is uniformly continuous.
+Hence
+\[
+ \frac{\bigl((E_NF)_1\bigr)^2}{B_NG_N}
+       =\frac{G_N}{B_N}\left(\int_0^1D_NP_NF\right)^2
+       \longrightarrow\left(\int_0^1F\right)^2>0.
+\]
+The exact prime identity writes $b_N(F,F)$ as $\kappa_N$ times this expression.
+Theorem~\ref{thm:forms} gives the same positive limit for $b_N(F,F)$.
+Division proves $\kappa_N\to1$, and also $\Pi_N>0$ eventually.
+The location lemma now gives $\beta_N\to1$ and
+$\beta_ND_NP_NF\to F$ for every fixed $F\in\mathcal X_1$.
+
+For arbitrary $y$, Cauchy--Schwarz gives
+$\lambda_1^2\leq G_ND(y,y)$.
+Combine this with the lower mass bound to obtain the upper bound in
+\eqref{acfr:full-maximum}.
+The vector $y_r=1$ attains equality in that Cauchy--Schwarz bound.
+The upper mass estimate applied to this vector gives the lower bound.
+\end{proof}
+
+For $k=1$, Proposition~\ref{prop:full-criterion} therefore applies with
+\[
+ u_N=\max\{0,\kappa_N/(1-d_N)-1\},\qquad v_N=0.
+\]
+
+\subsection{Cell averages and the Hilbert completion}
+
+Let $\mathsf P_N$ be the orthogonal projection in $H_1$ onto the step functions
+on the intervals $J_{r,N}$.
+For $f\in H_1$, define
+\begin{equation}\label{acfr:averages}
+ S_N^\sharp f=[L_Ny(f)],\qquad
+ y_r(f)=\frac1{\beta_Nq_{r,N}}\int_{J_{r,N}}f(t)\,dt.
+\end{equation}
+The integrals depend only on the $L^2$ class.
+
+\begin{corollary}[Compatible maps on the completion]\label{acfr:completion}
+For all sufficiently large $N$,
+\[
+ R_N^\sharp S_N^\sharp=\mathsf P_N,\qquad
+ S_N^\sharp R_N^\sharp=I_{\mathcal Q_N},\qquad
+ \|S_N^\sharp\|^2\leq\frac{1+d_N}{\kappa_N}.
+\]
+The projections $\mathsf P_N$ converge strongly to $I_{H_1}$.
+For every fixed $F\in\mathcal X_1$,
+\[
+ \|S_N^\sharp F-[E_NF]\|_N\longrightarrow0.
+\]
+For arbitrary $f,g\in H_1$, the exact prime-boundary pairing is
+\begin{equation}\label{acfr:completion-pairing}
+ \widehat\mu_1\bigl(\Theta_N(S_N^\sharp f,S_N^\sharp g;1)\bigr)
+       =\langle f,K_1g\rangle.
+\end{equation}
+Here $\Theta_N$ acts on quotient classes as in Corollary~\ref{acfp:quotient}.
+\end{corollary}
+
+\begin{proof}
+Cell averaging proves both composition identities.
+Apply \eqref{acfr:norm-control} to $S_N^\sharp f$ and use
+$\|\mathsf P_Nf\|_2\leq\|f\|_2$ to obtain the norm bound.
+The largest interval length tends to zero.
+Uniform continuity first gives $\mathsf P_Nf\to f$ for continuous $f$.
+The contraction bound and density of continuous functions extend this to $H_1$.
+
+For fixed smooth $F$, both
+$R_N^\sharp[E_NF]$ and $R_N^\sharp S_N^\sharp F$ tend to $F$.
+The lower bound in \eqref{acfr:norm-control} proves their coefficient-norm comparison.
+Finally, $\mathsf P_N$ preserves the integral, and
+$K_1g=(\int_0^1g)1$.
+Combine \eqref{acfr:full-prime} with the exact boundary pairing to obtain
+\eqref{acfr:completion-pairing}.
+\end{proof}
+
+This also specifies which coefficient sequences define a vector in the completion.
+Take sequences $z_N\in\mathcal Q_N$ for which $R_N^\sharp z_N$ is Cauchy in $H_1$.
+Identify two such sequences when $\|z_N-z'_N\|_N\to0$.
+The map
+\[
+ [(z_N)]\longmapsto\lim_NR_N^\sharp z_N
+\]
+is an isometric bijection onto $H_1$, with inner product
+$\lim_N\langle z_N,z'_N\rangle_N$.
+Indeed, \eqref{acfr:norm-control} and polarization identify that limit.
+Every $f\in H_1$ has the representative $z_N=S_N^\sharp f$.
+Boundedness of $(z_N)$ alone does not imply the required Cauchy property.
+
+For a real counting observable $w:I_N\to\mathbb R$, put
+\[
+ m_N(w)=\frac1{\Pi_N}\sum_{\substack{n\in I_N\\n+h\in\mathbb P}}w(n).
+\]
+Since each counted prime translate has incidence value $\lambda_1$, the same proof gives
+\begin{equation}\label{acfr:weighted-one}
+ \widehat\mu_1\bigl(\Theta_N(S_N^\sharp f,S_N^\sharp g;w)\bigr)
+       =m_N(w)\langle f,K_1g\rangle,
+ \qquad |m_N(w)|\leq\|w\|_\infty.
+\end{equation}
+For a uniformly bounded sequence of observables, these forms converge on all
+of $H_1$ exactly when the scalar sequence $m_N(w_N)$ converges.
+In that case the convergence is in operator norm.
+Testing $f=g=1$ proves necessity.
+
+\subsection{Two independent coefficient directions in dimension two}
+
+For $k=2$, take $\mathcal H=\{0,2\}$, $N=1024$, $R=16$, $W=2$, and $v=1$.
+The only sampling nodes in the interior of $\Delta_2$ are
+\[
+ x=\frac{(\log3,\log5)}{\log16},\qquad
+ x'=\frac{(\log5,\log3)}{\log16}.
+\]
+Both have coordinate product $15<R$ before the logarithmic change.
+Disjoint interior smooth bumps give sample vectors supported on either node.
+Let $\lambda=L\mathbf1_{(3,5)}$ and $\gamma=L\mathbf1_{(5,3)}$.
+Their incidence functions are
+\[
+ u(n)=\frac{(1-3\mathbf1_{3\mid n})(1-5\mathbf1_{5\mid n+2})}{8},\qquad
+ v(n)=\frac{(1-5\mathbf1_{5\mid n})(1-3\mathbf1_{3\mid n+2})}{8}.
+\]
+For $w_0(n)=1$ and the independent counting observable $w_1(n)=n/N$, define
+\[
+ B_j=\sum_{n\in I_N}w_j(n)R_{\mathcal H}(n)
+       \begin{pmatrix}u(n)^2&u(n)v(n)\\u(n)v(n)&v(n)^2\end{pmatrix}.
+\]
+Direct finite summation gives
+\begin{equation}\label{acfr:two-matrices}
+ B_0=\frac1{64}\begin{pmatrix}1018&73\\73&976\end{pmatrix},\qquad
+ B_1=\frac1{65536}\begin{pmatrix}1542766&111387\\111387&1508932\end{pmatrix}.
+\end{equation}
+The corresponding sums without $R_{\mathcal H}$ are
+\[
+ A_0=\frac1{32}\begin{pmatrix}2041&252\\252&2050\end{pmatrix},\qquad
+ A_1=\frac1{32768}\begin{pmatrix}3145686&387073\\387073&3151344\end{pmatrix}.
+\]
+These values follow by testing the odd integers from $1025$ to $2047$.
+Trial division through $43$ determines primality of both translates,
+since $47^2>2049$.
+Both prime matrices have rank two.  In fact,
+\[
+ \det B_0=\frac{988239}{4096}>0,\qquad
+ \det B_1=\frac{2315521922143}{4294967296}>0.
+\]
+The matrices are not proportional, since
+\[
+ (B_1)_{11}(B_0)_{12}-(B_1)_{12}(B_0)_{11}=-\frac{47}{256}.
+\]
+Here $\rho=2/5$, $C_N=2048(\log2)^2$, and the boundary form matrix is
+$5B_j/[4096(\log2)^2]$.
+Thus a scalar prime mean multiplying one rank-one form cannot represent
+these two coefficient directions and their counting observable.
+
+\subsection{A Cauchy-sequence obstruction for raw sampling}
+
+The reconstruction in dimension one does not extend the point-sampling map
+to arbitrary $L^2$ equivalence classes.
+The following two-dimensional sequence makes that distinction quantitative.
+Choose $b\in C_c^\infty((1/8,3/8))$ with $0\leq b\leq1$ and
+$b=1$ on $[3/16,5/16]$.
+For the cutoff in Lemma~\ref{acfd:cutoff}, one such choice is
+$b(t)=\chi(32t-4)\chi(12-32t)$.
+Set $F_0(t_1,t_2)=b(t_1)b(t_2)$.
+Its support lies in the interior of $\Delta_2$, and
+\begin{equation}\label{acfr:positive-model}
+ \langle F_0,K_2F_0\rangle
+       =2\left(\int b\right)^2\int b^2\geq\frac1{256}.
+\end{equation}
+
+\begin{proposition}[Vanishing Hilbert norm with nonvanishing sampled pairing]
+\label{acfr:cauchy-obstruction}
+Assume \eqref{eq:lod} for the two fixed shifts $\{0,2\}$ and the asymptotic
+parameters of Theorem~\ref{thm:forms}.  There are explicit $F_N\in\mathcal X_2$ such that
+\[
+ \|F_N\|_{H_2}\leq N^{-1},\qquad E_NF_N=E_NF_0.
+\]
+For $w_N(n)=n/N$, their exact boundary pairings satisfy, eventually,
+\begin{equation}\label{acfr:nonvanishing}
+ \widehat\mu_1\bigl(\Theta_N(E_NF_N,E_NF_N;w_N)\bigr)
+       \geq\frac1{512}.
+\end{equation}
+Thus raw point sampling followed by the normalized prime pairing has no
+uniformly bounded extension to the $H_2$ unit balls.
+The sequence $F_N$ tends to zero in the original Hilbert completion.
+At each sufficiently large fixed $N$, the form also has no bounded extension to $H_2$.
+\end{proposition}
+
+\begin{proof}
+Let $X_N$ be the finite set of distinct sampling nodes.
+Let $X_N^+=\{x\in X_N:F_0(x)\ne0\}$ and $m_N=|X_N^+|$.
+The product-count bound gives $m_N\leq R_N(1+\log R_N)$.
+Distinct nodes differ in some coordinate by at least
+$1/(R_N\log R_N)$, since $\log(b/a)\geq1/b$ for integers $1\leq a<b<R_N$.
+Choose a fixed $\psi\in C_c^\infty((-1,1)^2)$ with
+$0\leq\psi\leq1$ and $\psi(0)=1$.
+For example, take $\psi(u_1,u_2)=q(u_1)q(u_2)$, where
+$q(u)=\exp(1-(1-4u^2)^{-1})$ for $|u|<1/2$ and $q(u)=0$ otherwise.
+Define
+\[
+ a_N=\min\left\{\frac1{32},\frac1{4R_N\log R_N},
+              \frac1{2N\sqrt{R_N(1+\log R_N)}}\right\}>0,\qquad
+ F_N(t)=\sum_{x\in X_N^+}F_0(x)\psi\left(\frac{t-x}{a_N}\right).
+\]
+The supports are disjoint and lie inside $\Delta_2$.
+Each contains just its central sampling node.
+Thus $P_NF_N=P_NF_0$, and the coefficient identity follows.
+Each bump has area at most $4a_N^2$ and absolute value at most one.
+Consequently $\|F_N\|_2^2\leq4m_Na_N^2\leq N^{-2}$.
+
+For $n\in I_N$, one has $w_N(n)\geq1$.
+Positivity of the squared incidence weights bounds the pairing below by
+$S_2(E_NF_0)/(\rho C_N)$.
+Theorem~\ref{thm:forms} makes this converge to
+$\langle F_0,K_2F_0\rangle\geq1/256$.
+This proves \eqref{acfr:nonvanishing}.
+Any common Hilbert-norm bound for these quadratic forms would instead
+bound their values by a constant times $N^{-2}$.
+For fixed $N$, replace the bump width by $a_N/j$ and let $j\to\infty$.
+The samples remain fixed while the Hilbert norm tends to zero.
+\end{proof}
+
+This obstruction concerns the raw sampling operation on $H_2$.
+It does not exclude bounded maps from the finite coefficient quotients to $H_2$.
+The functions $F_N$ have increasingly large derivative norms, so the
+uniform estimate on $\mathcal X_2$ remains consistent with the example.
+
+\subsection{Reconstruction on controlled coefficient subspaces}
+
+There is a completion compatible with the prime boundary in every dimension.
+Use the nested spaces $V_{j(N)}$ from Corollary~\ref{cor:diagonal} and write
+$V_N=V_{j(N)}$, $P_N^V=P_{V_N}$, and $G_N^V=G_{N,V_N}$.
+For sufficiently large $N$, define
+\begin{gather*}
+ Z_N:V_N\to\mathcal Q_N,\qquad
+ Z_Nu=[E_N(G_N^V)^{-1/2}u],\\
+ \mathscr S_N=Z_NP_N^V:H_k\to\mathcal Q_N,\qquad
+ \mathscr R_N=Z_N^*:\mathcal Q_N\to V_N\subset H_k.
+\end{gather*}
+The adjoint uses the quotient inner product $S_1/C_N$.
+
+\begin{theorem}[The comparison on the Hilbert completion]
+\label{acfr:regular-completion}
+The map $Z_N$ is an isometry.  Hence
+\[
+ \|\mathscr R_N\|=\|Z_N\|=1,\qquad
+ \|\mathscr S_N\|\leq1,\qquad
+ \mathscr R_N\mathscr S_N=P_N^V,\qquad
+ \mathscr S_N\mathscr R_N=\operatorname{proj}_{Z_N(V_N)}.
+\]
+For every $f,g\in H_k$,
+\begin{equation}\label{acfr:regular-boundary}
+ \widehat\mu_1\bigl(\Theta_N(\mathscr S_Nf,\mathscr S_Ng;1)\bigr)
+       \longrightarrow\langle f,K_kg\rangle.
+\end{equation}
+For every fixed $F\in\mathcal X_k$,
+$\|\mathscr S_NF-[E_NF]\|_N\to0$.
+
+More generally, suppose $z_N,z'_N\in\mathcal Q_N$ have bounded norms and
+\[
+ \operatorname{dist}(z_N,Z_N(V_N))\to0,\qquad
+ \operatorname{dist}(z'_N,Z_N(V_N))\to0,\qquad
+ \mathscr R_Nz_N\to f,\quad\mathscr R_Nz'_N\to g.
+\]
+Their unweighted prime-boundary pairing converges to $\langle f,K_kg\rangle$.
+\end{theorem}
+
+\begin{proof}
+By the definition of the Gram operator,
+$\|Z_Nu\|_N^2=\langle (G_N^V)^{-1/2}u,G_N^V(G_N^V)^{-1/2}u\rangle
+=\|u\|_2^2$.
+This proves the isometry and the composition identities.
+Put $Q_N^V=(G_N^V)^{-1/2}H_{N,V_N}(G_N^V)^{-1/2}$.
+The exact boundary pairing on $Z_N(V_N)$ is
+\[
+ \widehat\mu_1(\Theta_N(Z_Nu,Z_Nv;1))=\langle u,Q_N^Vv\rangle.
+\]
+Theorem~\ref{thm:galerkin} gives
+$\|Q_N^V-P_N^VK_k|_{V_N}\|\to0$.
+Since $P_N^V\to I$ strongly, this proves \eqref{acfr:regular-boundary}.
+
+If $F$ lies in the union of the $V_j$, then eventually $P_N^VF=F$.
+The bound $\|G_N^V-I\|\to0$ gives
+$\|\mathscr S_NF-[E_NF]\|_N\to0$.
+For an arbitrary fixed $F\in\mathcal X_k$, choose a fixed
+$v\in\bigcup_jV_j$ close to $F$ in $H_k$.
+Theorem~\ref{thm:forms} gives
+$\|[E_N(F-v)]\|_N\to\|F-v\|_2$, and $\mathscr S_N$ is a contraction.
+The triangle inequality gives a limiting upper bound $2\|F-v\|_2$.
+Density proves the stated comparison.
+
+On the full quotient, Cauchy--Schwarz and $0\leq R_{\mathcal H}\leq k$ give
+\begin{equation}\label{acfr:full-bound}
+ \left|\frac{S_2(\lambda,\gamma)}{\rho C_N}\right|
+       \leq\frac k\rho\|[\lambda]\|_N\|[\gamma]\|_N.
+\end{equation}
+Replacing each bounded sequence by its projection onto $Z_N(V_N)$
+therefore changes the pairing by a quantity tending to zero.
+The projected vectors are $Z_N\mathscr R_Nz_N$ and
+$Z_N\mathscr R_Nz'_N$.
+The finite operator estimate and convergence of their reconstructed vectors
+prove the final assertion.
+\end{proof}
+
+For any uniformly bounded real counting observables $w_N$, the same maps
+give exact forms on $H_k$ by pullback through $\mathscr S_N$.
+Their norms are at most $(k/\rho)\sup_N\|w_N\|_\infty$.
+A limit for a nonconstant observable requires convergence of these
+compressed weighted forms on a dense set.
+The uniform bound makes this condition sufficient for a unique bounded
+limit form on $H_k$.
+That additional convergence is not supplied by the unweighted form theorem.
+Equation~\eqref{acfr:two-matrices} gives their first two-dimensional arithmetic values.
+
+For $k\geq2$, the full-quotient question remains the control of directions
+outside $Z_N(V_N)$.  The norm approximation assumed in
+Theorem~\ref{acfr:regular-completion} is a stated restriction on sequences.
+Neither that theorem nor the sampling obstruction establishes the two
+uniform inequalities in Proposition~\ref{prop:full-criterion} on all of $\mathcal Q_N$.
+The explicit-formula comparison also retains its separate test-domain and
+convergence requirements.

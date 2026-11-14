@@ -1,0 +1,131 @@
+\subsection{A moving smooth cutoff for a fixed polynomial}
+\label{acfd:cutoff-subsection}
+
+Uniform control on $\mathcal X_k$ permits the cutoff width to decrease with $N$.
+The width must decrease slowly enough to control the derivative norm.
+The resulting coefficient vectors remain values of the actual maps
+\eqref{acfd:mobius} and \eqref{acfd:incidence}.
+
+Let $f\in\mathbb R[t_1,\ldots,t_k]$ be nonzero on $\Delta_k$.
+Choose constants $C,D>0$ with
+\[
+ |f|\leq C,\qquad |\partial_i f|\leq D\quad(1\leq i\leq k)
+ \qquad\text{on }[0,1]^k.
+\]
+For every width $0<\varepsilon<1/[2(k+1)]$, use the following cutoff.
+Put $h(u)=e^{-1/u}$ for $u>0$ and $h(u)=0$ otherwise.  Define
+\[
+ \chi(u)=\frac{h(u-1)}{h(u-1)+h(2-u)},\qquad
+ \Xi_\varepsilon(t)=
+       \chi\left(\frac{1-\sum_i t_i}{\varepsilon}\right)
+       \prod_i\chi\left(\frac{t_i}{\varepsilon}\right),\qquad
+ F_\varepsilon=\Xi_\varepsilon f.
+\]
+The denominator in $\chi$ is positive for every real $u$.
+Thus $\chi=0$ on $(-\infty,1]$ and $\chi=1$ on $[2,\infty)$.
+
+\begin{lemma}[The cutoff estimates]\label{acfd:cutoff}
+For $0<\varepsilon<1/[2(k+1)]$, the zero extension of $F_\varepsilon$
+belongs to $\mathcal X_k$, and
+\begin{align*}
+ \operatorname{supp}F_\varepsilon
+   &\subset\{t_i\geq\varepsilon\ (1\leq i\leq k),
+                        \ 1-\textstyle\sum_i t_i\geq\varepsilon\},\\
+ \|F_\varepsilon-f\|_{H_k}^2
+   &\leq L\varepsilon,\qquad L=\frac{2(k+1)C^2}{(k-1)!},\\
+ \|F_\varepsilon\|_{\mathcal X}
+   &\leq A_\varepsilon=C+kD+8kC/\varepsilon,
+   \qquad \|F_\varepsilon\|_\infty\leq C.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Every derivative of $h$ at the origin is zero, since exponential decay
+dominates every power of $1/u$ as $u\downarrow0$.
+This proves smoothness.  On $1<u<2$, write $v=u-1$.
+One has $h'(v),h'(1-v)\leq4e^{-2}$ and
+$h(v)+h(1-v)\geq e^{-2}$.
+The quotient rule therefore gives $|\chi'|\leq4$.
+The support assertion follows directly from the two constant ranges of $\chi$.
+It is a compact subset of $\Delta_k^\circ$.
+Each $\partial_i\Xi_\varepsilon$ has two contributions, each bounded by
+$4/\varepsilon$.  The product rule proves the norm estimate.
+
+The cutoff equals one unless some $t_i<2\varepsilon$ or the slack
+$1-\sum_i t_i<2\varepsilon$.
+For $0\leq a\leq1$, each such strip of width $a$ has volume
+$[1-(1-a)^k]/k!\leq a/(k-1)!$.
+This follows by translation for a coordinate strip and scaling for the slack strip.
+On their union, $|F_\varepsilon-f|\leq C$.
+Sum the $k+1$ strip bounds with $a=2\varepsilon$.
+\end{proof}
+
+\begin{theorem}[Conditional polynomial comparison with a decreasing cutoff]
+\label{acfd:moving-cutoff}
+Use the arithmetic parameters following \eqref{acfd:lod}, and assume that hypothesis.
+Suppose constants $c_1,c_2>0$ and an integer $N_0$ satisfy
+$D_0(N)>0$ for every $N\geq N_0$ and, for every $F\in\mathcal X_k$
+and $N\geq N_0$,
+\begin{align}
+ \left|\frac{S_1(E_NF)}{C_N}-\|F\|_2^2\right|
+     &\leq\frac{c_1}{D_0}\|F\|_{\mathcal X}^2,\label{acfd:uniform-mass}\\
+ \left|\frac{S_2(E_NF)}{\rho C_N}-\langle F,K_kF\rangle\right|
+     &\leq\frac{c_2}{D_0}\|F\|_{\mathcal X}^2.\label{acfd:uniform-prime}
+\end{align}
+Let $0<\varepsilon_N<1/[2(k+1)]$ for every $N\geq N_0$, with
+$\varepsilon_N\to0$ and $D_0\varepsilon_N^2\to\infty$, and put
+$\lambda_N=E_NF_{\varepsilon_N}$.
+Then $S_1(\lambda_N)>0$ eventually, and
+\begin{equation}\label{acfd:moving-rate}
+ \frac{S_2(\lambda_N)}{S_1(\lambda_N)}
+   =\rho\frac{\langle f,K_kf\rangle}{\|f\|_2^2}
+       +O_f\left(\sqrt{\varepsilon_N}
+                      +\frac1{D_0\varepsilon_N^2}\right).
+\end{equation}
+The implied constant may also depend on the fixed arithmetic parameters
+and $c_1,c_2$.  The positive choice
+$\varepsilon_N=\min\{1/[4(k+1)],D_0^{-2/5}\}$ gives error $O_f(D_0^{-1/5})$.
+If the limiting value in \eqref{acfd:moving-rate} exceeds an integer $m\geq0$,
+then at least $m+1$ translates are prime for some $n\in I_N$, for every large $N$.
+\end{theorem}
+
+\begin{proof}
+Write $I_f=\|f\|_2^2>0$ and $Q_f=\langle f,K_kf\rangle$.
+Since $0\leq\Xi_\varepsilon\leq1$, one has
+$\|F_\varepsilon\|_2\leq\|f\|_2$.
+Lemma~\ref{acfd:cutoff} and $\|K_k\|\leq k$ imply
+\begin{align*}
+ \bigl|\|F_\varepsilon\|_2^2-I_f\bigr|
+    &\leq2\sqrt{I_fL\varepsilon},\\
+ |\langle F_\varepsilon,K_kF_\varepsilon\rangle-Q_f|
+    &\leq2k\sqrt{I_fL\varepsilon}.
+\end{align*}
+Apply \eqref{acfd:uniform-mass}--\eqref{acfd:uniform-prime} at
+$F=F_{\varepsilon_N}$.  This is legitimate because $N_0,c_1,c_2$
+are independent of the function.
+The normalized errors relative to $I_f,Q_f$ are bounded respectively by
+\[
+ e_{1,N}=2\sqrt{I_fL\varepsilon_N}+c_1A_{\varepsilon_N}^2/D_0,
+ \qquad
+ e_{2,N}=2k\sqrt{I_fL\varepsilon_N}+c_2A_{\varepsilon_N}^2/D_0.
+\]
+Both tend to zero.  Eventually $e_{1,N}\leq I_f/2$, so $S_1(\lambda_N)>0$.
+Using $0\leq Q_f/I_f\leq k$, the difference of quotients is at most
+$2\rho(e_{2,N}+ke_{1,N})/I_f$.
+This proves \eqref{acfd:moving-rate}.  The displayed positive minimum
+belongs to the required domain for every $N\geq N_0$ and eventually equals
+$D_0^{-2/5}$.  Substitution gives the asserted rate.
+The final conclusion follows from nonnegative squared incidence weights,
+as in Proposition~\ref{acfd:composition}.
+\end{proof}
+
+The discrepancy part alone obeys the sharper bound
+\[
+ |\mathcal R_i(\lambda_N,\lambda_N)|
+       \leq C_B'NC^2(\log N)^{-B},\qquad
+ Q_i\leq W_NR_N^{2(1-\varepsilon_N)}.
+\]
+Its supremum norm does not acquire a factor $\varepsilon_N^{-1}$.
+The derivative cost enters the comparison of local main sums with the simplex forms.
+These conclusions retain \eqref{acfd:lod} and the uniform estimates
+\eqref{acfd:uniform-mass}--\eqref{acfd:uniform-prime} at their stated strength.

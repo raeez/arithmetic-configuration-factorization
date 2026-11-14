@@ -1,0 +1,60 @@
+\subsection{The arithmetic quotient for polynomial cutoffs}
+\label{acfd:native-consumer}
+
+The maps in \eqref{eq:mobius-L} and \eqref{eq:spine-map} are exactly
+\eqref{acfd:mobius} and $E_N=L_NP_N$.
+The Hilbert space is $H_k=L^2(\Delta_k,dt;\mathbb R)$ in both constructions.
+The fiber operators integrate with respect to length, so their quadratic
+form is the same $\langle F,K_kF\rangle$.
+
+\begin{corollary}[Arithmetic quotients with positive widths]
+\label{acfd:native-polynomial}
+Fix an admissible set of distinct nonnegative shifts $\mathcal H$.
+Assume the distribution hypothesis \eqref{eq:lod} at a fixed exponent
+$0<\vartheta\leq1$.
+Fix $0<\delta<\vartheta/2$, put $\rho=\vartheta/2-\delta$, and use
+the corresponding $W_N,R_N,C_N$ and admissible class $v_0(N)$.
+Let $f$ be a fixed nonzero real polynomial on $\Delta_k$.
+For all sufficiently large $N$, choose
+\[
+ 0<\varepsilon_N<\frac1{2(k+1)},\qquad
+ \varepsilon_N\longrightarrow0,\qquad
+ D_0(N)\varepsilon_N^2\longrightarrow\infty,
+ \qquad \lambda_N=L_NP_N(\Xi_{\varepsilon_N}f).
+\]
+Then $\lambda_N\in\Lambda_N$ is defined, $S_1(\lambda_N)>0$ eventually,
+and
+\[
+ \frac{S_2(\lambda_N)}{S_1(\lambda_N)}
+ =\rho R_k(f)+
+ O_f\left(\sqrt{\varepsilon_N}+\frac1{D_0(N)\varepsilon_N^2}\right).
+\]
+The positive sequence
+\[
+ \varepsilon_N=\min\left\{\frac1{4(k+1)},D_0(N)^{-2/5}\right\}
+\]
+gives error $O_f(D_0(N)^{-1/5})$.
+If $\rho R_k(f)>m$ for an integer $m\geq0$, then each sufficiently
+large interval $I_N$ contains an integer with at least $m+1$ prime translates.
+\end{corollary}
+
+\begin{proof}
+Every specified width is positive and lies in the domain of
+Lemma~\ref{acfd:cutoff}.
+That lemma proves $\Xi_{\varepsilon_N}f\in\mathcal X_k$ for each such $N$.
+Hence point sampling, $L_N$, and the incidence map all have their stated domains.
+Theorem~\ref{thm:forms} gives \eqref{acfd:uniform-mass} and
+\eqref{acfd:uniform-prime}, with constants independent of $N$ and the
+selected smooth function.  Its prime normalization is $\rho C_N$.
+Theorem~\ref{acfd:moving-cutoff} therefore gives the quotient estimate
+and eventual positivity.  Proposition~\ref{prop:finite} gives the prime count.
+\end{proof}
+
+For a polynomial with $R_k(f)>2m/\vartheta$, one may first choose
+$0<\delta<\vartheta/2-m/R_k(f)$.
+This interval is nonempty, and the choice gives $\rho R_k(f)>m$.
+The polynomial and exponent loss are fixed before selecting the positive
+width sequence.  For the polynomial thresholds in
+Corollary~\ref{bridge:cor:prime}, the same construction applies with $m=1$.
+It retains their distribution hypothesis and gives distinct qualifying
+integers by taking disjoint intervals.

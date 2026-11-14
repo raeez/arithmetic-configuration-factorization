@@ -1,0 +1,567 @@
+\section{Arithmetic progression discrepancies and atomic prime measures}
+\label{acfd:section}
+
+Divisor incidence reduces a prime-weighted quadratic form to a finite
+linear functional on progression discrepancies.  The modulus weight in this
+functional must be retained when a distribution estimate is applied.
+Logarithmic prime measures give a second, distributional realization of
+the same counts.  Their topology imposes a separate restriction.
+
+The coefficient spaces and sieve forms are real.  Finite sets carry counting measure.
+Integrals on Euclidean spaces use Lebesgue measure, and logarithms are natural.
+Write $\mathbb P$ for the positive primes, $\mu$ for the M\"obius function,
+$\varphi$ for Euler's totient, and $\omega(n)$ for the number of distinct
+prime factors of $n$.  Empty products equal one.
+
+\subsection{The finite arithmetic maps}
+
+Fix distinct nonnegative integers $h_1,\ldots,h_k$, with $k\geq1$.
+Assume their set $\mathcal H$ is admissible: the classes $-h_i$ do not
+exhaust $\mathbb Z/p\mathbb Z$ for any prime $p$.
+Let $W$ be squarefree and contain every prime factor of
+$\prod_{i<j}|h_i-h_j|$.  Choose $v$ such that
+$\gcd(v+h_i,W)=1$ for all $i$.
+Fix integers $N\geq2$ and a real number $R>1$ satisfying $R^2<N$.
+Put
+\begin{gather*}
+ I=\{N\leq n<2N:n\equiv v\pmod W\},\\
+ \mathcal D=\{\boldsymbol d\in\mathbb N^k:
+     D(\boldsymbol d)<R,\ \mu^2(D(\boldsymbol d))=1,
+     \ \gcd(D(\boldsymbol d),W)=1\},
+ \qquad D(\boldsymbol d)=\prod_i d_i.
+\end{gather*}
+The support condition makes the coordinates of each $\boldsymbol d$
+pairwise coprime.  Let $Y=\mathbb R^{\mathcal D}$ and
+$\Lambda=\mathbb R^{\mathcal D}$.  The maps
+$L:Y\to\Lambda$ and $T:\Lambda\to\mathbb R^I$ are
+\begin{align}
+ (Ly)_{\boldsymbol d}
+ &=\left(\prod_i\mu(d_i)d_i\right)
+   \sum_{\substack{\boldsymbol r\in\mathcal D\\d_i\mid r_i\ (1\leq i\leq k)}}
+       \frac{y_{\boldsymbol r}}{\prod_i\varphi(r_i)},
+       \label{acfd:mobius}\\
+ (T\lambda)(n)
+ &=\sum_{\substack{\boldsymbol d\in\mathcal D\\d_i\mid n+h_i\ (1\leq i\leq k)}}
+       \lambda_{\boldsymbol d}.
+       \label{acfd:incidence}
+\end{align}
+For $\lambda,\gamma\in\Lambda$, define
+\[
+ S_1(\lambda,\gamma)=\sum_{n\in I}(T\lambda)(n)(T\gamma)(n),\qquad
+ S_{2,i}(\lambda,\gamma)=\sum_{n\in I}
+     \mathbf1_{\mathbb P}(n+h_i)(T\lambda)(n)(T\gamma)(n).
+\]
+Their sum over $i$ is denoted by $S_2$.  Diagonal values have the
+abbreviations $S_1(\lambda)$ and $S_2(\lambda)$.
+
+Set $\Delta_k=\{t\in[0,\infty)^k:\sum_i t_i\leq1\}$ and
+$\mathcal X_k=C_c^\infty(\Delta_k^\circ;\mathbb R)$.
+Every function is extended by zero to $\mathbb R^k$.
+Define
+\[
+ (PF)_{\boldsymbol r}
+   =F\left(\frac{\log r_1}{\log R},\ldots,
+           \frac{\log r_k}{\log R}\right),\qquad E=LP,
+ \qquad
+ \|F\|_{\mathcal X}
+   =\sup_{[0,1]^k}\left(|F|+\sum_i|\partial_iF|\right).
+\]
+Thus $E:\mathcal X_k\to\Lambda$ uses point values on a specified smooth
+space.  It does not assign values to arbitrary $L^2$ equivalence classes.
+
+\begin{lemma}[Support and coefficient bounds]
+Let\label{acfd:coefficients} $F\in\mathcal X_k$.  Suppose its support lies in
+$\{\sum_i t_i\leq1-\sigma\}$, where $0<\sigma<1$.
+Then $EF$ vanishes unless $D(\boldsymbol d)\leq R^{1-\sigma}$.
+With $\ell=1+\log R$, one has
+\[
+ \|EF\|_{\ell^\infty(\mathcal D)}
+       \leq e^{k+1}\ell^{k+1}\|F\|_\infty,
+ \qquad
+ \|EF\|_{\ell^1(\mathcal D)}
+       \leq e^{k+1}R^{1-\sigma}\ell^{2k}\|F\|_\infty.
+\]
+The same estimates with $\sigma=0$ hold without a specified support margin.
+\end{lemma}
+
+\begin{proof}
+A nonzero sample has $D(\boldsymbol r)\leq R^{1-\sigma}$.
+Every contributing $\boldsymbol d$ divides such a $\boldsymbol r$
+coordinatewise, which proves the support assertion.
+For $X\geq1$, the identity
+\[
+ \frac n{\varphi(n)}=\sum_{d\mid n}\frac{\mu^2(d)}{\varphi(d)}
+\]
+follows by checking prime powers and multiplying.  Therefore
+\begin{equation}\label{acfd:totient-sum}
+ \sum_{n\leq X}\frac1{\varphi(n)}
+ \leq(1+\log X)\sum_{d\geq1}\frac{\mu^2(d)}{d\varphi(d)}
+ \leq e(1+\log X).
+\end{equation}
+Indeed, finite Euler products for the last sum are bounded by
+$\exp(\sum_{p}1/[p(p-1)])\leq e$.
+Monotone convergence proves the bound for the infinite sum.
+
+Write $r_i=d_is_i$ in \eqref{acfd:mobius}.
+Squarefreeness gives $\varphi(r_i)=\varphi(d_i)\varphi(s_i)$.
+Dropping the remaining restrictions on the $s_i$ bounds their sum by
+$(e\ell)^k$.
+Also $\prod_i d_i/\varphi(d_i)=D(\boldsymbol d)/\varphi(D(\boldsymbol d))
+\leq e\ell$, by the preceding identity and estimate.
+This proves the supremum bound.
+For $X\geq1$, the number of ordered positive integer tuples with product
+at most $X$ is at most $X(1+\log X)^{k-1}$.
+Fixing the first $k-1$ coordinates proves this by summing
+$X/(d_1\cdots d_{k-1})$ and enlarging each remaining range to $[1,X]$.
+Apply this bound with $X=R^{1-\sigma}$ to obtain the $\ell^1$ estimate.
+\end{proof}
+
+\subsection{Exact progression discrepancies}
+
+For $\boldsymbol d,\boldsymbol e\in\mathcal D$, write
+$q_j=[d_j,e_j]$ for their least common multiple.
+Call the pair compatible when the $q_j$ are pairwise coprime.
+An incompatible pair contributes zero to every form above.
+In fact, a common prime divisor of $q_j$ and $q_l$ would divide
+$h_j-h_l$ and hence $W$, contrary to the definition of $\mathcal D$.
+
+For a compatible pair with $d_i=e_i=1$, put
+\[
+ Q_i(\boldsymbol d,\boldsymbol e)=W\prod_{j\ne i}q_j.
+\]
+There is a unique reduced residue $a_i$ modulo $Q_i$ satisfying
+\[
+ a_i\equiv v+h_i\pmod W,\qquad
+ a_i\equiv h_i-h_j\pmod {q_j}\quad(j\ne i).
+\]
+These residues are reduced because all prime divisors of $h_i-h_j$
+belong to $W$.  The Chinese remainder theorem supplies existence and uniqueness.
+When $Q_i=1$, its single residue is treated as reduced and $\varphi(1)=1$.
+
+Let
+\begin{align*}
+ \Pi_i&=\#\{p\in\mathbb P:N+h_i\leq p<2N+h_i\},\\
+ \mathcal E_i(Q,a)
+   &=\#\{p\in\mathbb P:N+h_i\leq p<2N+h_i,
+                               \ p\equiv a\pmod Q\}
+                   -\frac{\Pi_i}{\varphi(Q)},\\
+ \Delta_i(Q)&=\max_{\gcd(a,Q)=1}|\mathcal E_i(Q,a)|.
+\end{align*}
+These are exact interval discrepancies.  No prime asymptotic enters their definition.
+
+\begin{theorem}[The finite discrepancy functional]\label{acfd:exact}
+For $\lambda,\gamma\in\Lambda$, define
+\[
+ B_i^{\mathrm{loc}}(\lambda,\gamma)
+   =\sum_{\substack{\boldsymbol d,\boldsymbol e\text{ compatible}\\d_i=e_i=1}}
+        \frac{\lambda_{\boldsymbol d}\gamma_{\boldsymbol e}}{\varphi(Q_i)},
+ \qquad
+ A^{\mathrm{loc}}(\lambda,\gamma)
+   =\frac NW\sum_{\boldsymbol d,\boldsymbol e\text{ compatible}}
+        \frac{\lambda_{\boldsymbol d}\gamma_{\boldsymbol e}}{\prod_jq_j}.
+\]
+Then
+\begin{align}
+ S_{2,i}(\lambda,\gamma)
+   &=\Pi_i B_i^{\mathrm{loc}}(\lambda,\gamma)
+     +\sum_{\substack{\boldsymbol d,\boldsymbol e\text{ compatible}\\d_i=e_i=1}}
+         \lambda_{\boldsymbol d}\gamma_{\boldsymbol e}
+         \mathcal E_i(Q_i,a_i),\label{acfd:prime-spine}\\
+ |S_1(\lambda,\gamma)-A^{\mathrm{loc}}(\lambda,\gamma)|
+   &\leq\|\lambda\|_1\|\gamma\|_1.\label{acfd:mass-spine}
+\end{align}
+Suppose both coefficient vectors vanish for $D(\boldsymbol d)>X$, with
+$1\leq X\leq R$.  Set $z=\max\{1,3(k-1)\}$.
+The remainder in \eqref{acfd:prime-spine} satisfies
+\begin{equation}\label{acfd:weighted-error}
+ |\mathcal R_i(\lambda,\gamma)|
+ \leq\|\lambda\|_\infty\|\gamma\|_\infty
+      \sum_{Q\leq WX^2}\mu^2(Q)z^{\omega(Q)}\Delta_i(Q).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Expand the incidence products and interchange finite sums.
+For a compatible pair, the unweighted inner sum counts one residue class
+modulo $W\prod_jq_j$ in $N$ consecutive integers.
+Its distance from $N/(W\prod_jq_j)$ is at most one.
+Taking absolute values proves \eqref{acfd:mass-spine}.
+
+In the $i$th prime sum, $q_i$ divides the prime $n+h_i\geq N$.
+But $q_i\leq D(\boldsymbol d)D(\boldsymbol e)<R^2<N$.
+Consequently $q_i=1$, or equivalently $d_i=e_i=1$.
+The remaining conditions are precisely $n+h_i\equiv a_i\pmod {Q_i}$.
+Subtracting its defining mean gives \eqref{acfd:prime-spine}.
+
+For fixed $Q$, each prime dividing $Q/W$ chooses a coordinate $j\ne i$.
+It then occurs in $d_j$ only, in $e_j$ only, or in both.
+Thus at most $[3(k-1)]^{\omega(Q/W)}$ ordered pairs give $Q$, when $k\geq2$.
+The product restrictions can only reduce this count.
+Every modulus is squarefree and at most $WX^2$.
+Since $z^{\omega(Q/W)}\leq z^{\omega(Q)}$, taking absolute values gives the bound.
+For $k=1$, the sole surviving pair is $d_1=e_1=1$ and $Q=W$.
+The choice $z=1$ includes this case.
+\end{proof}
+
+Equivalently, let $\mathfrak A_i$ be the finite set of reduced pairs $(Q,a)$
+which occur above.  Define a bilinear map
+\[
+ \mathcal C_i:\Lambda\times\Lambda\longrightarrow\mathbb R^{\mathfrak A_i},
+ \qquad
+ \mathcal C_i(\lambda,\gamma)_{Q,a}
+    =\sum_{(Q_i,a_i)=(Q,a)}\lambda_{\boldsymbol d}\gamma_{\boldsymbol e}.
+\]
+The remainder is exactly the dual pairing
+$\langle\mathcal C_i(\lambda,\gamma),\mathcal E_i\rangle$.
+This pairing specifies the arithmetic object needed after the finite Rayleigh principle.
+
+\begin{example}[One residue class]
+Take\label{acfd:first-model} $k=1$, $h_1=0$, $N=30$, $W=2$, $v=1$, and $R=5$.
+Then $\mathcal D=\{1,3\}$.  Let $y=(1,1)$, so
+$\lambda=Ly=(3/2,-3/2)$.
+Among the fifteen odd integers in $[30,60)$, five are divisible by three.
+Therefore $S_1(\lambda)=10(3/2)^2=45/2$.
+The seven primes are $31,37,41,43,47,53,59$.
+Only $d=e=1$ survives in the prime sum, giving
+$S_2(\lambda)=7(3/2)^2=63/4$.
+Here $\mathcal E_1(2,1)=0$ and $S_2/S_1=7/10$.
+The unrestricted coefficient vector $y$ in this example need not be a
+sample of an interior smooth function.
+\end{example}
+
+\subsection{From an unweighted distribution hypothesis to the weighted error}
+
+Fix $0<\vartheta\leq1$ and assume that, for every $A>0$,
+\begin{equation}\label{acfd:lod}
+ \sum_{q\leq x^\vartheta}\max_{\gcd(a,q)=1}
+ \left|\pi(x;q,a)-\frac{\pi(x)}{\varphi(q)}\right|
+       \leq C_A\frac{x}{(\log x)^A}
+       \qquad(x\geq x_A).
+\end{equation}
+The constants may depend on $A$ and $\vartheta$.
+This is the distribution convention of \eqref{eq:lod}, as in
+\cite[(1.3), p.~384]{Maynard}.
+The hypothesis remains an assumption at the chosen exponent.
+
+Fix $0<\delta<\vartheta/2$ and put
+\[
+ \rho=\vartheta/2-\delta,\qquad
+ R_N=N^\rho,\qquad D_0=\log\log\log N,\qquad
+ W_N=\prod_{p\leq D_0}p.
+\]
+Use these parameters in the finite maps for sufficiently large integer $N$.
+The shifts remain fixed.  Thus $W_N$ eventually contains the prime factors
+of every shift difference, and an admissible class $v_N$ exists.
+
+\begin{theorem}[Uniform control of the arithmetic remainder]\label{acfd:lod-transfer}
+Assume \eqref{acfd:lod}.  For every $B>0$, there are constants
+$C_B'$ and $N_B$ independent of $F,G\in\mathcal X_k$ and of $v_N$ such that
+\begin{equation}\label{acfd:remainder-decay}
+ |\mathcal R_i(E_NF,E_NG)|
+       \leq C_B' N(\log N)^{-B}\|F\|_\infty\|G\|_\infty
+       \qquad(N\geq N_B).
+\end{equation}
+If both smooth supports have slack at least $\sigma>0$, every modulus
+in the exact discrepancy functional is at most
+$W_NR_N^{2(1-\sigma)}$.
+Without that margin, all moduli are less than $W_NR_N^2$.
+\end{theorem}
+
+\begin{proof}
+The elementary bound $W_N\leq D_0^{D_0}$ gives $W_N=N^{o(1)}$.
+Consequently
+\[
+ W_NR_N^2\leq N^{\vartheta-\delta}<N
+\]
+for all sufficiently large $N$.
+For the two integer endpoints $x_+=2N+h_i-1$ and $x_-=N+h_i-1$,
+the same bound is eventually at most $x_\pm^\vartheta$.
+The interval discrepancy is the difference of the two endpoint discrepancies.
+Applying \eqref{acfd:lod} at both endpoints yields
+\[
+ \sum_{Q\leq W_NR_N^2}\Delta_i(Q)
+        \ll_A N(\log N)^{-A}.
+\]
+This argument preserves the half-open interval and its fixed shift.
+
+For $Q\leq N$, the trivial counting bound gives
+\[
+ \Delta_i(Q)\leq N/Q+1+N/\varphi(Q)\leq3N/\varphi(Q).
+\]
+Let $b=z^2$, an integer.  For any $Y\geq1$,
+\begin{equation}\label{acfd:moment}
+ \sum_{Q\leq Y}\frac{\mu^2(Q)b^{\omega(Q)}}{\varphi(Q)}
+       \leq\left(\sum_{n\leq Y}\frac{\mu^2(n)}{\varphi(n)}\right)^b
+       \leq e^b(1+\log Y)^b.
+\end{equation}
+To see the first inequality, expand the $b$th power.
+Each squarefree $Q$ has $b^{\omega(Q)}$ allocations of its primes to
+$b$ ordered factors.  All these factors are at most $Y$.
+Their denominators multiply to $\varphi(Q)$, and other summands are nonnegative.
+
+Cauchy--Schwarz, the trivial discrepancy bound, and
+\eqref{acfd:moment} now give
+\begin{align*}
+ \sum_{Q\leq W_NR_N^2}\mu^2(Q)z^{\omega(Q)}\Delta_i(Q)
+ &\leq
+ \left(\sum_{Q\leq W_NR_N^2}\Delta_i(Q)\right)^{1/2}
+ \left(3N\sum_{Q\leq W_NR_N^2}
+               \frac{\mu^2(Q)z^{2\omega(Q)}}{\varphi(Q)}\right)^{1/2}\\
+ &\ll_A N(\log N)^{(b-A)/2}.
+\end{align*}
+Lemma~\ref{acfd:coefficients} contributes a further factor
+$O_k((\log N)^{2k+2})\|F\|_\infty\|G\|_\infty$.
+Choose $A\geq b+4k+4+2B$ and apply \eqref{acfd:weighted-error}.
+This proves \eqref{acfd:remainder-decay}.
+The support assertion follows from Lemma~\ref{acfd:coefficients}.
+\end{proof}
+
+The proof displays the weighted distribution step used in Maynard's
+equations (5.18)--(5.20), p.~396.  A bound for an unweighted sum of
+discrepancies cannot simply discard the multiplicity $z^{\omega(Q)}$.
+The positive second moment in \eqref{acfd:moment} is the required additional estimate.
+
+\subsection{The remaining comparison with the simplex forms}
+
+Let $H_k=L^2(\Delta_k,dt;\mathbb R)$.
+For $1\leq i\leq k$, define
+\[
+ (T_iF)(t_{\widehat i})=
+    \int_0^{1-\sum_{j\ne i}t_j}F(t_1,\ldots,t_k)\,dt_i,
+ \qquad K_k=\sum_iT_i^*T_i.
+\]
+Here $T_i:H_k\to L^2(\Delta_{k-1})$ uses ordinary length on each fiber.
+For $k=1$, $\Delta_0$ is one point of mass one.
+Fiber Cauchy--Schwarz shows $\|T_i\|\leq1$ and $0\leq K_k\leq kI$.
+Set
+\[
+ C_N=\frac{\varphi(W_N)^kN(\log R_N)^k}{W_N^{k+1}}.
+\]
+The arithmetic remainder theorem compares exact prime sums to finite
+totient sums.  The following explicit hypotheses state the further comparison
+needed to reach $K_k$:
+\begin{align}
+ |A^{\mathrm{loc}}(E_NF,E_NG)-C_N\langle F,G\rangle|
+     &\leq C_N\alpha_N\|F\|_{\mathcal X}\|G\|_{\mathcal X},
+       \label{acfd:mass-local-hyp}\\
+ \left|\sum_i\Pi_iB_i^{\mathrm{loc}}(E_NF,E_NG)
+                -\rho C_N\langle F,K_kG\rangle\right|
+     &\leq C_N\beta_N\|F\|_{\mathcal X}\|G\|_{\mathcal X},
+       \label{acfd:prime-local-hyp}
+\end{align}
+where $\alpha_N,\beta_N\geq0$ tend to zero.
+These are hypotheses about the displayed finite sums, with uniform quantifiers.
+
+\begin{proposition}[Composition of the comparisons]
+Assume\label{acfd:composition} \eqref{acfd:lod}, \eqref{acfd:mass-local-hyp}, and
+\eqref{acfd:prime-local-hyp}.  There are nonnegative sequences
+$u_N,v_N\to0$ such that, for all $F,G\in\mathcal X_k$,
+\begin{align*}
+ |S_1(E_NF,E_NG)/C_N-\langle F,G\rangle|
+     &\leq(\alpha_N+u_N)\|F\|_{\mathcal X}\|G\|_{\mathcal X},\\
+ |S_2(E_NF,E_NG)/(\rho C_N)-\langle F,K_kG\rangle|
+     &\leq\rho^{-1}(\beta_N+v_N)
+                   \|F\|_{\mathcal X}\|G\|_{\mathcal X}.
+\end{align*}
+One may take
+\[
+ u_N=\frac{e^{2k+2}R_N^2(1+\log R_N)^{4k}}{C_N},\qquad
+ v_N=\frac{kC_B'N(\log N)^{-B}}{C_N}
+\]
+for any fixed $B>1$ and all sufficiently large $N$.
+In particular, if a fixed nonzero $F$ satisfies
+$\rho\langle F,K_kF\rangle>m\|F\|_2^2$, with $m\in\mathbb Z_{\geq0}$,
+then some $n\in I_N$ has at least $m+1$ prime translates for all large $N$.
+\end{proposition}
+
+\begin{proof}
+Theorem~\ref{acfd:exact}, Lemma~\ref{acfd:coefficients}, and
+Theorem~\ref{acfd:lod-transfer} give the two bounds by addition.
+To verify the limits, note that
+\[
+ C_N\geq
+ \frac{N(\rho\log N)^k}{e^kW_N(1+\log W_N)^k}.
+\]
+Moreover, $W_N(1+\log W_N)^k\leq\log N$ eventually.
+This follows from $\log W_N\leq D_0\log D_0$
+and $D_0=\log\log\log N$.
+Thus $C_N\geq e^{-k}\rho^kN(\log N)^{k-1}$ eventually.
+Since $2\rho<1$, the displayed $u_N,v_N$ tend to zero.
+
+For the fixed function $F$, the two form limits give
+$S_1(E_NF)>0$ and $S_2(E_NF)-mS_1(E_NF)>0$ eventually.
+If every prime count were at most $m$, each nonnegative squared incidence
+weight would give the reverse inequality.  Integrality therefore supplies
+at least $m+1$ prime translates.
+\end{proof}
+
+For the smooth sieve weights, Maynard's Lemmas 6.2--6.3, pp.~401--404,
+give additive comparisons for the exact forms in the norm $\|\cdot\|_{\mathcal X}$.
+Those estimates also evaluate the local main sums above, after subtracting
+the remainders already bounded here.  Their use retains the hypothesis
+\eqref{acfd:lod}.  The finite discrepancy identity alone does not evaluate
+either local main sum, supply a distribution exponent, or construct a map
+on the full coefficient quotient.
+
+\subsection{Logarithmic prime distributions}
+
+Let $\mathcal D(\mathbb R)=C_c^\infty(\mathbb R;\mathbb R)$ have its usual
+test-function topology, and let $\mathcal D'(\mathbb R)$ be its continuous dual.
+For $\sigma\in\mathbb R$, define positive atomic measures
+\begin{equation}\label{acfd:prime-measures}
+ \nu_\sigma=\sum_{p\in\mathbb P}(\log p)p^{-\sigma}\delta_{\log p},
+ \qquad
+ \mu_\sigma=\sum_{p\in\mathbb P}\sum_{m\geq1}
+                  (\log p)p^{-m\sigma}\delta_{m\log p}.
+\end{equation}
+The second measure is the logarithmic image of the prime-power measure
+$\sum_{n\geq2}\Lambda(n)n^{-\sigma}\delta_n$.
+Here $\Lambda(p^m)=\log p$ and $\Lambda(n)=0$ otherwise.
+This notation $\Lambda(n)$ denotes the von Mangoldt function, distinct from
+the finite vector space $\Lambda$ used above.
+Every compact interval meets only finitely many atoms.
+Thus both formulas define distributions of order zero for every real $\sigma$.
+
+\begin{theorem}[The exact temperateness boundary]
+The\label{acfd:tempered} positive measures $\nu_\sigma$ and $\mu_\sigma$ extend continuously to
+the Schwartz space $\mathcal S(\mathbb R)$ if and only if $\sigma\geq1$.
+For $\sigma\geq1$,
+\[
+ |\nu_\sigma(f)|\leq\mu_\sigma(|f|)
+ \leq e\left(\sum_{j\geq1}j^{-2}\right)
+               \sup_{t\in\mathbb R}(1+|t|)^3|f(t)|.
+\]
+For arbitrary $\sigma\in\mathbb R$ and $T\geq0$,
+\begin{equation}\label{acfd:compact-mass}
+ \mu_\sigma([0,T])
+       \leq e\,e^{\max(1-\sigma,0)T}(T+2)^2.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For integers $j\geq0$, there are at most $e^{j+1}$ positive integers
+in $[e^j,e^{j+1})$.  At any prime power in this interval,
+$\Lambda(n)/n\leq(j+1)e^{-j}$.
+Consequently $\mu_1([j,j+1))\leq e(j+1)$.
+Summing this bound against $(1+j)^{-3}$ proves the displayed Schwartz estimate.
+For $\sigma\geq1$, each mass decreases, so the same bound applies.
+Summing without a test function gives
+$\mu_1([0,T])\leq e(T+2)^2$.
+The identity $d\mu_\sigma(t)=e^{(1-\sigma)t}d\mu_1(t)$ on its support
+then proves \eqref{acfd:compact-mass}.
+
+For the converse, first recall an elementary divergence.
+If $\sum_p1/p$ were finite, the products
+$\prod_{p\leq X}(1-1/p)^{-1}$ would be bounded, since
+$-\log(1-1/p)\leq2/p$.
+Their geometric-series expansions contain every term $1/n$ with $n\leq X$.
+This contradicts divergence of the harmonic series.  Hence $\sum_p1/p=\infty$.
+
+Suppose $\sigma<1$ and choose $a=(1-\sigma)/2>0$.
+There is a nonnegative smooth function $f$ which vanishes for $t\leq0$
+and equals $e^{-at}$ for $t\geq\log2$.
+This function lies in $\mathcal S(\mathbb R)$.
+Its putative positive pairing satisfies
+\[
+ \nu_\sigma(f)
+   =\sum_p(\log p)p^{-(1+\sigma)/2}=+\infty,
+\]
+because each summand is eventually at least $1/p$.
+For rigor, choose $0\leq\eta\leq1$ in $C_c^\infty(\mathbb R)$,
+equal to one on $[-1,1]$, and set $f_L(t)=f(t)\eta(t/L)$.
+Then $f_L\to f$ in every Schwartz seminorm, by exponential decay and
+the product rule.  Yet $\nu_\sigma(f_L)\to+\infty$:
+every finite positive partial sum is included when $L$ is sufficiently large.
+Continuity of a tempered extension would force finite convergence.
+This contradiction also applies to $\mu_\sigma$, which dominates $\nu_\sigma$.
+\end{proof}
+
+\subsection{Recovering the progression counts by smooth tests}
+
+The finite counts have an exact realization on the distributional carrier.
+It also exhibits the derivative cost of separating adjacent integers after logarithmic change of variables.
+Fix $\sigma\geq0$ and $H=\max_i h_i$.
+Choose $\chi\in C_c^\infty((-1,1))$ with $\chi(0)=1$, and put
+$r_N=[4(2N+H+1)]^{-1}$.
+For every integer $n\in[N,2N+H)$, define
+\[
+ b_{n,N}(t)=\frac{n^\sigma}{\log n}\,
+                 \chi\left(\frac{t-\log n}{r_N}\right).
+\]
+For a residue $a$ modulo $Q$, set
+\begin{align*}
+ \Phi_{i,Q,a,N}(t)
+   &=\sum_{N+h_i\leq n<2N+h_i}
+          \left(\mathbf1_{n\equiv a\ (Q)}-\frac1{\varphi(Q)}\right)b_{n,N}(t),\\
+ \Psi_{i,Q,a,N}(t)
+   &=\sum_{\substack{N+h_i\leq n<2N+h_i\\n\equiv a\ (Q)}}b_{n,N}(t).
+\end{align*}
+
+\begin{proposition}[Exact logarithmic realization]
+For\label{acfd:log-realization} every reduced residue $a$ modulo $Q$,
+\[
+ \nu_\sigma(\Phi_{i,Q,a,N})=\mathcal E_i(Q,a),\qquad
+ \nu_\sigma(\Psi_{i,Q,a,N})
+    =\#\{p\in[N+h_i,2N+h_i):p\equiv a\pmod Q\}.
+\]
+Both tests are supported in
+$[\log N-r_N,\log(2N+H)+r_N]$.
+For each derivative order $j\geq0$, either test $\Theta$ satisfies
+\begin{equation}\label{acfd:test-norm}
+ \|\Theta^{(j)}\|_\infty
+    \leq\frac{(2N+H)^\sigma}{\log N}
+          [4(2N+H+1)]^j\|\chi^{(j)}\|_\infty.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For consecutive integers in the indicated range, including its adjacent endpoints,
+\[
+ \log(n+1)-\log n\geq\frac1{n+1}\geq\frac1{2N+H+1}=4r_N.
+\]
+The bump supports are therefore disjoint and contain no other logarithm of an integer.
+At $t=\log n$, the product of the prime mass and the bump value is one
+if $n$ is prime.  It is zero if $n$ is composite, because $\nu_\sigma$
+has no atom there.  Finite summation proves both identities.
+The coefficients in parentheses have absolute value at most one.
+Disjoint supports and differentiation of a rescaled bump prove
+\eqref{acfd:test-norm}.
+\end{proof}
+
+Combining Proposition~\ref{acfd:log-realization} with
+Theorem~\ref{acfd:exact} expresses the arithmetic remainder as
+\[
+ \mathcal R_i(\lambda,\gamma)
+   =\nu_\sigma\!\left(
+      \sum_{\substack{\boldsymbol d,\boldsymbol e\text{ compatible}\\d_i=e_i=1}}
+         \lambda_{\boldsymbol d}\gamma_{\boldsymbol e}
+         \Phi_{i,Q_i,a_i,N}\right).
+\]
+This is an equality of finite sums on compact smooth tests.
+Its derivative bound grows with $N$; distributional continuity alone supplies
+no decay for the arithmetic remainder.
+
+At $\sigma=1/2$, the unrenormalized prime-power term
+\[
+ f\longmapsto\sum_{p,m\geq1}(\log p)p^{-m/2}
+                       \bigl(f(m\log p)+f(-m\log p)\bigr)
+\]
+also fails to extend to the full Schwartz space.
+Apply the divergence proof to a nonnegative even test.
+It is well defined on compact smooth tests, with the bound
+\eqref{acfd:compact-mass} for both signs.
+A comparison with a global explicit formula must specify its test space,
+the remaining terms, their normalization, and any cancellation or subtraction.
+The obstruction concerns this positive term by itself; it does not exclude
+a separately constructed distribution for a combined formula.
+
+Finally, the sampling map has its own distinct limitation.
+For fixed $N$, a nonzero smooth bump can avoid every point of the finite
+set $x_N(\mathcal D_N)$.
+Normalizing that bump in $H_k$ gives $\|F_N\|_2=1$ and $E_NF_N=0$.
+At any interior sample, smooth bumps of fixed value and shrinking support
+have $L^2$ norms tending to zero.
+Thus point sampling cannot extend to a bounded map on $H_k$ when such a node exists.
+Neither the finite logarithmic realization nor the smooth form comparison
+constructs a uniform reconstruction of all coefficient classes modulo $\ker T_N$.
+That reconstruction requires its own norm estimates and comparison with $K_k$.

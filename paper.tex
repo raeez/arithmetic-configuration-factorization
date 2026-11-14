@@ -1,0 +1,2907 @@
+\documentclass[11pt]{article}
+\usepackage{raeez-math-template}
+\mathtoolsset{showonlyrefs=false}
+\newcommand{\D}{\Delta}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\title{Arithmetic Configuration Factorization}
+\author{Raeez Lorgat}
+\date{}
+\hypersetup{
+  pdftitle={Arithmetic Configuration Factorization},
+  pdfauthor={Raeez Lorgat},
+  pdfsubject={Arithmetic configurations, simplex spectrum, and Galerkin limits of sieve forms}
+}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For integral shifts, the allowed residue classes factor over coprime moduli.
+Their normalized densities form a positive convergent singular product
+when every prime leaves an allowed class.  A finite divisor-incidence map gives
+a Rayleigh quotient that detects simultaneous prime translates.
+We compare this quotient with coordinate integration on a Lebesgue simplex.
+In every finite dimension $k\geq2$, the simplex operator has essential
+spectrum $[0,M_{k-1}]$, where $M_j$ is its maximal Rayleigh value in
+dimension $j$, and $M_k>M_{k-1}$.  Its maximal eigenvalue is simple;
+normalized polynomial iterates converge in $L^2$ to its positive symmetric
+unit eigenfunction.  Five explicit quadratic polynomials give rational
+lower bounds in dimensions eight through twelve.
+Under a stated level of distribution, the arithmetic forms converge
+uniformly on each fixed smooth finite-dimensional subspace.
+A sufficiently slow dense exhaustion gives strong operator convergence
+and convergence of the maximal Rayleigh values, but no operator norm
+convergence in dimensions at least two.
+The incidence values also define exact smooth tests for the Fourier
+boundary of the logarithmic derivative of the zeta function.
+In one dimension, cell averages reconstruct the full coefficient quotient
+and extend its prime pairing to the simplex Hilbert space.
+Uniform full-quotient reconstruction in higher dimensions remains open.
+\end{abstract}
+
+A set of shifts is admissible when, for every prime, some residue class
+makes all translates coprime to that prime.  Such a set supplies residue
+classes on which every translate avoids prescribed small prime divisors.
+Sieve coefficients then
+assign a nonnegative weight to each integer in those classes.  The ratio of
+the prime-weighted sum to the total weight detects prime translates.
+To compare this finite ratio with an integral variational problem, one must
+specify both the coefficient map and the topology of convergence.
+
+The comparison uses smooth functions on a simplex.  Their logarithmic
+samples determine the sieve coefficients by an invertible finite transform.
+The arithmetic estimates control the resulting forms in the $C^1$ norm.
+On finite-dimensional subspaces this becomes control relative to the
+$L^2$ norm, which permits spectral comparison.  Point sampling itself has
+a kernel on every smooth infinite-dimensional space.  This distinction
+determines the range of the limiting theorem.
+
+The simplex maximum raises an independent spectral question.
+A product of coordinate integrals that uses every coordinate has a bounded
+integral kernel.  An identity of ordered products therefore bounds the
+essential spectrum by the maximum in one lower dimension.
+Concentration on shrinking slices gives the matching lower bound.
+A positive function concentrated near a face proves strict increase of
+the maximum when a coordinate is added.  These constructions give a unique
+positive maximizer in every finite dimension, without an arithmetic
+distribution assumption.
+
+\section{The finite product map}
+
+For fixed integer shifts, which residue classes make every translate coprime
+to a given modulus?  Coprimality to a product of coprime moduli is equivalent
+to coprimality to each factor.  The Chinese remainder theorem then separates
+the allowed classes into a product of finite sets.
+
+Fix a nonempty finite set of distinct integers
+$\mathcal H=\{h_1,\ldots,h_k\}$.  For a positive integer $q$, set
+\[
+ R_q=\mathbb Z/q\mathbb Z,
+ \qquad
+ G_q(\mathcal H)
+ =\bigl\{a\in R_q:a+h_i\in R_q^\times\text{ for }1\leq i\leq k\bigr\}.
+\]
+If $q_1$ and $q_2$ are coprime, the Chinese-remainder ring isomorphism is
+\[
+ c_{q_1,q_2}:R_{q_1q_2}\longrightarrow R_{q_1}\times R_{q_2},
+ \qquad
+ [a]_{q_1q_2}\longmapsto([a]_{q_1},[a]_{q_2}).
+\]
+
+\begin{proposition}[Coprime configuration factorization]
+For coprime positive integers $q_1,q_2$, restriction of $c_{q_1,q_2}$ gives
+the bijection
+\[
+ \gamma_{q_1,q_2}:G_{q_1q_2}(\mathcal H)
+ \xrightarrow{\ \sim\ }
+ G_{q_1}(\mathcal H)\times G_{q_2}(\mathcal H).
+\]
+For three pairwise coprime moduli, the two iterated product maps agree after
+the canonical identification of the two parenthesizations.
+\end{proposition}
+
+\begin{proof}
+An element $a+h_i$ is a unit in $R_{q_1q_2}$ if and only if its two images
+are units in $R_{q_1}$ and $R_{q_2}$.  The ring isomorphism therefore carries
+the defining conditions for $G_{q_1q_2}(\mathcal H)$ precisely to the defining
+conditions for the displayed product.  The associativity statement follows
+because either iterated map sends $[a]_{q_1q_2q_3}$ to
+$([a]_{q_1},[a]_{q_2},[a]_{q_3})$.
+\end{proof}
+
+For a prime $p$, define
+\[
+ \Omega_p(\mathcal H)=\{-h_i\bmod p:1\leq i\leq k\}\subset\mathbb F_p,
+ \qquad \nu_p(\mathcal H)=|\Omega_p(\mathcal H)|.
+\]
+Then $G_p(\mathcal H)=\mathbb F_p\setminus\Omega_p(\mathcal H)$.  Iterating
+$\gamma$ gives, for every positive squarefree $q$, a specified bijection
+\[
+ G_q(\mathcal H)\xrightarrow{\ \sim\ }
+ \prod_{p\mid q}\bigl(\mathbb F_p\setminus\Omega_p(\mathcal H)\bigr),
+ \qquad
+ |G_q(\mathcal H)|=\prod_{p\mid q}(p-\nu_p(\mathcal H)).
+\]
+
+There is an equivalent statement for functions on residue classes.
+For a finite set of primes $S$, let
+$X_S=\prod_{p\in S}\mathbb F_p$ and give $X_S$ normalized counting
+measure $\mu_S$.  Multiplication by
+$q_S(a)=\prod_{p\in S}\mathbf1_{G_p(\mathcal H)}(a_p)$ is an
+orthogonal projection $Q_S$ on $\ell^2(X_S,\mu_S;\mathbb R)$.
+For disjoint $S,T$, the map
+\[
+ f\otimes g\longmapsto\bigl((a,b)\longmapsto f(a)g(b)\bigr)
+\]
+extends from the Hilbert tensor product of the two function spaces to
+an isometric isomorphism onto $\ell^2(X_{S\cup T},\mu_{S\cup T})$.
+Indeed, normalized sums factor, so inner products of elementary tensors
+agree, and the residue indicator functions span both spaces.
+This isomorphism carries $Q_S\otimes Q_T$ to $Q_{S\cup T}$.
+The expectation $\omega_S(A)=\langle1,A1\rangle$ on linear endomorphisms
+satisfies
+\[
+ \omega_S(Q_S)=\prod_{p\in S}(1-\nu_p(\mathcal H)/p),\qquad
+ \omega_S(A^*A)=\|A1\|_2^2\geq0.
+\]
+The first identity counts the surviving residues; the second follows from
+the definition of the adjoint.
+
+\section{The infinite product}
+
+For a prime $p$, the proportion of allowed residue classes is
+$1-\nu_p(\mathcal H)/p$.  Each separate condition $a+h_i\not\equiv0\pmod p$
+holds on a proportion $1-1/p$ of the classes.  Dividing the joint proportion
+by the product of these separate proportions gives the following local
+factor.  This normalization makes no assertion that the conditions are
+independent.
+
+\begin{definition}
+The set $\mathcal H$ is \emph{admissible} if
+$\nu_p(\mathcal H)<p$ for every prime $p$.  Its local factor is
+\[
+ \sigma_p(\mathcal H)
+ =\frac{1-\nu_p(\mathcal H)/p}{(1-1/p)^k}.
+\]
+\end{definition}
+
+Admissibility is exactly the positivity of every local factor.  It removes
+all congruence obstructions, but it asserts no distribution theorem.
+
+\begin{theorem}[Positive singular product]
+If $\mathcal H$ is admissible, then
+\[
+ \mathfrak S(\mathcal H)=\prod_p\sigma_p(\mathcal H)
+\]
+converges to a finite, strictly positive real number.  More precisely,
+\[
+ \sigma_p(\mathcal H)=1-\frac{k(k-1)}{2p^2}+O_k(p^{-3})
+\]
+outside a finite set of primes.
+\end{theorem}
+
+\begin{proof}
+Put
+\[
+ \Delta_{\mathcal H}=\prod_{1\leq i<j\leq k}|h_i-h_j|,
+\]
+with the empty product equal to $1$.  If $p\nmid\Delta_{\mathcal H}$, the
+reductions of the $h_i$ are distinct, so $\nu_p(\mathcal H)=k$.  Thus, for all
+but finitely many primes,
+\[
+ \sigma_p=(1-k/p)(1-1/p)^{-k}.
+\]
+For $p>k$, the convergent power series for the logarithm gives
+\[
+ \log\sigma_p
+ =-\sum_{n\geq2}\frac{k^n-k}{n p^n}
+ =-\frac{k(k-1)}{2p^2}+O_k(p^{-3}).
+\]
+Exponentiation gives the asserted expansion and, in particular,
+$|\sigma_p-1|=O_k(p^{-2})$.  Hence
+$\sum_p|\sigma_p-1|<\infty$.  Eventually $|\sigma_p-1|\leq1/2$, and then
+$|\log\sigma_p|\leq2|\sigma_p-1|$.  The logarithmic series therefore
+converges absolutely.  All its factors are positive by admissibility, so the
+product is finite and strictly positive.
+\end{proof}
+
+\begin{corollary}[Effective product tail]\label{cor:product-tail}
+Let $Y$ be an integer with $Y\geq2k$, and suppose every prime divisor of
+$\Delta_{\mathcal H}$ is at most $Y$.  For admissible $\mathcal H$, put
+$\mathfrak S_Y=\prod_{p\leq Y}\sigma_p(\mathcal H)$.  Then
+\[
+ e^{-k^2/Y}\mathfrak S_Y\leq\mathfrak S(\mathcal H)
+ \leq\mathfrak S_Y.
+\]
+For $k=1$, $\mathfrak S_Y=\mathfrak S(\mathcal H)=1$.
+\end{corollary}
+
+\begin{proof}
+For $p>Y$, the logarithmic series in the preceding proof gives
+\[
+ 0\leq-\log\sigma_p
+ \leq\sum_{n\geq2}\frac{(k/p)^n}{2}
+ =\frac{k^2}{2p^2(1-k/p)}\leq\frac{k^2}{p^2}.
+\]
+Sum over primes and use
+$\sum_{n>Y}n^{-2}\leq\int_Y^\infty t^{-2}\,dt=Y^{-1}$.
+Exponentiation proves both bounds.
+\end{proof}
+
+\begin{example}[The shifts $\{0,2\}$]
+Let $\mathcal H=\{0,2\}$.  At the exceptional prime $2$, the two forbidden
+classes coincide:
+\[
+ \Omega_2(\mathcal H)=\{0\},\qquad
+ G_2(\mathcal H)=\{1\},\qquad
+ \sigma_2=\frac{1-1/2}{(1-1/2)^2}=2.
+\]
+For every odd prime $p$, the forbidden classes $0$ and $-2$ are distinct, so
+\[
+ |G_p(\mathcal H)|=p-2,
+ \qquad
+ \sigma_p=\frac{1-2/p}{(1-1/p)^2}
+ =\frac{p(p-2)}{(p-1)^2}
+ =1-\frac{1}{(p-1)^2}.
+\]
+Consequently
+\[
+ \mathfrak S(\{0,2\})
+ =2\prod_{p>2}\left(1-\frac{1}{(p-1)^2}\right)>0.
+\]
+The positivity and convergence of this constant are local statements.  The
+assertion that infinitely many integers $n$ make both $n$ and $n+2$ prime is
+not a consequence of them.
+\end{example}
+
+The cardinality $k$ alone does not determine the local factor.
+At $p=3$, the pairs $\{0,2\}$ and $\{0,6\}$ have respectively two
+and one forbidden residue classes.  Their factors are therefore
+$(1-2/3)/(1-1/3)^2=3/4$ and $(1-1/3)/(1-1/3)^2=3/2$.
+
+\section{A finite divisor-sum criterion}
+
+To detect several prime translates at one integer, one can compare a
+nonnegative weighted prime count with the total weight.  If the weighted
+average exceeds an integer $m$, some integer with positive weight has more
+than $m$ prime translates.  Squared divisor sums provide nonnegative weights
+whose total weight can be computed from congruences.
+
+Let $\mathcal H$ be admissible, and let $W$ be a positive squarefree integer
+divisible by every prime factor of $\Delta_{\mathcal H}$.  The finite product
+map gives
+\[
+ |G_W(\mathcal H)|=\prod_{p\mid W}(p-\nu_p(\mathcal H))>0.
+\]
+Choose an integer $v_0=v_0(W)$ whose class lies in $G_W(\mathcal H)$.  Thus
+$\gcd(v_0+h_i,W)=1$ for every $i$.  Let $N$ be a positive integer such that
+\[
+ I_N=\{n\in\mathbb Z:N\leq n<2N,\ n\equiv v_0\pmod W\}
+\]
+is nonempty and $n+h_i\geq2$ for $n\in I_N$ and all $i$.  Let
+$\mathcal D$ be a finite set of $k$-tuples of positive integers containing
+$\boldsymbol 1=(1,\ldots,1)$.  Require
+\[
+ d_1\cdots d_k\text{ to be squarefree},
+ \qquad \gcd(d_1\cdots d_k,W)=1
+ \quad(\boldsymbol d\in\mathcal D).
+\]
+Define the divisor-incidence map by
+\[
+ T:\mathbb R^{\mathcal D}\longrightarrow\mathbb R^{I_N},
+ \qquad
+ (T\lambda)(n)=
+ \sum_{\substack{\boldsymbol d\in\mathcal D\\
+                  d_i\mid n+h_i\ (1\leq i\leq k)}}
+ \lambda_{\boldsymbol d}
+\]
+and assign to $n\in I_N$ the weight
+\[
+ w_\lambda(n)=|(T\lambda)(n)|^2\geq0.
+\]
+These squared divisor sums are finite multidimensional Selberg weights
+as in \cite[(2.4), (4.2)--(4.3)]{Maynard}.  To count prime translates, put
+\[
+ R_{\mathcal H}(n)=\sum_{i=1}^k\mathbf 1_{\mathbb P}(n+h_i),
+ \qquad (M_Rf)(n)=R_{\mathcal H}(n)f(n),
+\]
+where $\mathbb P$ is the set of positive primes, and define
+\[
+ A=T^*T,\qquad B=T^*M_RT,
+\]
+with respect to the standard Euclidean inner products.
+
+\begin{proposition}[Finite divisor-sum Rayleigh principle]\label{prop:finite}
+For $\boldsymbol d,\boldsymbol e\in\mathcal D$, set
+$q_i=\operatorname{lcm}(d_i,e_i)$.  The matrix entries are
+\[
+ A_{\boldsymbol d,\boldsymbol e}
+ =\#\{n\in I_N:q_i\mid n+h_i\text{ for }1\leq i\leq k\}
+\]
+and, when the $q_i$ are pairwise coprime,
+\[
+ \left|A_{\boldsymbol d,\boldsymbol e}
+       -\frac{N}{W\prod_{i=1}^kq_i}\right|\leq1.
+\]
+If they are not pairwise coprime, then
+$A_{\boldsymbol d,\boldsymbol e}=0$.  Moreover,
+\[
+ B_{\boldsymbol d,\boldsymbol e}
+ =\sum_{\substack{n\in I_N\\q_i\mid n+h_i\ (1\leq i\leq k)}}
+ R_{\mathcal H}(n).
+\]
+For $\lambda\in\mathbb R^{\mathcal D}$, write
+\[
+ S_1(\lambda)=\|T\lambda\|_2^2,
+ \qquad
+ S_2(\lambda)=\langle T\lambda,M_RT\lambda\rangle.
+\]
+If $V=(\ker T)^\perp$ and $A_V,B_V$ denote the restrictions to $V$, then
+$A_V$ is positive definite and
+\[
+ \max_{\lambda\notin\ker T}\frac{S_2(\lambda)}{S_1(\lambda)}
+ =\lambda_{\max}\!\left(A_V^{-1/2}B_VA_V^{-1/2}\right)
+ \leq \max_{n\in I_N}R_{\mathcal H}(n)\leq k.
+\]
+Consequently, if $m$ is a nonnegative integer and some $\lambda$ satisfies
+\[
+ S_1(\lambda)>0,
+ \qquad S_2(\lambda)>mS_1(\lambda),
+\]
+then at least $m+1$ of $n+h_1,\ldots,n+h_k$ are prime for some $n\in I_N$.
+\end{proposition}
+
+\begin{proof}
+Every integer $W,q_1,\ldots,q_k$ is squarefree, and $\gcd(W,q_i)=1$.
+If a prime $p$ divides both $q_i$ and
+$q_j$ with $i\ne j$, simultaneous divisibility would give
+$h_i\equiv h_j\pmod p$.  But then $p\mid\Delta_{\mathcal H}$, hence $p\mid W$,
+contrary to $\gcd(W,q_iq_j)=1$.  Thus the congruences counted by
+$A_{\boldsymbol d,\boldsymbol e}$ are inconsistent unless the $q_i$ are
+pairwise coprime.  In the remaining case, the Chinese remainder theorem gives
+one residue class modulo $W\prod_iq_i$.  Its intersection with an interval of
+$N$ consecutive integers has cardinality differing from
+$N/(W\prod_iq_i)$ by at most $1$.  Expanding the two inner products gives the
+displayed entries of $A$ and $B$.
+
+Since $\boldsymbol 1\in\mathcal D$ and $I_N$ is nonempty, $T$ is nonzero.  If
+$0\ne x\in V$, then
+\[
+ \langle x,A_Vx\rangle=\|Tx\|_2^2>0,
+\]
+so $A_V$ is positive definite.  Both $A$ and $B$ annihilate $\ker T$ and
+preserve $V$.  Orthogonal projection onto $V$, followed by the substitution
+$y=A_V^{1/2}x$, therefore reduces the generalized quotient to
+\[
+ \frac{\langle x,B_Vx\rangle}{\langle x,A_Vx\rangle}
+ =\frac{\langle y,A_V^{-1/2}B_VA_V^{-1/2}y\rangle}
+        {\langle y,y\rangle}.
+\]
+Rayleigh--Ritz gives the equality with the largest eigenvalue.  Finally,
+\[
+ S_2(\lambda)
+ =\sum_{n\in I_N}R_{\mathcal H}(n)|(T\lambda)(n)|^2
+ \leq\left(\max_{n\in I_N}R_{\mathcal H}(n)\right)S_1(\lambda).
+\]
+If $S_2(\lambda)>mS_1(\lambda)$, some term with
+$(T\lambda)(n)\ne0$ has $R_{\mathcal H}(n)>m$.  This integer-valued prime
+count is therefore at least $m+1$.
+\end{proof}
+
+\begin{example}[Two divisor coefficients]
+Take $\mathcal H=\{0,2\}$, $W=2$, $v_0=1$, $N=5$, and
+$\mathcal D=\{(1,1),(3,1)\}$.  Then $I_N=\{5,7,9\}$.
+The first divisor tuple contributes at every sample.  The second contributes
+only at $n=9$, since $3\mid9$ but $3\nmid5,7$.  With rows ordered as
+$5,7,9$ and columns as $(1,1),(3,1)$, this gives
+\[
+ T=\begin{pmatrix}1&0\\1&0\\1&1\end{pmatrix},
+ \qquad
+ (R_{\mathcal H}(5),R_{\mathcal H}(7),R_{\mathcal H}(9))=(2,1,1).
+\]
+Indeed, the pairs of translates are $(5,7)$, $(7,9)$, and $(9,11)$.
+Thus
+\[
+ A=\begin{pmatrix}3&1\\1&1\end{pmatrix},\qquad
+ B=\begin{pmatrix}4&1\\1&1\end{pmatrix}.
+\]
+For $\lambda=(a,b)$, the weights are $a^2,a^2,(a+b)^2$, so
+\[
+ \frac{S_2(\lambda)}{S_1(\lambda)}
+ =\frac{3a^2+(a+b)^2}{2a^2+(a+b)^2}
+ \leq\frac32\qquad(\lambda\ne0).
+\]
+Equality holds at $(a,b)=(1,-1)$, where $S_1=2$ and $S_2=3$.
+The strict threshold with $m=1$ therefore detects a pair of prime translates
+in this interval, realized at $n=5$.  The maximum $3/2$ is smaller than the
+largest sampled prime count, which is $2$.  Every permitted weight gives
+equal mass to $5$ and $7$, so these weights cannot isolate the sample $5$.
+This finite calculation supplies no asymptotic prime-count estimate.
+\end{example}
+
+Admissibility supplies the residue class $v_0\pmod W$, but it supplies no strict inequality
+between $S_2$ and $mS_1$.  Neither positivity of
+$\mathfrak S(\mathcal H)$ nor the finite identities above implies the threshold
+inequality.  The comparison with an integral operator requires the additional
+arithmetic estimates and the specified coefficient map below.
+
+\section{The simplex operator}
+
+Integrating one variable of a function produces the quadratic expressions
+that occur in the limiting prime sum.  For two variables, the domain is
+the triangle $\Delta_2=\{(x,y):x,y\geq0,\ x+y\leq1\}$.  The constant
+function has squared integral norm $1/2$.  Its two fibre integrals are
+$1-y$ and $1-x$, so their squared norms sum to $2/3$.
+The resulting Rayleigh value is $4/3$.
+
+For a positive integer $k$, define
+\[
+ \Delta_k=\{t\in[0,\infty)^k:t_1+\cdots+t_k\leq1\},
+ \qquad H_k=L^2(\Delta_k,dt;\mathbb R).
+\]
+All integrals use ordinary Lebesgue measure, without volume normalization.
+Write $\ip fg=\int_{\Delta_k}fg$ and $\norm f^2=\ip ff$.
+Functions are equivalence classes modulo equality almost everywhere.
+No boundary conditions are imposed.  When $k=1$, the space $\Delta_0$
+is a single point of measure one.  For $1\leq i\leq k$, write
+$t_{\widehat i}$ for the coordinates other than $t_i$, and put
+$\ell_i(s)=1-\sum_{j\ne i}s_j$ on $\Delta_{k-1}$.
+Define the fibre integral
+\[
+ T_i:H_k\longrightarrow L^2(\Delta_{k-1}),\qquad
+ (T_iF)(s)=\int_0^{\ell_i(s)}F(s_1,\ldots,u,\ldots,s_k)\,du.
+\]
+The notation $T_i$ denotes a continuum map.  The finite incidence map
+of Proposition~\ref{prop:finite} will be denoted by $T_N$ below.
+
+\begin{proposition}\label{prop:simplex}
+Each $T_i$ is bounded with norm one.  Its adjoint and its product with
+the adjoint are
+\[
+ (T_i^*g)(t)=g(t_{\widehat i}),\qquad T_iT_i^*g=\ell_i g.
+\]
+Consequently
+\begin{equation}\label{eq:spine-operator}
+ K_k=\sum_{i=1}^kT_i^*T_i,
+ \qquad
+ \langle F,K_kF\rangle=\sum_{i=1}^k\|T_iF\|_2^2
+\end{equation}
+defines a bounded positive self-adjoint operator on $H_k$, with
+$0\leq K_k\leq kI$.  If
+\[
+ M_k=\sup_{0\ne F\in H_k}
+       \frac{\sum_i\|T_iF\|_2^2}{\|F\|_2^2},
+\]
+then $M_k=\|K_k\|$ and $2k/(k+1)\leq M_k\leq k$.
+The same supremum results from smooth functions with compact support
+in the interior of $\Delta_k$.
+For $k\geq2$, no nonzero function attains the norm of an individual $T_i$.
+\end{proposition}
+
+\begin{proof}
+Fibrewise Cauchy--Schwarz gives
+\[
+ |T_iF(s)|^2\leq\ell_i(s)
+       \int_0^{\ell_i(s)}|F(s_1,\ldots,u,\ldots,s_k)|^2\,du.
+\]
+Since $0\leq\ell_i\leq1$, integration proves boundedness.
+For $k\geq2$, $\ell_i(t_{\widehat i})<1$ almost everywhere in
+$\Delta_k$, so the integrated bound is strict for every nonzero $F$.
+Fubini proves the adjoint formula.  Hence $T_iT_i^*$ is multiplication
+by $\ell_i$, whose essential supremum is one.  This proves
+$\|T_i\|=1$ and all operator assertions.
+The Rayleigh characterization of a bounded positive self-adjoint operator
+gives $M_k=\|K_k\|$.
+
+For $F=1$, repeated integration gives
+\[
+ \|1\|_2^2=\frac1{k!},\qquad
+ \|T_i1\|_2^2=\int_{\Delta_{k-1}}(1-\textstyle\sum s_j)^2\,ds
+                  =\frac2{(k+1)!}.
+\]
+These identities follow by integrating the last variable and induction
+on the dimension.  They prove the lower bound.
+Smooth functions with compact support in the interior are dense in $H_k$:
+first restrict a function to compact subsets of the interior, then mollify
+its zero extension.  Boundedness of $K_k$ makes the numerator continuous
+in $L^2$.  Approximation therefore preserves the supremum.
+\end{proof}
+
+We call $\|F\|_2^2$ the mass of $F$ and $\langle F,K_kF\rangle$ its energy.
+
+This $K_k$ is the operator in \cite[(7.1)--(7.2), p.~405]{Maynard}.
+Maynard also excludes test functions with a zero fibre norm.
+That restriction leaves the supremum unchanged.  Choose one nonnegative
+smooth interior function $\psi\ne0$, for which every $T_i\psi\ne0$.
+For any fixed $F$, the equation $T_i(F+a\psi)=0$ excludes at most one
+real number $a$.  A sequence $a\to0$ avoiding these finitely many values
+proves the assertion.  Real and complex $L^2$ give the same supremum,
+because numerator and denominator split over real and imaginary parts.
+
+\begin{example}[Two polynomial test functions]\label{ex:triangle-ritz}
+On $\Delta_2$, take $F(x,y)=a+b(x+y)$ with real coefficients $a,b$.
+The mass and fibre forms have matrices
+\[
+ A_0=\begin{pmatrix}1/2&1/3\\1/3&1/4\end{pmatrix},\qquad
+ B_0=\begin{pmatrix}2/3&5/12\\5/12&4/15\end{pmatrix}.
+\]
+Indeed, integration of monomials gives
+$\int_{\Delta_2}x^ry^s\,dx\,dy=r!s!/(r+s+2)!$ for nonnegative
+integers $r,s$.  The two fibre polynomials for the basis $1,x+y$
+are $1-y$ and $(1-y^2)/2$ in the first direction.
+The second direction gives the same integrals.
+These formulas determine every matrix entry.
+Since $\det A_0=1/72>0$, the maximal quotient is the larger root of
+\[
+          720\det(B_0-zA_0)=10z^2-16z+3=0.
+\]
+Thus $M_2\geq(8+\sqrt{34})/10>4/3$.
+These polynomials belong to $H_2$.  Approximation gives the same supremum
+over smooth functions with compact support in the interior.
+\end{example}
+
+\subsection{Compactness and approximate eigenvectors}
+
+A bounded sequence can lose its mass from every fixed test function.
+We write $f_n\rightharpoonup0$, and say it converges weakly to zero,
+when $\ip g{f_n}\to0$ for every $g$ in the Hilbert space.
+A bounded operator $C$ is \emph{compact} if every bounded sequence has a
+subsequence whose images under $C$ converge in norm.
+In particular,
+\begin{equation}\label{eq:compact-weak}
+ f_n\rightharpoonup0,\quad \sup_n\norm{f_n}<\infty
+                    \quad\Longrightarrow\quad\norm{Cf_n}\to0.
+\end{equation}
+Otherwise a subsequence with image norms bounded below would have a
+nonzero norm limit.  Its weak limit is zero because
+$\ip g{Cf_n}=\ip{C^*g}{f_n}\to0$, a contradiction.
+
+We will use weak subsequences on separable Hilbert spaces.
+Here is the required construction.  Choose an orthonormal basis $e_j$,
+and successively extract subsequences on which $\ip{e_j}{f_n}$ converges.
+The diagonal subsequence has limiting coordinates with bounded sum of
+squares, by applying the norm bound to every finite sum.
+Those coordinates define a Hilbert-space vector $f$.
+Approximation of a test vector by its first finitely many coordinates
+proves $f_n\rightharpoonup f$ along this subsequence.
+The spaces $H_d$ are separable: simple functions on boxes with rational
+endpoints form a countable dense family, after rationalizing their values.
+
+\begin{lemma}[Bounded integral kernels]\label{lem:kernel}
+Let $D\subset\mathbb R^d$ be measurable and have finite measure.
+If $h\in L^2(D\times D)$, then
+\[
+                  (C_hf)(x)=\int_D h(x,y)f(y)\,dy
+\]
+is compact and $\norm{C_h}\leq\norm h_{L^2(D\times D)}$.
+In particular, a measurable kernel bounded by one on
+$\D_3\times\D_3$ gives $\norm{C_h}\leq1/6$.
+\end{lemma}
+
+\begin{proof}
+Cauchy--Schwarz in $y$ followed by integration in $x$ gives the norm bound.
+Finite sums $\sum_j a_j(x)b_j(y)$ are dense in $L^2(D\times D)$.
+This follows by approximating measurable functions with simple functions
+on rectangles.  Their integral operators have finite-dimensional range.
+The norm bound makes $C_h$ an operator norm limit of those operators.
+Such a limit is compact: approximate the image of the unit ball by a
+finite-dimensional bounded set within any prescribed positive error.
+Each such set has a finite net; these nets make every image sequence
+have a Cauchy subsequence.  The last bound uses $|\D_3|=1/6$.
+\end{proof}
+
+The spectrum of a bounded self-adjoint operator $B$ consists of the real
+numbers $\lambda$ for which $B-\lambda I$ has no bounded inverse.
+Working with the complexification gives the usual complex spectrum.
+It has no nonreal points: for $\operatorname{Im}z\ne0$,
+$\norm{(B-z)f}\geq|\operatorname{Im}z|\norm f$.
+Its range is closed and dense, since the orthogonal complement of that
+range is $\ker(B-\bar z)=0$.
+
+\begin{definition}\label{def:essential}
+The essential spectrum of $B$, denoted by $\sigma_{\mathrm{ess}}(B)$,
+is the set of real $\lambda$ admitting a sequence with
+\[
+ \norm{f_n}=1,\qquad f_n\rightharpoonup0,
+                  \qquad\norm{(B-\lambda I)f_n}\to0.
+\]
+Such a sequence is called a singular sequence at $\lambda$.
+Its existence rules out bounded invertibility.
+\end{definition}
+
+This definition distinguishes eigenvectors of finite multiplicity from
+approximate eigenvectors that disappear weakly.
+For example, multiplication by $x$ on $L^2(0,1)$ has a singular sequence
+at every $\lambda\in[0,1]$.
+Use normalized indicators of intervals shrinking to $\lambda$.
+The residual is at most the interval diameter, and weak convergence
+follows from absolute continuity of the integral of $|g|^2$.
+
+\begin{lemma}[The discrete spectrum above an essential bound]
+\label{lem:spectral}
+For a bounded self-adjoint $B$ on a separable Hilbert space,
+a real number $\lambda$ is outside
+$\sigma_{\mathrm{ess}}(B)$ precisely when $\ker(B-\lambda I)$ is finite
+dimensional and
+\begin{equation}\label{eq:bounded-below}
+ \norm{(B-\lambda I)f}\geq c\norm f
+       \quad\text{on }\ker(B-\lambda I)^\perp
+\end{equation}
+for some $c>0$.
+If such a $\lambda$ is in the spectrum, it is an isolated eigenvalue
+of finite multiplicity.
+For a nonzero bounded positive $B$, the number
+\[
+                   b=\sup_{\norm f=1}\ip f{Bf}
+\]
+equals $\norm B$ and belongs to its spectrum.
+If $b$ is larger than every essential spectral value, it is attained.
+\end{lemma}
+
+\begin{proof}
+An infinite-dimensional kernel contains an orthonormal sequence, which
+is weakly zero and is a singular sequence.
+If \eqref{eq:bounded-below} fails, choose unit vectors in the kernel
+complement with residuals tending to zero.
+A weakly convergent subsequence has limit in both the kernel and its
+orthogonal complement, hence has weak limit zero.
+Conversely, a singular sequence has projections onto any fixed
+finite-dimensional kernel tending to zero.
+Inequality~\eqref{eq:bounded-below} then contradicts its unit norm.
+
+Let $E=\ker(B-\lambda I)$ and assume the stated finite kernel and bound.
+Self-adjointness makes $E^\perp$ invariant.
+On $E^\perp$, the range of $B-\lambda I$ is closed by the bound and
+dense because its orthogonal complement is its kernel.
+It is therefore all of $E^\perp$, with inverse norm at most $c^{-1}$.
+If $E=0$, $\lambda$ is outside the spectrum.
+Otherwise, for $0<|t-\lambda|<c$, the inverse on $E^\perp$ follows
+from the convergent geometric series for the bounded perturbation
+$(\lambda-t)I$.  On $E$, the operator is multiplication by $\lambda-t$.
+Thus $\lambda$ is isolated and has finite multiplicity.
+
+For positive $B$, its quadratic form satisfies
+$|\ip f{Bg}|^2\leq\ip f{Bf}\ip g{Bg}$.
+To see this, expand the nonnegative quadratic polynomial
+$\ip{f+tg}{B(f+tg)}$ and use its discriminant.
+It follows that $\norm B\leq b$; the reverse inequality is immediate.
+Moreover, $\norm{Bf}^2\leq b\ip f{Bf}$, by applying this form inequality
+to $f$ and unit test vectors.
+Choose unit $f_n$ with $\ip{f_n}{Bf_n}\to b$.
+Then
+\[
+ \norm{(B-bI)f_n}^2\leq b\bigl(b-\ip{f_n}{Bf_n}\bigr)\to0.
+\]
+Thus $b$ belongs to the spectrum.
+If it lies above the essential spectrum, the preceding argument supplies
+an eigenvector, which attains the quotient.
+\end{proof}
+
+\begin{proposition}[Distance from compact operators]\label{prop:noncompact}
+For $k\geq2$ and every compact operator $C:H_k\to H_k$,
+\[
+                         \|K_k-C\|\geq1.
+\]
+In particular, no sequence of finite-rank operators converges to $K_k$
+in operator norm.  For $k=1$, $K_1F=(\int_0^1F)1$ has rank one.
+\end{proposition}
+
+\begin{proof}
+Fix $0<\varepsilon<1$ and one coordinate $i$.
+The set $E=\{s\in\Delta_{k-1}:\ell_i(s)>1-\varepsilon\}$
+has positive measure.  Split $E$ into infinitely many disjoint measurable
+sets of positive measure, and let $g_j$ be their normalized indicators.
+Define
+\[
+ F_j(t)=\frac{g_j(t_{\widehat i})}
+                 {\sqrt{\ell_i(t_{\widehat i})}}.
+\]
+Fubini shows that the $F_j$ are orthonormal in $H_k$ and
+\[
+ \langle F_j,K_kF_j\rangle
+ \geq\|T_iF_j\|_2^2
+ =\int_E\ell_i(s)|g_j(s)|^2\,ds>1-\varepsilon.
+\]
+An orthonormal sequence converges weakly to zero.  Compactness gives
+$\|CF_j\|_2\to0$: otherwise compactness produces a nonzero norm limit
+along a subsequence, contradicting weak convergence.
+Thus $\|K_k-C\|\geq1-\varepsilon$.  Let $\varepsilon\downarrow0$.
+\end{proof}
+
+\subsection{An attained maximum in two dimensions}
+
+Noncompactness alone does not determine whether a Rayleigh maximum is
+attained.  The following computation makes this distinction explicit.
+It is the two-dimensional calculation in
+\cite[Corollaries 35--36]{Polymath}.
+
+\begin{proposition}\label{prop:m2}
+Let $w>0$ be the unique solution of $we^w=e^{-1}$, and set
+$\lambda=(1-w)^{-1}$.  Then $M_2=\lambda<3/2$.
+There is a continuous strictly positive function $\psi$ on $\Delta_2$
+with $K_2\psi=M_2\psi$ and $\|\psi\|_2=1$.
+\end{proposition}
+
+\begin{proof}
+The function $u\mapsto ue^u$ increases strictly from zero to infinity
+on $[0,\infty)$, so $w$ exists uniquely.
+Its equation implies $0<w<1$ and
+\[
+ \log\frac{\lambda}{\lambda-1}=2-\frac1\lambda.
+\]
+For $0\leq x\leq1$, define
+\[
+ f(x)=\frac1{\lambda-1+x}
+     +\frac1{2\lambda-1}\log\frac{\lambda-x}{\lambda-1+x}.
+\]
+The logarithmic identity gives $f(1)=0$.
+Writing $a=\lambda-1+x$, $b=\lambda-x$, and $c=2\lambda-1=a+b$,
+one obtains
+\[
+ f'(x)=-\frac1{a^2}-\frac1c\left(\frac1b+\frac1a\right)<0,
+ \qquad
+ \frac{d}{dx}(af(x))=\frac1c\log\frac ba-\frac1b=-f(1-x).
+\]
+Both $af(x)$ and $\int_0^{1-x}f(u)\,du$ vanish at $x=1$.
+Their derivatives agree, so
+\[
+                 \int_0^{1-x}f(u)\,du=(\lambda-1+x)f(x).
+\]
+The continuous function $F(x,y)=f(x)+f(y)$ is strictly positive on
+$\Delta_2$.  Indeed, $f(x)>0$ for $x<1$, and the two coordinates cannot
+both equal one.  The preceding identity gives the
+fibre equation
+\[
+ \int_0^{1-y}F(u,y)\,du+\int_0^{1-x}F(x,u)\,du
+                       =\lambda F(x,y).
+\]
+Thus $K_2F=\lambda F$ and $M_2\geq\lambda$.
+
+For any $u\in H_2$, weighted Cauchy--Schwarz on each fibre gives
+\[
+ |T_i u(s)|^2\leq (T_iF)(s)
+                 \int_0^{\ell_i(s)}\frac{|u(s_1,\ldots,t,\ldots)|^2}
+                                              {F(s_1,\ldots,t,\ldots)}\,dt.
+\]
+The function $F$ has a positive minimum on the compact triangle.
+Integrate and sum over $i$ to obtain
+\[
+ \langle u,K_2u\rangle
+ \leq\int_{\Delta_2}|u|^2\frac{K_2F}{F}\,dt
+ =\lambda\|u\|_2^2.
+\]
+This proves the reverse bound and attainment.  Put $\psi=F/\|F\|_2$.
+Finally, $e^{4/3}>1+4/3+(4/3)^2/2=29/9>3$.
+Thus $(1/3)e^{1/3}>e^{-1}$, which gives $w<1/3$ and $M_2<3/2$.
+\end{proof}
+
+For a bounded positive operator $B$, equality in its maximal Rayleigh
+quotient is equivalent to $BF=\|B\|F$ for a nonzero $F$.
+The estimate
+$\|(B-\|B\|I)F\|^2\leq\|B\|(\|B\|\|F\|^2-\langle F,BF\rangle)$
+from Lemma~\ref{lem:spectral} proves the assertion.
+The three-dimensional maximum follows from the next spectral argument.
+
+\section{The three-variable spectral problem}\label{sec:three-variable}
+
+Integration in one coordinate retains arbitrary dependence on the other
+two coordinates.  This permits concentrating sequences even though a
+maximal eigenfunction may exist.
+We now determine both the essential spectrum and the maximal eigenspace
+on the tetrahedron $\Delta_3$.
+Write
+\[
+ A_i=T_i^*T_i\quad(1\leq i\leq3),\qquad K=K_3=A_1+A_2+A_3,
+ \qquad \kappa=M_2.
+\]
+Every $A_i$ preserves nonnegative functions, since it integrates on a fibre.
+This property differs from positivity of the quadratic form,
+although $A_i$ has both properties.
+Let $\psi$ be the positive unit triangle eigenfunction of
+Proposition~\ref{prop:m2}.  We keep $K_2$ for the operator on $H_2$.
+Proposition~\ref{prop:simplex} gives $M_3\geq3/2$ from the constant
+function.  A linear polynomial gives a stronger exact bound.
+
+\begin{example}[A linear test function]\label{ex:linear-test}
+Let $s=x+y+z$ and $f=a+bs$.
+The mass and fibre quadratic forms on the basis $1,s$ have matrices
+\[
+ G=\begin{pmatrix}1/6&1/8\\1/8&1/10\end{pmatrix},\qquad
+ B=\begin{pmatrix}1/4&7/40\\7/40&1/8\end{pmatrix}.
+\]
+To compute $G$, use
+$\int_{\D_3}h(x+y+z)=\tfrac12\int_0^1s^2h(s)\,ds$.
+For $B$, write $r$ for the sum of the two remaining coordinates.
+The fibre integrals of $1,s$ are $1-r,(1-r^2)/2$, and
+$\int_{\D_2}h(x+y)=\int_0^1r h(r)\,dr$.
+These one-variable integrals give all the displayed entries.
+For $f_0=1-3s/4$, they give
+\begin{equation}\label{eq:linear-rayleigh}
+ \norm{f_0}_2^2=\frac{17}{480},\qquad
+ \ip{f_0}{Kf_0}=\frac{37}{640},\qquad
+ \frac{\ip{f_0}{Kf_0}}{\norm{f_0}_2^2}=\frac{111}{68}.
+\end{equation}
+The maximum on this two-dimensional space is also explicit:
+\[
+ 960\det(B-uG)=u^2-2u+\frac35,
+ \qquad M_3\geq1+\sqrt{\frac25}.
+\]
+These are finite-dimensional lower bounds.  Attainment in $H_3$ requires
+control of sequences outside this test space.
+\end{example}
+
+\subsection{Two-coordinate slices}
+
+Fixing the third coordinate leaves a scaled copy of $\Delta_2$.
+The change of variables must account for both the slice measure and the
+length of each integrating fibre.
+
+Let $S_{12}=A_1+A_2$, and write $a=1-z$ for $0<z<1$.
+The change of variables
+\begin{equation}\label{eq:slice-unitary}
+ (\mathcal Uf)(u,v,z)=a f(au,av,z)
+\end{equation}
+is an isometric isomorphism from $H_3$ onto
+$L^2(\D_2\times(0,1),du\,dv\,dz)$.
+Indeed, $dx\,dy=a^2du\,dv$, and the inverse is
+$f(x,y,z)=a^{-1}(\mathcal Uf)(x/a,y/a,z)$.
+Endpoints in $z$ have measure zero.
+Changing one integration variable gives
+\begin{equation}\label{eq:pair-decomposition}
+           (\mathcal U S_{12}\mathcal U^{-1}g)(u,v,z)
+                         =(1-z)(K_2g(\cdot,\cdot,z))(u,v).
+\end{equation}
+Consequently $\norm{S_{12}}\leq\kappa$.
+Functions of the form $g(u,v,z)=\psi(u,v)q(z)$ with $q$ concentrated
+near zero give the reverse inequality.
+Coordinate permutations give
+\begin{equation}\label{eq:pair-norm}
+                 \norm{A_1+A_2}=\norm{A_1+A_3}
+                       =\norm{A_2+A_3}=\kappa.
+\end{equation}
+
+\subsection{Products that integrate every coordinate}
+
+The pair sums retain one coordinate.
+A product can remove this remaining dependence by integrating that
+coordinate as well.  The order matters, so we keep every intermediate point.
+For example, direct iteration gives
+\[
+ (A_1A_2A_3f)(x)
+ =\int_{\D_3}
+    \mathbf1_{y_1+x_2+x_3\leq1}
+    \mathbf1_{y_1+y_2+x_3\leq1}f(y)\,dy.
+\]
+This kernel is bounded by one, so the product is compact.
+The individual $A_i$ and the pair sums need not be compact.
+
+\begin{lemma}[A kernel for each complete word]\label{lem:words}
+Let $i_1,\ldots,i_n\in\{1,2,3\}$, and suppose each of $1,2,3$
+occurs.  Then $A_{i_1}\cdots A_{i_n}$ has a measurable integral kernel
+on $\D_3\times\D_3$ with values in $[0,1]$.
+It is compact, with operator norm at most $1/6$.
+\end{lemma}
+
+\begin{proof}
+Extend functions by zero outside $\D_3$ to the unit cube.
+Starting at $x^{(0)}=x$, let $x^{(r)}$ be obtained from $x^{(r-1)}$
+by replacing coordinate $i_r$ with $t_r\in[0,1]$.
+Successive integration gives, initially for bounded $f$,
+\[
+ (A_{i_1}\cdots A_{i_n}f)(x)
+ =\int_{[0,1]^n}
+      \left(\prod_{r=1}^n\mathbf1_{\D_3}(x^{(r)})\right)
+                          f(x^{(n)})\,dt_1\cdots dt_n.
+\]
+For each coordinate $j$, let $r_j$ be its last occurrence in the word.
+The final coordinate is $y_j=t_{r_j}$.
+These are three distinct integration variables.
+Rename the other $n-3$ variables as $v$ and apply Fubini.
+The resulting kernel is
+\[
+ h(x,y)=\int_{[0,1]^{n-3}}
+                \prod_{r=1}^n\mathbf1_{\D_3}(x^{(r)}(x,y,v))\,dv.
+\]
+It is measurable and lies between zero and one.
+For $n=3$ the integral has no remaining variables and means the product
+of the indicators.  Lemma~\ref{lem:kernel} proves compactness and the norm
+bound.  Density of bounded functions extends the identity to $H_3$.
+\end{proof}
+
+Expand powers as sums of ordered words, without commuting the factors.
+For every integer $n\geq1$, inclusion--exclusion gives
+\begin{equation}\label{eq:word-identity}
+ \begin{split}
+ K^n={}&(A_1+A_2)^n+(A_1+A_3)^n+(A_2+A_3)^n\\
+      &-A_1^n-A_2^n-A_3^n+C_n,
+ \end{split}
+\end{equation}
+where $C_n$ is the sum of words containing all three indices.
+A one-index word occurs in two pair sums and one subtracted term.
+A two-index word occurs in exactly one pair sum.
+Only the three-index words remain for $C_n$.
+Thus $C_n$ is compact, and
+\begin{equation}\label{eq:remainder-bound}
+          \norm{K^n-C_n}\leq3\kappa^n+3.
+\end{equation}
+Here $\norm{A_i}\leq1$ follows from Proposition~\ref{prop:simplex}.
+There are $3^n-3\cdot2^n+3$ complete words.
+The proof even supplies a kernel bound
+$0\leq h_{C_n}\leq3^n-3\cdot2^n+3$.
+The sum $C_n$ is self-adjoint by \eqref{eq:word-identity}.
+An individual word need not be self-adjoint; its nonnegative kernel
+alone does not assert positivity of its quadratic form.
+
+\subsection{The essential interval}
+
+\begin{theorem}\label{thm:essential}
+For the three-dimensional simplex operator,
+\[
+                         \sigma_{\mathrm{ess}}(K)=[0,\kappa].
+\]
+In particular, the upper essential spectral threshold is $M_2=\kappa$.
+\end{theorem}
+
+\begin{proof}
+First let $\lambda$ admit a singular sequence $f_j$.
+Positivity and $K\leq3I$ give $0\leq\lambda\leq3$.
+For every fixed integer $n$, the identity
+\[
+ K^n-\lambda^n I=(K-\lambda I)
+           \sum_{r=0}^{n-1}\lambda^rK^{n-1-r}
+\]
+shows that $\norm{(K^n-\lambda^n I)f_j}\to0$.
+Compactness gives $C_nf_j\to0$ in norm.
+Taking the limit in \eqref{eq:remainder-bound} gives
+$\lambda^n\leq3\kappa^n+3$.
+Since $\kappa>1$, taking $n$th roots and then $n\to\infty$ gives
+$\lambda\leq\kappa$.
+
+Conversely, fix $z_0\in[0,1]$ and $\lambda=(1-z_0)\kappa$.
+Choose intervals $E_j\subset(0,1)$ with positive lengths $\varepsilon_j\to0$
+and $\delta_j=\sup_{z\in E_j}|z-z_0|\to0$.
+Let $q_j=\varepsilon_j^{-1/2}\mathbf1_{E_j}$ and define
+\begin{equation}\label{eq:singular-sequence}
+ f_j(x,y,z)=\frac{q_j(z)}{1-z}
+                \psi\left(\frac{x}{1-z},\frac{y}{1-z}\right).
+\end{equation}
+The isometry \eqref{eq:slice-unitary} gives $\norm{f_j}_2=1$.
+For every $g\in H_3$,
+\[
+ |\ip g{f_j}|\leq\norm{\mathbf1_{z\in E_j}g}_2\longrightarrow0,
+\]
+by absolute continuity of the integral.
+Equation~\eqref{eq:pair-decomposition} gives
+$\norm{(S_{12}-\lambda I)f_j}\leq\kappa\delta_j$.
+The third fibre integral obeys a different estimate.
+Its integrand is supported in $E_j$, so Cauchy--Schwarz gives
+\[
+ \norm{T_3f_j}_2^2
+ \leq\varepsilon_j\norm{f_j}_2^2=\varepsilon_j,
+ \qquad\norm{A_3f_j}_2\leq\sqrt{\varepsilon_j}.
+\]
+Therefore
+\begin{equation}\label{eq:singular-error}
+              \norm{(K-\lambda I)f_j}_2
+                     \leq\kappa\delta_j+\sqrt{\varepsilon_j}\longrightarrow0.
+\end{equation}
+This includes $z_0=0$, where mass approaches a triangular face,
+and $z_0=1$, where the triangular sections shrink to a vertex.
+Thus every $\lambda\in[0,\kappa]$ belongs to the essential spectrum.
+\end{proof}
+
+The upper endpoint is not merely a lower bound from one family of
+concentrating functions.  Identity~\eqref{eq:word-identity} excludes every
+larger value, including other possible patterns of concentration or oscillation.
+The singular sequence at $\kappa$ also proves
+\[
+                        \norm{K-C}\geq\kappa
+                \quad\text{for every compact }C:H_3\to H_3.
+\]
+Apply $K-C$ to that sequence and use \eqref{eq:compact-weak}.
+
+\subsection{Attainment, uniqueness, and a convergent construction}
+
+\begin{theorem}\label{thm:attainment}
+The number $M_3=\norm K$ is an isolated eigenvalue of finite multiplicity,
+and
+\[
+              M_3\geq1+\sqrt{2/5}\geq111/68>3/2>\kappa.
+\]
+Its eigenspace is one-dimensional.  There is a unique unit eigenfunction
+$\Phi$ that is positive almost everywhere.
+It is invariant under all coordinate permutations.
+\end{theorem}
+
+\begin{proof}
+The lower bounds follow from Example~\ref{ex:linear-test}, and the upper
+essential threshold follows from Theorem~\ref{thm:essential}.
+Lemma~\ref{lem:spectral} gives the isolated eigenvalue and finite multiplicity.
+Take a real eigenfunction $f\ne0$ at $M_3$.
+Replacing $f$ by $|f|$ does not decrease any squared fibre integral,
+and preserves its norm.  Maximality therefore makes $|f|$ another
+maximizer.  The final estimate in Lemma~\ref{lem:spectral}, applied
+with $b=M_3$, shows that it is an eigenfunction.
+This gives a nonnegative unit eigenfunction $\Phi$.
+
+To prove strict positivity, consider
+$L=A_1A_2A_3A_1A_2A_3$.
+In its kernel formula, the path from $x$ to $y$ first replaces all
+coordinates by $v=(v_1,v_2,v_3)$ and then replaces them by $y$.
+For interior points $x,y\in\D_3$, every sufficiently small positive
+$v_i$ makes all six intermediate points lie in $\D_3$:
+\[
+ \begin{gathered}
+ (v_1,x_2,x_3),\ (v_1,v_2,x_3),\ (v_1,v_2,v_3),\\
+ (y_1,v_2,v_3),\ (y_1,y_2,v_3),\ (y_1,y_2,y_3).
+ \end{gathered}
+\]
+For example, it suffices to take
+\[
+ 0<v_i<\tfrac14\min\{1-x_2-x_3,\ 1-x_3,\ 1-y_1,
+                                      \ 1-y_1-y_2,\ 1\}.
+\]
+The minimum is positive for interior $x,y$.
+Hence the kernel of $L$ is strictly positive there.
+Every coordinate integral preserves nonnegative functions.
+Since $K^6$ contains $L$ among its summands,
+it takes each nonzero nonnegative function to a strictly positive
+function almost everywhere.  The identity
+$\Phi=M_3^{-6}K^6\Phi$ proves strict positivity.
+
+For simplicity, suppose a real top eigenfunction $g$ changes sign.
+Write $g=g_+-g_-$ with $g_+,g_-\geq0$ and disjoint supports.
+Both parts are nonzero, and the positive kernel of $L$ gives
+$\ip{g_+}{K^6g_-}>0$.
+Self-adjointness gives
+\[
+ \ip{|g|}{K^6|g|}-\ip g{K^6g}=4\ip{g_+}{K^6g_-}>0.
+\]
+But $\norm{K^6}\leq M_3^6$ and
+$\ip g{K^6g}=M_3^6\norm g^2$, a contradiction.
+Thus every real top eigenfunction has one sign.
+Two independent ones would give a nonzero top eigenfunction orthogonal
+to $\Phi$, which must change sign because $\Phi>0$ almost everywhere.
+This proves simplicity.
+
+For a permutation $\sigma$, the map
+$(U_\sigma f)(t)=f(t_{\sigma(1)},t_{\sigma(2)},t_{\sigma(3)})$
+is an isometry, and direct substitution gives
+$U_\sigma U_\tau=U_{\sigma\tau}$.
+A change of integration variable shows that it permutes
+the three $A_i$, so $U_\sigma K=KU_\sigma$.
+The function $U_\sigma\Phi$ is again a positive unit top eigenfunction.
+Simplicity forces $U_\sigma\Phi=\Phi$.
+\end{proof}
+
+Existence need not stop at an unnamed eigenvector.
+The next result constructs it through a sequence whose terms are explicit
+polynomials with rational coefficients.
+
+\begin{theorem}[Polynomial construction of the maximizer]\label{thm:power}
+Set $p_0=1$ and $p_{n+1}=Kp_n$.  Then
+\[
+                   \frac{p_n}{\norm{p_n}_2}\longrightarrow\Phi
+                         \quad\text{in }H_3.
+\]
+Every $p_n$ is a symmetric polynomial with rational coefficients.
+Its Rayleigh quotient converges to $M_3$.
+More precisely, there are constants $c>0$, $0\leq r<M_3$, and
+$h\perp\Phi$ such that
+\begin{equation}\label{eq:power-error}
+ 1=c\Phi+h,
+ \qquad\norm{M_3^{-n}p_n-c\Phi}_2
+               \leq(r/M_3)^n\norm h_2.
+\end{equation}
+No numerical value of $r$ is asserted.
+\end{theorem}
+
+\begin{proof}
+The closed subspace $\Phi^\perp$ is invariant under $K$.
+Its restricted operator is positive and has norm $r\leq M_3$.
+If $r=M_3$, the last part of Lemma~\ref{lem:spectral} supplies unit
+vectors $g_n\perp\Phi$ with $(K-M_3)g_n\to0$.
+A weak subsequential limit lies in the top eigenspace and in
+$\Phi^\perp$, hence is zero.
+This would be a singular sequence at $M_3>\kappa$.
+Therefore $r<M_3$.
+
+Set $c=\ip1\Phi>0$ and $h=1-c\Phi$.
+The decomposition is orthogonal and
+$M_3^{-n}p_n=c\Phi+M_3^{-n}K^nh$.
+The norm of the second term is at most $(r/M_3)^n\norm h$.
+Its decay proves \eqref{eq:power-error} and convergence after normalization.
+Continuity of the quadratic form proves convergence of the Rayleigh values.
+
+To see that the construction is explicit, for a monomial
+$x^ay^bz^c$ one has
+\[
+ A_1(x^ay^bz^c)=\frac{y^bz^c(1-y-z)^{a+1}}{a+1},
+\]
+with analogous formulas for $A_2,A_3$.
+These operations preserve rational polynomial coefficients, and their
+sum preserves coordinate symmetry.
+Starting from $1$ proves both polynomial assertions.
+\end{proof}
+
+The integral of every monomial in this construction is exact:
+\begin{equation}\label{eq:monomial-integral}
+ \int_{\D_3}x^ay^bz^c\,dx\,dy\,dz
+                      =\frac{a!b!c!}{(a+b+c+3)!}.
+\end{equation}
+Successive integration reduces this to
+$\int_0^1t^a(1-t)^b\,dt=a!b!/(a+b+1)!$.
+For nonnegative integers, integration by parts proves the latter by
+induction, starting with $b=0$.
+Thus the squared polynomial norms and Rayleigh values require only rational arithmetic.
+For example,
+\[
+ p_1=3-2(x+y+z),\qquad
+ \frac{\ip{p_0}{Kp_0}}{\norm{p_0}_2^2}=\frac32,
+ \qquad
+ \frac{\ip{p_1}{Kp_1}}{\norm{p_1}_2^2}=\frac{13}{8}.
+\]
+
+Continuing the same rational operations gives
+\[
+ \frac{\ip{p_2}{Kp_2}}{\norm{p_2}_2^2}=\frac{1461}{892},\qquad
+ M_3\geq\frac{\ip{p_8}{Kp_8}}{\norm{p_8}_2^2}
+       =\frac{215586362164143303}{130964453019307421}.
+\]
+The recurrence defines every coefficient of these polynomials, and
+\eqref{eq:monomial-integral} evaluates their mass and energy.
+These fractions are lower bounds; the convergence theorem determines their
+limiting value without giving a closed expression for $M_3$.
+
+The essential interval describes loss of compactness through shrinking
+coordinate strips.  The largest eigenvalue lies strictly above that interval,
+so this loss cannot occur for a maximizing sequence orthogonal to its
+eigenfunction.  The resulting gap proves both variational attainment and
+convergence of the polynomial construction.
+An exact closed expression for $M_3$, a numerical value for the gap,
+and boundary regularity of $\Phi$ are separate questions.
+The following dimension comparison extends attainment to every finite $k$.
+
+
+\section{Adding coordinates to the simplex}\label{all:section}
+
+We now treat every finite dimension on the same Lebesgue simplex spaces.
+To display the dimension in the notation, write $T_{k,i}$ for the map $T_i$
+acting on $H_k$, and set $A_{k,i}=T_{k,i}^*T_{k,i}$.
+Thus $K_k=\sum_iA_{k,i}$ is exactly the operator already defined in
+Proposition~\ref{prop:simplex}.
+Its quadratic quotient has supremum $M_k=\|K_k\|\leq k$.
+A product that integrates every coordinate will be compact, while a
+function supported near a face will prove $M_{k+1}>M_k$.
+
+Here and below $n!=1\cdot2\cdots n$ for positive integers $n$, with
+$0!=1$.  Successive integration gives, for integers $b\geq0$,
+\begin{equation}\label{all:eq:slack}
+ \int_{\Delta_k}(1-t_1-\cdots-t_k)^b\,dt=\frac{b!}{(k+b)!}.
+\end{equation}
+Indeed, integration in the last variable divides by $b+1$ and increases
+the exponent by one.  Repeating this $k$ times proves the formula.
+In particular $|\Delta_k|=1/k!$.
+For $f=1$, the numerator in \eqref{eq:spine-operator} is $2k/(k+1)!$,
+so $M_k\geq2k/(k+1)>0$.
+For $f(t)=1-\sum_i t_i$, each line integral equals $\ell_i^2/2$.
+Formula~\eqref{all:eq:slack} gives
+\begin{equation}\label{all:eq:linear-bound}
+ \|f\|^2=\frac2{(k+2)!},\qquad
+ \langle f,K_kf\rangle=\frac{6k}{(k+3)!},\qquad
+ M_k\geq\frac{3k}{k+3}.
+\end{equation}
+These elementary calculations will also distinguish two ways of
+concentrating a function near a face.
+
+\subsection{Products of integrals}
+
+A sequence of coordinate integrations can remove the dependence left by
+any one integration.  To keep track of the order, fix $k$ and write
+$A_i=A_{k,i}$.  A word of length $n$ means the ordered product
+$A_{i_1}\cdots A_{i_n}$, where each $i_r$ lies in $[k]=\{1,\ldots,k\}$.
+Its support is the set of indices that occur.  Call the word complete
+when its support is $[k]$.
+
+For example, in dimension two, direct integration gives
+\[
+ (A_1A_2f)(x_1,x_2)
+ =\int_{\Delta_2}\mathbf1_{y_1+x_2\leq1}f(y_1,y_2)\,dy_1dy_2.
+\]
+The kernel is bounded by one.  Thus this product is compact by
+Lemma~\ref{lem:kernel}, although integration in just one coordinate
+retains arbitrary dependence on the other coordinate.
+
+\begin{lemma}\label{all:lem:complete-words}
+Every complete word has a measurable integral kernel on
+$\Delta_k\times\Delta_k$ with values in $[0,1]$.
+It is compact, with norm at most $1/k!$.
+\end{lemma}
+
+\begin{proof}
+Extend a bounded $f$ by zero to the unit cube.
+Start with $x^{(0)}=x$ and replace coordinate $i_r$ by $t_r\in[0,1]$
+to obtain $x^{(r)}$.  Successive integration gives
+\[
+ (A_{i_1}\cdots A_{i_n}f)(x)
+ =\int_{[0,1]^n}
+   \left(\prod_{r=1}^n\mathbf1_{\Delta_k}(x^{(r)})\right)
+   f(x^{(n)})\,dt_1\cdots dt_n.
+\]
+For each coordinate $j$, let $r_j$ be its last occurrence in the word.
+The final coordinate is $y_j=t_{r_j}$.
+The $r_j$ are distinct, so this selects $k$ distinct integration variables.
+Rename the other $n-k$ variables as $v$.
+This is a permutation of variables, with absolute Jacobian one.
+Fubini gives the kernel
+\begin{equation}\label{all:eq:complete-kernel}
+ h(x,y)=\int_{[0,1]^{n-k}}
+        \prod_{r=1}^n\mathbf1_{\Delta_k}(x^{(r)}(x,y,v))\,dv.
+\end{equation}
+The final indicator restricts $y$ to $\Delta_k$.
+The kernel is measurable and lies in $[0,1]$.
+When $n=k$, the integral means the product of indicators with no variables
+remaining.  Lemma~\ref{lem:kernel} gives the norm bound and compactness.
+Density of bounded functions in $H_k$ extends the identity to every $f$.
+\end{proof}
+
+\subsection{Fixing coordinates}
+
+A sum over only some coordinates acts separately on each slice of the
+others.  Let $\varnothing\ne S\subsetneq[k]$, write $m=|S|$, and put
+$A_S=\sum_{i\in S}A_i$.
+List the coordinates in $S$ and its complement in increasing order.
+Write $x$ for the first group and $w\in\Delta_{k-m}$ for the second.
+The slice in $x$ is $a\Delta_m$, where $a=1-\sum_jw_j$.
+For almost every $w$, one has $a>0$.
+The change of variables
+\begin{equation}\label{all:eq:slice-map}
+ (\mathcal U_Sf)(u,w)=a^{m/2}f(au,w)
+\end{equation}
+is an isometric isomorphism
+$H_k\to L^2(\Delta_m\times\Delta_{k-m},du\,dw)$.
+Indeed, the Jacobian is $a^m$, and the inverse is
+$f(x,w)=a^{-m/2}(\mathcal U_Sf)(x/a,w)$.
+The coordinate permutation used for the two groups preserves Lebesgue measure.
+Changing one line-integration variable gives
+\begin{equation}\label{all:eq:slice-operator}
+ \mathcal U_S A_S\mathcal U_S^{-1}g(u,w)
+       =a\bigl(K_mg(\cdot,w)\bigr)(u).
+\end{equation}
+There is one factor of $a$ from the length of each integrating line.
+
+\begin{lemma}\label{all:lem:subset-norm}
+For every such $S$, $\|A_S\|=M_m$.
+Consequently $M_k\geq M_m$ whenever $1\leq m<k$.
+\end{lemma}
+
+\begin{proof}
+Lemma~\ref{lem:spectral} identifies $M_m$ with $\|K_m\|$.
+Since $0\leq a\leq1$, equation~\eqref{all:eq:slice-operator} gives
+$\|A_S\|\leq M_m$.
+Choose a unit $u_0\in H_m$ with
+$\langle u_0,K_mu_0\rangle>M_m-\eta$.
+Choose a unit $q\in L^2(\Delta_{k-m})$ supported where
+$\sum_jw_j<\delta$, a set of positive measure.
+The function $g(u,w)=u_0(u)q(w)$ is a unit vector, and its quadratic value
+under the conjugated operator exceeds $(1-\delta)(M_m-\eta)$.
+Let $\delta,\eta\downarrow0$ to prove equality.
+Finally, $K_k-A_S$ is a sum of positive operators, so $M_k\geq M_m$.
+\end{proof}
+
+\subsection{Families of slices}
+
+Let $C_n$ be the sum of the complete words of length $n$.
+It is compact by Lemma~\ref{all:lem:complete-words}.
+Inclusion--exclusion of the supports of ordered words gives, for $n\geq1$,
+\begin{equation}\label{all:eq:word-sum}
+ K_k^n-C_n
+ =\sum_{\varnothing\ne S\subsetneq[k]}(-1)^{k-|S|+1}A_S^n.
+\end{equation}
+To check the coefficient of a word with support of size $r<k$, sum over
+all proper sets containing that support.  Its coefficient is
+\[
+ \sum_{j=0}^{k-r-1}(-1)^{k-r-j+1}\binom{k-r}{j}=1,
+\]
+because the full alternating binomial sum vanishes.
+A complete word occurs in none of the proper subsets.
+No factors have been commuted in this argument.
+Lemma~\ref{all:lem:subset-norm} now gives
+\begin{equation}\label{all:eq:essential-bound}
+ \|K_k^n-C_n\|
+ \leq\sum_{m=1}^{k-1}\binom{k}{m}M_m^n
+ \leq(2^k-2)M_{k-1}^n.
+\end{equation}
+The sum $C_n$ is self-adjoint by \eqref{all:eq:word-sum}.
+An individual complete word need not be self-adjoint or positive as a
+quadratic form, despite its nonnegative kernel.
+
+\begin{proposition}\label{all:prop:essential}
+For $k\geq2$, one has $\sigma_{\mathrm{ess}}(K_k)\subset[0,M_{k-1}]$.
+If $K_{k-1}$ has a unit eigenfunction at $M_{k-1}$, then
+\[
+                    \sigma_{\mathrm{ess}}(K_k)=[0,M_{k-1}].
+\]
+\end{proposition}
+
+\begin{proof}
+Let $f_j$ be a singular sequence at $\lambda$.
+Equation~\eqref{eq:spine-operator} gives $0\leq\lambda\leq k$.
+For every fixed $n$,
+\[
+ K_k^n-\lambda^nI=(K_k-\lambda I)
+                    \sum_{r=0}^{n-1}\lambda^rK_k^{n-1-r}
+\]
+shows that $(K_k^n-\lambda^nI)f_j\to0$ in norm.
+Also $C_nf_j\to0$ by compactness.
+Applying \eqref{all:eq:essential-bound} and then letting $j\to\infty$ gives
+$\lambda^n\leq(2^k-2)M_{k-1}^n$.
+Take $n$th roots and then let $n\to\infty$.
+The conclusion is $\lambda\leq M_{k-1}$.
+
+For the reverse inclusion, put $d=k-1$ and suppose
+$K_d\psi=M_d\psi$, $\|\psi\|=1$.
+Fix $z_0\in[0,1]$ and set $\lambda=(1-z_0)M_d$.
+Choose intervals $E_j\subset(0,1)$ of positive lengths $\varepsilon_j\to0$
+with $\delta_j=\sup_{z\in E_j}|z-z_0|\to0$.
+Writing $x\in(1-z)\Delta_d$, define
+\begin{equation}\label{all:eq:concentration}
+ f_j(x,z)=\varepsilon_j^{-1/2}\mathbf1_{E_j}(z)
+              (1-z)^{-d/2}\psi\left(\frac{x}{1-z}\right).
+\end{equation}
+The isometry \eqref{all:eq:slice-map} gives $\|f_j\|=1$.
+For any $g\in H_k$,
+$|\langle g,f_j\rangle|\leq\|\mathbf1_{z\in E_j}g\|\to0$
+by absolute continuity of the integral of $|g|^2$.
+Equation~\eqref{all:eq:slice-operator} gives
+\[
+ \left\|\left(\sum_{i=1}^{d}A_{k,i}-\lambda I\right)f_j\right\|
+ \leq M_d\delta_j.
+\]
+The last line integral is supported, in its integrating variable, on a
+set of length at most $\varepsilon_j$.
+Cauchy--Schwarz therefore gives
+$\|T_{k,k}f_j\|^2\leq\varepsilon_j\|f_j\|^2=\varepsilon_j$.
+Since $\|T_{k,k}^*\|\leq1$,
+\begin{equation}\label{all:eq:concentration-error}
+ \|(K_k-\lambda I)f_j\|\leq M_d\delta_j+\sqrt{\varepsilon_j}\to0.
+\end{equation}
+This includes $z_0=0$, where mass approaches a face, and $z_0=1$,
+where the slices shrink to a vertex.
+The amplitude in \eqref{all:eq:concentration} is exactly compensated by the
+slice measure, so no boundary value of $\psi$ is required.
+\end{proof}
+
+\subsection{Changing the slice}
+
+To raise the quadratic quotient, we shall use slices close to the face
+$z=0$ and retain the contribution of integration in $z$.
+We must compare an arbitrary $L^2$ function with its values after a change
+of scale.
+For $0<a\leq1$ and $u\in H_d$, define
+\begin{equation}\label{all:eq:dilation}
+ (D_au)(x)=a^{-d/2}u(x/a)\mathbf1_{a\Delta_d}(x),\qquad D_a:H_d\to H_d.
+\end{equation}
+The map $D_a$ is called a dilation.
+The function $u$ is extended by zero outside $\Delta_d$.
+Change of variables gives $\|D_au\|=\|u\|$.
+For $a<1$ this is an isometric embedding, rather than an isomorphism onto
+all of $H_d$.
+
+We first justify the smooth approximation needed for this map.
+The space $C_c^\infty(\Delta_d^\circ)$ consists of smooth functions whose
+support is a compact subset of the interior.
+It is dense in $H_d$.
+To see this, restrict $u$ to the compact sets
+\[
+ E_j=\{x:x_i\geq1/j\text{ for all }i,\ \sum_i x_i\leq1-1/j\}.
+\]
+Their union is the interior, so $u\mathbf1_{E_j}\to u$ in $L^2$.
+Translation is continuous in $L^2(\mathbb R^d)$: this holds for indicators
+of bounded boxes because the measure of their symmetric difference with
+a small translate tends to zero.
+Approximation by finite sums of such indicators proves the assertion for
+all $L^2$ functions.
+
+Choose a nonnegative smooth function $\eta$ supported in the Euclidean
+unit ball and with integral one.
+For example, normalize $\exp(-1/(1-\sum_i x_i^2))$ inside that ball,
+with value zero outside.
+Put $\eta_\delta(x)=\delta^{-d}\eta(x/\delta)$ and
+$g_\delta(x)=\int\eta_\delta(h)(u\mathbf1_{E_j})(x-h)\,dh$.
+For small enough $\delta$, this is smooth with compact support in the
+simplex interior.  Cauchy--Schwarz against the measure
+$\eta_\delta(h)\,dh$ gives
+\[
+ \|g_\delta-u\mathbf1_{E_j}\|_2^2
+ \leq\int\eta_\delta(h)
+       \|(u\mathbf1_{E_j})(\cdot-h)-u\mathbf1_{E_j}\|_2^2\,dh\to0.
+\]
+Translation continuity proves the last limit and hence the asserted density.
+
+\begin{lemma}\label{all:lem:dilation-continuity}
+For every $u\in H_d$, $D_au\to u$ in $H_d$ as $a\uparrow1$.
+If $\|\psi\|=1$, choose $g\in C_c^\infty(\Delta_d^\circ)$ with
+$\|\psi-g\|<1/8$, and set
+\begin{equation}\label{all:eq:epsilon}
+ B_g=\left\|\frac d2g+\sum_{i=1}^d x_i\partial_i g\right\|_2,
+ \qquad \varepsilon=\frac1{8(1+B_g)}.
+\end{equation}
+Then $\|D_{1-z}\psi-\psi\|<1/2$ for $0\leq z\leq\varepsilon$.
+\end{lemma}
+
+\begin{proof}
+The zero extension of $g$ is smooth on $\mathbb R^d$.
+Differentiate its dilation to obtain
+\[
+ \frac{d}{da}D_ag
+ =-a^{-1}D_a\left(\frac d2g+\sum_i x_i\partial_i g\right).
+\]
+Integrating from $a$ to $1$ and using the isometry gives
+$\|D_ag-g\|\leq B_g\log(1/a)$.
+The integral estimate follows by testing against unit vectors and applying
+Fubini, or directly by Cauchy--Schwarz to the parameter integral.
+Approximation now gives
+\[
+ \|D_au-u\|\leq2\|u-g\|+B_g\log(1/a),
+\]
+which proves continuity by choosing $g$ first and then $a$.
+For the specified $g$, one has $\varepsilon\leq1/8$ and
+$-\log(1-z)\leq z/(1-z)\leq2z$ on $[0,\varepsilon]$.
+Thus
+\[
+ \|D_{1-z}\psi-\psi\|
+ \leq2\|\psi-g\|+2zB_g
+ <\frac14+\frac{B_g}{4(1+B_g)}<\frac12.
+\]
+Only the smooth function $g$ was differentiated.
+\end{proof}
+
+\subsection{Adding one variable}
+
+Suppose $d\geq1$ and $K_d\psi=M_d\psi$, with $\|\psi\|=1$.
+For $q\in L^2(0,1)$ define a function on the actual $(d+1)$-simplex by
+\begin{equation}\label{all:eq:lift}
+ F_q(x,z)=q(z)D_{1-z}\psi(x),\qquad x\in(1-z)\Delta_d.
+\end{equation}
+We call $q$ the profile in the new coordinate.
+The map is measurable for a measurable representative of $\psi$.
+The zero extension makes its support agree with the simplex.
+Fubini and the isometry give $\|F_q\|^2=\int_0^1q(z)^2\,dz$.
+For $i\leq d$, put $a=1-z$ and change the integrating variable:
+\[
+ T_{d+1,i}F_q(x_{\widehat i},z)
+ =q(z)a^{1-d/2}(T_{d,i}\psi)(x_{\widehat i}/a).
+\]
+Integration over $x_{\widehat i}$ contributes the Jacobian $a^{d-1}$.
+Consequently
+\[
+ \sum_{i=1}^d\|T_{d+1,i}F_q\|^2
+       =M_d\int_0^1(1-z)q(z)^2\,dz.
+\]
+The last line integral is the $H_d$ function
+\[
+ I_q(x)=T_{d+1,d+1}F_q(x)
+       =\int_0^1q(z)D_{1-z}\psi(x)\,dz.
+\]
+This function belongs to $H_d$ by Proposition~\ref{prop:simplex}.
+The integral is interpreted almost everywhere through this displayed
+line integral.  Fubini permits testing it against any $v\in H_d$, since
+\[
+ \int_0^1 |q(z)|\int_{\Delta_d}|v(x)D_{1-z}\psi(x)|\,dx\,dz
+ \leq\|v\|\int_0^1|q(z)|\,dz<\infty.
+\]
+We therefore obtain the exact identity
+\begin{equation}\label{all:eq:excess}
+ \langle F_q,K_{d+1}F_q\rangle-M_d\|F_q\|^2
+       =\|I_q\|^2-M_d\int_0^1zq(z)^2\,dz.
+\end{equation}
+It separates the gain from integrating in the new coordinate from the
+loss caused by shorter slices.
+
+\begin{proposition}\label{all:prop:strict-increase}
+Under this eigenfunction assumption, choose $g$ and $\varepsilon$ as in
+Lemma~\ref{all:lem:dilation-continuity}.  Then
+\begin{equation}\label{all:eq:positive-gap}
+ M_{d+1}-M_d\geq\frac{8\varepsilon d^2}{e^{8d}-1}>0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For nonnegative $q$ supported in $(0,\varepsilon]$, the dilation estimate
+and the preceding Fubini identity give
+\[
+ \langle\psi,I_q\rangle
+ =\int q(z)\langle\psi,D_{1-z}\psi\rangle\,dz
+ \geq\frac12\int q(z)\,dz.
+\]
+Since $\|\psi\|=1$, it follows that $\|I_q\|\geq\tfrac12\int q$.
+Set $L=8d$, $\alpha=\varepsilon e^{-L}$, and choose
+\[
+ q(z)=z^{-1}\mathbf1_{[\alpha,\varepsilon]}(z).
+\]
+The positive lower endpoint ensures $q\in L^2(0,1)$.
+Direct integration gives
+\begin{equation}\label{all:eq:profile-integrals}
+ \int q=L,\qquad \int zq^2=L,\qquad
+ \int q^2=\frac{e^L-1}{\varepsilon}.
+\end{equation}
+Equations~\eqref{all:eq:excess} and~\eqref{eq:spine-operator} imply
+\[
+ \langle F_q,K_{d+1}F_q\rangle-M_d\|F_q\|^2
+ \geq\frac{L^2}{4}-M_dL
+ \geq16d^2-8d^2=8d^2.
+\]
+Divide by the positive mass in \eqref{all:eq:profile-integrals} to prove
+\eqref{all:eq:positive-gap}.
+The constant depends on the chosen smooth approximation to $\psi$.
+It requires no boundary regularity of $\psi$.
+\end{proof}
+
+\subsection{The maximal quotient}
+
+\begin{theorem}\label{all:thm:all-dimensions}
+For every finite integer $k\geq2$,
+\[
+ \sigma_{\mathrm{ess}}(K_k)=[0,M_{k-1}],\qquad M_k>M_{k-1}.
+\]
+The number $M_k$ is an isolated simple eigenvalue.
+There is a unique unit eigenfunction $\Phi_k$ at $M_k$ that is positive
+almost everywhere.  It is invariant under every coordinate permutation.
+For $k=1$, $M_1=1$ and $\Phi_1=1$.
+\end{theorem}
+
+\begin{proof}
+The base operator is
+$K_1f=(\int_0^1f(t)\,dt)1$, which has norm one and unit eigenfunction $1$.
+Suppose a unit eigenfunction at $M_d$ has been obtained.
+Proposition~\ref{all:prop:essential} gives the full essential interval for
+$K_{d+1}$.  Proposition~\ref{all:prop:strict-increase} gives
+$M_{d+1}>M_d$.
+Lemma~\ref{lem:spectral} supplies an isolated top eigenvalue of finite
+multiplicity in dimension $d+1$.
+This induction establishes existence, the essential interval, and the
+strict dimension inequality for each finite dimension.
+
+Fix $k$ and take a real top eigenfunction $f\ne0$.
+Replacing $f$ by $|f|$ does not decrease any squared line integral, and
+preserves its norm.  Maximality makes $|f|$ another maximizer.
+The residual estimate in Lemma~\ref{lem:spectral} makes it an eigenfunction.
+Normalize it to obtain a nonnegative unit eigenfunction $\Phi_k$.
+
+For strict positivity, use the complete word
+$L=(A_1\cdots A_k)^2$.
+For interior $x,y$, put
+\[
+ \eta=\frac{\min(1-\sum_i x_i,\ 1-\sum_i y_i)}{2k}>0.
+\]
+In the kernel \eqref{all:eq:complete-kernel}, the first $k$ replacements
+change $x$ into $v$, and the next $k$ change $v$ into $y$.
+If every $v_i$ lies in $(0,\eta)$, the sum at a point on the first
+part of the path is at most $\sum_i x_i+k\eta<1$.
+On the second part it is at most $\sum_i y_i+k\eta<1$.
+All coordinates remain nonnegative.
+Thus the kernel of $L$ is at least $\eta^k>0$ for every interior pair.
+Since $K_k^{2k}$ contains $L$ among its nonnegativity-preserving summands,
+it sends each nonzero nonnegative function to a positive function almost
+everywhere.  The identity $\Phi_k=M_k^{-2k}K_k^{2k}\Phi_k$ proves
+$\Phi_k>0$ almost everywhere.
+
+Suppose a real top eigenfunction $h$ changes sign.
+Write $h=h_+-h_-$, where $h_+=\max(h,0)$ and $h_-=\max(-h,0)$.
+Both parts are nonzero.  The positive kernel just constructed gives
+$\langle h_+,K_k^{2k}h_-\rangle>0$.
+Self-adjointness implies
+\[
+ \langle |h|,K_k^{2k}|h|\rangle-\langle h,K_k^{2k}h\rangle
+ =4\langle h_+,K_k^{2k}h_-\rangle>0.
+\]
+But the second quadratic value equals $M_k^{2k}\|h\|^2$, whereas
+$\|K_k^{2k}\|\leq M_k^{2k}$.  This is impossible.
+Two independent top eigenfunctions would give a nonzero one orthogonal
+to $\Phi_k$.  Such a function must change sign, so the eigenspace is simple.
+
+For a permutation $\sigma$ of $[k]$, define
+$(U_\sigma f)(t)=f(t_{\sigma(1)},\ldots,t_{\sigma(k)})$.
+These maps preserve the simplex and Lebesgue measure.
+They are isometries and satisfy $U_\sigma U_\tau=U_{\sigma\tau}$,
+where $(\sigma\tau)(i)=\sigma(\tau(i))$.
+Changing a line-integration variable shows
+$U_\sigma A_iU_\sigma^{-1}=A_{\sigma(i)}$.
+Hence $U_\sigma$ commutes with $K_k$.
+The positive unit eigenfunction $U_\sigma\Phi_k$ must equal $\Phi_k$ by
+simplicity, proving symmetry and uniqueness of the positive normalization.
+\end{proof}
+
+\begin{corollary}\label{all:cor:compact-distance}
+For every finite $k\geq2$ and every compact $C:H_k\to H_k$,
+\[
+                         \|K_k-C\|\geq M_{k-1}>0.
+\]
+In particular, finite-rank operators cannot converge to $K_k$ in operator norm.
+\end{corollary}
+
+\begin{proof}
+Use the singular sequence at $M_{k-1}$ from
+Proposition~\ref{all:prop:essential} and Theorem~\ref{all:thm:all-dimensions}.
+Its image under $C$ tends to zero, while
+$K_kf_j-M_{k-1}f_j\to0$ in norm.  Apply $K_k-C$ to its unit vectors.
+\end{proof}
+
+\begin{example}[A constant profile near a face]\label{all:ex:flat-profile}
+A constant profile behaves differently from the one in
+Proposition~\ref{all:prop:strict-increase}.
+Take $q_\varepsilon=\varepsilon^{-1/2}\mathbf1_{(0,\varepsilon)}$ in
+\eqref{all:eq:lift}, with $\psi=\Phi_d$.
+Dilation continuity gives
+\[
+ \left\|I_{q_\varepsilon}-\sqrt{\varepsilon}\psi\right\|
+ \leq\sqrt{\varepsilon}\sup_{0<z<\varepsilon}
+                         \|D_{1-z}\psi-\psi\|=o(\sqrt{\varepsilon}).
+\]
+Here $o(\sqrt{\varepsilon})$ means a quantity whose ratio to
+$\sqrt{\varepsilon}$ tends to zero as $\varepsilon\downarrow0$.
+The mass is one and $\int zq_\varepsilon^2=\varepsilon/2$.
+Therefore
+\[
+ \langle F_{q_\varepsilon},K_{d+1}F_{q_\varepsilon}\rangle-M_d
+       =\varepsilon\left(1-\frac{M_d}{2}+o(1)\right).
+\]
+If $M_d>2$, this quantity is negative for all sufficiently small
+$\varepsilon$.
+For example, \eqref{all:eq:linear-bound} gives $M_7\geq21/10>2$.
+Thus a constant profile applied to the actual seventh-dimensional top
+eigenfunction does not prove a strict increase to dimension eight.
+The nonconstant profile in \eqref{all:eq:profile-integrals} does.
+For the base function $\Phi_1=1$, the dilation is explicitly
+$D_a1=a^{-1/2}\mathbf1_{[0,a]}$, and
+$\langle D_a1,1\rangle=\sqrt a$, consistent with the continuity estimate.
+\end{example}
+
+\subsection{Polynomial functions}
+
+The eigenfunction also has a specified construction by repeated coordinate
+integration.  For each fixed $k$, put
+$p_{k,0}=1$ and $p_{k,n+1}=K_kp_{k,n}$.
+These are the unnormalized iterates.  Their normalization means division
+by their $L^2$ norm.
+
+\begin{theorem}\label{all:thm:iteration}
+For every fixed $k\geq1$,
+\[
+ \frac{p_{k,n}}{\|p_{k,n}\|}\longrightarrow\Phi_k
+                 \quad\text{in }H_k,
+ \qquad
+ \frac{\langle p_{k,n},K_kp_{k,n}\rangle}{\|p_{k,n}\|^2}
+                  \longrightarrow M_k.
+\]
+The unnormalized $p_{k,n}$ are symmetric polynomials with rational
+coefficients.  Their normalized forms need not have rational coefficients.
+For $k\geq2$ there are $c_k>0$, $0\leq r_k<M_k$, and $h_k\perp\Phi_k$
+such that
+\begin{equation}\label{all:eq:iteration-error}
+ 1=c_k\Phi_k+h_k,\qquad
+ \|M_k^{-n}p_{k,n}-c_k\Phi_k\|
+            \leq(r_k/M_k)^n\|h_k\|\quad(n\geq1).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $k=1$ all iterates equal $1$.
+For $k\geq2$, self-adjointness makes $\Phi_k^\perp$ invariant.
+The restriction of $K_k$ is positive and has norm $r_k\leq M_k$.
+If equality held, Lemma~\ref{lem:spectral} would give unit vectors
+$g_j\perp\Phi_k$ with $(K_k-M_kI)g_j\to0$.
+A weak subsequential limit would lie in the top eigenspace and its
+orthogonal complement, hence would be zero.
+This would be a singular sequence at $M_k>M_{k-1}$, contradicting
+Theorem~\ref{all:thm:all-dimensions}.  Thus $r_k<M_k$.
+
+Set $c_k=\langle1,\Phi_k\rangle>0$ and $h_k=1-c_k\Phi_k$.
+Their orthogonal decomposition gives
+$M_k^{-n}p_{k,n}=c_k\Phi_k+M_k^{-n}K_k^nh_k$.
+The second term has norm at most $(r_k/M_k)^n\|h_k\|$.
+It tends to zero, proving convergence after normalization.
+The component $c_kM_k^n\Phi_k$ also shows that every $p_{k,n}$ is nonzero.
+Continuity of the quadratic form proves convergence of the Rayleigh values.
+
+For nonnegative integers $\alpha_1,\ldots,\alpha_k$,
+\begin{equation}\label{all:eq:monomial-action}
+ A_{k,i}\left(\prod_jt_j^{\alpha_j}\right)
+ =\frac{\prod_{j\ne i}t_j^{\alpha_j}}{\alpha_i+1}
+                  \left(1-\sum_{j\ne i}t_j\right)^{\alpha_i+1}.
+\end{equation}
+Thus each coordinate integral preserves rational polynomial coefficients.
+Their sum commutes with coordinate permutations, so it preserves symmetry.
+Starting from $1$ proves the assertions about the unnormalized iterates.
+\end{proof}
+
+Their squared norms and quadratic values can be integrated exactly:
+\begin{equation}\label{all:eq:monomial-integral}
+ \int_{\Delta_k}\prod_jt_j^{\alpha_j}\,dt
+      =\frac{\prod_j\alpha_j!}{(k+\sum_j\alpha_j)!}.
+\end{equation}
+For two exponents, integration by parts gives
+$\int_0^1t^a(1-t)^b\,dt=a!b!/(a+b+1)!$ by induction on $b$.
+Successive integration and this identity prove
+\eqref{all:eq:monomial-integral} in every dimension.
+
+\begin{example}[Normalization in dimension two]
+The\label{all:ex:normalization} first unnormalized iterate is $p_{2,1}=2-x-y$.
+Integrating over lines $x+y=s$ gives
+\[
+ \|p_{2,1}\|^2=\int_0^1s(2-s)^2\,ds=\frac{11}{12},\qquad
+ \frac{p_{2,1}}{\|p_{2,1}\|}=\sqrt{\frac{12}{11}}(2-x-y).
+\]
+The square root is irrational.  If it were a reduced fraction $p/q$,
+then $11p^2=12q^2$ would force $11\mid q$ and then $11\mid p$.
+This contradicts coprimality.
+Thus normalization does not preserve rational coefficients.
+\end{example}
+
+All assertions above concern one finite dimension at a time.
+The positive difference in \eqref{all:eq:positive-gap} depends on a smooth
+approximation to a lower-dimensional eigenfunction.
+The number $r_k$ in \eqref{all:eq:iteration-error} describes a different gap,
+within a fixed dimension, and no numerical value for it is given.
+Exact values of $M_k$, boundary regularity of $\Phi_k$, and growth as
+$k$ tends to infinity remain separate questions.
+
+
+\section{Quadratic polynomial bounds}\label{var:section}
+
+The maximal eigenfunction gives an intrinsic description of $M_k$.
+Explicit polynomials give lower bounds that can be evaluated using rational
+arithmetic.  We will compute five such bounds, in dimensions eight through
+twelve, and then preserve their strict inequalities under smooth cutoff.
+
+Fix $k\geq2$ and use the spaces and operators of
+Proposition~\ref{prop:simplex}.  To keep the dimension visible, recall
+\begin{equation}\label{var:eq:T}
+ T_{k,i}:H_k\longrightarrow H_{k-1},\qquad
+ (T_{k,i}f)(x)=\int_0^{\ell_i(x)}f(x_1,\ldots,u,\ldots,x_k)\,du.
+\end{equation}
+Here $x=t_{\widehat i}$ and $\ell_i(x)=1-\sum_{j\ne i}x_j$;
+the remaining coordinates retain their indices.
+The fibrewise Cauchy--Schwarz inequality gives
+\begin{equation}\label{var:eq:bounded}
+ \norm{T_{k,i}f}^2
+ \leq\int_{\Delta_k}\ell_i(t_{\widehat i})|f(t)|^2\,dt
+ \leq\norm f^2.
+\end{equation}
+Fubini gives $T_{k,i}^*g(t)=g(t_{\widehat i})$.  Thus
+\begin{equation}\label{var:eq:K}
+ A_{k,i}=T_{k,i}^*T_{k,i},\qquad K_k=\sum_{i=1}^kA_{k,i},
+\end{equation}
+and
+\begin{equation}\label{var:eq:energy}
+ \ip f{K_kg}=\sum_i\ip{T_{k,i}f}{T_{k,i}g},\qquad
+ 0\leq\ip f{K_kf}\leq k\norm f^2.
+\end{equation}
+The two quantities $\norm f^2$ and $\ip f{K_kf}$ are its mass and energy.
+For nonzero $f$, write
+\begin{equation}\label{var:eq:variational}
+ R_k(f)=\frac{\ip f{K_kf}}{\norm f^2},\qquad
+ M_k=\sup_{f\ne0}R_k(f)=\norm{K_k}.
+\end{equation}
+Multiplying $f$ by a nonzero real constant leaves its quotient unchanged.
+Symmetric polynomials of degree at most two have four coefficients.
+Their masses and energies can be computed by integrating monomials.
+
+\subsection{Integrating monomials}
+
+A multiindex $\alpha=(\alpha_1,\ldots,\alpha_k)$ is a tuple of
+nonnegative integers.  Write
+$|\alpha|=\sum_i\alpha_i$, $t^\alpha=\prod_i t_i^{\alpha_i}$, and
+$\alpha!=\prod_i\alpha_i!$, where $0!=1$.
+The slack variable is $1-\sum_i t_i$.
+We need its mixed moments with coordinate monomials.
+
+\begin{lemma}
+For\label{var:lem:moment} every multiindex $\alpha$ and integer $b\geq0$,
+\begin{equation}\label{var:eq:moment}
+ \int_{\Delta_k}t^\alpha\left(1-\sum_i t_i\right)^b\,dt
+       =\frac{\alpha!\,b!}{(k+|\alpha|+b)!}.
+\end{equation}
+In particular, the simplex has measure $1/k!$.
+\end{lemma}
+
+\begin{proof}
+First, for integers $a,b\geq0$, integration by parts gives
+\[
+ \int_0^1u^a(1-u)^b\,du=\frac{a!b!}{(a+b+1)!}.
+\]
+For $b=0$, the integral is $1/(a+1)$.
+For $b>0$, integration by parts replaces the integral by
+$b/(a+1)$ times the integral with exponents $a+1,b-1$.
+Iteration proves the formula.
+For a fixed sum $v=\sum_{i<k}t_i$, substitute $t_k=(1-v)u$.
+Integration in $t_k$ then gives
+\[
+ \frac{\alpha_k!b!}{(\alpha_k+b+1)!}
+                   (1-v)^{\alpha_k+b+1}.
+\]
+Apply the same calculation to the remaining $k-1$ variables.
+The intermediate factorials cancel, leaving \eqref{var:eq:moment}.
+\end{proof}
+
+For $f=1$, every coordinate integral is $\ell_i$.
+For $f=1-s$, where $s=\sum_i t_i$, every coordinate integral is
+$\ell_i^2/2$.  Equation~\eqref{var:eq:moment} therefore gives
+\begin{equation}\label{var:eq:elementary}
+ R_k(1)=\frac{2k}{k+1},\qquad R_k(1-s)=\frac{3k}{k+3}.
+\end{equation}
+For example, the latter mass is $2/(k+2)!$, and its energy is
+$k\cdot4!/[4(k+3)!]=6k/(k+3)!$.
+The different factorials arise because a coordinate integral lives in
+one fewer dimension.
+
+We now compute the two bilinear forms on arbitrary monomials.
+Let $G_{\alpha\beta}=\ip{t^\alpha}{t^\beta}$ and
+$B_{\alpha\beta}=\ip{t^\alpha}{K_kt^\beta}$.
+A matrix of inner products such as $G$ is called a Gram matrix.
+A real symmetric matrix $G$ is positive definite when $c^{\mathsf T}Gc>0$
+for every nonzero real coefficient column $c$.  The superscript
+$\mathsf T$ denotes transpose.
+
+\begin{proposition}
+For\label{var:prop:monomial} multiindices $\alpha,\beta$ of length $k$,
+\begin{align}
+ G_{\alpha\beta}
+ &=\frac{\prod_j(\alpha_j+\beta_j)!}{(k+|\alpha|+|\beta|)!},
+ \label{var:eq:G}\\
+ B_{\alpha\beta}
+ &=\frac{1}{(k+|\alpha|+|\beta|+1)!}
+   \sum_{i=1}^k
+   \frac{(\alpha_i+\beta_i+2)!\prod_{j\ne i}(\alpha_j+\beta_j)!}
+        {(\alpha_i+1)(\beta_i+1)}.
+ \label{var:eq:B}
+\end{align}
+Both matrices are symmetric.  Every finite Gram matrix $G$ indexed by
+distinct monomials is positive definite.
+\end{proposition}
+
+\begin{proof}
+Equation~\eqref{var:eq:G} is \eqref{var:eq:moment} with $b=0$.
+Direct integration in the $i$th coordinate gives
+\begin{equation}\label{var:eq:monomial-action}
+ T_{k,i}t^\alpha
+ =\frac{\prod_{j\ne i}t_j^{\alpha_j}}{\alpha_i+1}
+                     \ell_i^{\alpha_i+1}.
+\end{equation}
+Multiply the expressions for $\alpha$ and $\beta$.
+Apply \eqref{var:eq:moment} in dimension $k-1$, with slack exponent
+$\alpha_i+\beta_i+2$.
+Its denominator is
+$(k-1+\sum_{j\ne i}(\alpha_j+\beta_j)+\alpha_i+\beta_i+2)!$,
+which is the denominator in \eqref{var:eq:B}.
+Summing over $i$ proves the formula by \eqref{var:eq:energy}.
+
+Symmetry is visible in both formulas.
+If a polynomial had zero squared integral, continuity would make it
+zero on the simplex interior.
+A polynomial that vanishes on an open box is identically zero:
+fix all but one coordinate and use that a nonzero univariate polynomial
+has finitely many roots, then repeat in the other coordinates.
+Distinct monomials have independent coefficients, proving positive
+definiteness.
+\end{proof}
+
+\subsection{Symmetric quadratic functions}
+
+A partition $\lambda=(\lambda_1,\ldots,\lambda_r)$ is a nonincreasing
+list of positive integers.  Its length is $r$ and its degree is
+$|\lambda|=\sum_j\lambda_j$.
+When $r\leq k$, let $\mathcal O_k(\lambda)$ be the set of distinct
+permutations of $(\lambda_1,\ldots,\lambda_r,0,\ldots,0)$, and define
+\[
+ m_\lambda(t)=\sum_{\alpha\in\mathcal O_k(\lambda)}t^\alpha.
+\]
+For the empty partition, $m_{\varnothing}=1$.
+If $a_j$ is the number of parts of $\lambda$ equal to $j$, then
+\begin{equation}\label{var:eq:orbit-size}
+ |\mathcal O_k(\lambda)|=\frac{k!}{(k-r)!\prod_{j\geq1}a_j!}.
+\end{equation}
+Choose distinct positions for the $r$ parts, then divide by the
+permutations of equal parts.  Thus every monomial occurs exactly once.
+A symmetric polynomial has constant coefficients on these orbits.
+For each integer $d\geq0$, the $m_\lambda$ of degree at most $d$
+therefore form a basis of the
+symmetric polynomials of degree at most $d$.
+
+Write $\mathsf G_{\lambda\mu}=\ip{m_\lambda}{m_\mu}$ and
+$\mathsf B_{\lambda\mu}=\ip{m_\lambda}{K_km_\mu}$.
+Fix $\alpha_\lambda=(\lambda_1,\ldots,\lambda_r,0,\ldots,0)$.
+Simultaneous coordinate permutation leaves \eqref{var:eq:G} and
+\eqref{var:eq:B} unchanged.  Hence
+\begin{equation}\label{var:eq:orbit-sum}
+ \mathsf G_{\lambda\mu}
+  =|\mathcal O_k(\lambda)|\sum_{\beta\in\mathcal O_k(\mu)}
+                             G_{\alpha_\lambda\beta},\qquad
+ \mathsf B_{\lambda\mu}
+  =|\mathcal O_k(\lambda)|\sum_{\beta\in\mathcal O_k(\mu)}
+                             B_{\alpha_\lambda\beta}.
+\end{equation}
+These sums give the full combinatorial multiplicities.
+For a coefficient column $c$, the polynomial $f=\sum_\lambda c_\lambda m_\lambda$
+has quotient
+\begin{equation}\label{var:eq:matrix-quotient}
+ R_k(f)=\frac{c^{\mathsf T}\mathsf Bc}{c^{\mathsf T}\mathsf Gc}.
+\end{equation}
+For nonzero $c$, the denominator is positive by
+Proposition~\ref{var:prop:monomial}.
+Rational coefficients therefore give a rational quotient.
+No normalization of either matrix or simplex measure is implicit.
+
+For degree at most two, use the ordered basis
+\begin{equation}\label{var:eq:basis}
+ b_0=1,\quad b_1=s=\sum_i t_i,\quad
+ b_2=p_2=\sum_i t_i^2,\quad
+ b_3=e_2=\sum_{i<j}t_it_j.
+\end{equation}
+These are $m_{\varnothing},m_{(1)},m_{(2)},m_{(1,1)}$.
+Their degrees are $d_0=0,d_1=1,d_2=d_3=2$.
+The relation $s^2=p_2+2e_2$ will be useful below.
+Define integers $N_{ab}(k)$ and $P_{ab}(k)$ by
+\begin{equation}\label{var:eq:quadratic-matrices}
+ \mathsf G_{ab}=\frac{N_{ab}(k)}{(k+d_a+d_b)!},\qquad
+ \mathsf B_{ab}=\frac{P_{ab}(k)}{(k+d_a+d_b+1)!}.
+\end{equation}
+Both arrays are symmetric.  Their entries are
+\begin{center}
+\begin{tabular}{ccll}
+\toprule
+$a$&$b$&$N_{ab}(k)$&$P_{ab}(k)$\\
+\midrule
+0&0&$1$&$2k$\\
+0&1&$k$&$k(2k+1)$\\
+0&2&$2k$&$4k(k+1)$\\
+0&3&$k(k-1)/2$&$k(k-1)(k+1)$\\
+1&1&$k(k+1)$&$2k^2(k+2)$\\
+1&2&$2k(k+2)$&$2k(2k^2+7k+1)$\\
+1&3&$k(k-1)(k+2)/2$&$k(k-1)(2k^2+7k+2)/2$\\
+2&2&$4k(k+5)$&$8k(k^2+7k+2)$\\
+2&3&$k(k-1)(k+4)$&$2k(k-1)(k^2+6k+3)$\\
+3&3&$k(k-1)(k^2+3k-2)/4$&$k(k-1)(k^3+5k^2-4)/2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Here is the counting argument behind the table.
+For $b_1^2$, equal coordinate indices contribute $2k$ to $N_{11}$,
+and unequal indices contribute $k(k-1)$.
+For $P_{11}$, these contributions are $k(4k+2)$ and
+$k(k-1)(2k+2)$, respectively, by \eqref{var:eq:B}.
+This gives the row $a=b=1$.
+For the last row, fix the pair supporting a monomial of $e_2$.
+The second pair can be equal, intersect in one index, or be disjoint.
+There are $1$, $2(k-2)$, and $(k-2)(k-3)/2$ choices, respectively.
+The corresponding contributions to $N_{33}$ are $4$, $2$, and $1$.
+Their contributions to $P_{33}$ are $8k+8$, $4k+6$, and $2k+4$.
+Multiply their weighted sums by $k(k-1)/2$ to obtain the last row.
+Every other row uses the same equal-index or disjoint-index count in
+\eqref{var:eq:orbit-sum}.
+
+The matrix $\mathsf B$ represents the quadratic form of $K_k$ on this
+polynomial subspace.  It is not the coefficient matrix of $K_k$ in
+that basis: \eqref{var:eq:monomial-action} can increase the degree.
+Only the quotient \eqref{var:eq:matrix-quotient} is needed for the lower bound.
+
+\subsection{Five explicit polynomials}
+
+For integers $k=8,9,10,11,12$, define
+\begin{equation}\label{var:eq:trials}
+ f_k=100+u_ks+v_kp_2+w_ke_2,
+\end{equation}
+where the three integer coefficients appear in the following table.
+Each polynomial is nonzero because its constant coefficient is $100$.
+Define its scaled mass and energy by
+\begin{equation}\label{var:eq:scaled}
+ D_k=(k+4)!\norm{f_k}^2,\qquad
+ E_k=(k+5)!\ip{f_k}{K_kf_k}.
+\end{equation}
+The factorials clear the denominators in \eqref{var:eq:quadratic-matrices}.
+\begin{center}
+\begin{tabular}{rrrrrr}
+\toprule
+$k$&$u_k$&$v_k$&$w_k$&$D_k$&$E_k$\\
+\midrule
+8&$-194$&118&180&444608&13339392\\
+9&$-196$&119&186&459672&15332400\\
+10&$-198$&119&190&382840&14072960\\
+11&$-199$&118&194&408036&16351280\\
+12&$-200$&118&196&361440&15732480\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For comparison, define $q_k=K_k^2 1$, the result of applying $K_k$ twice
+to the constant function.  These comparison functions have an explicit
+quadratic form.  Indeed,
+\[
+ K_k1=\sum_i\ell_i=k-(k-1)s,\qquad
+ A_{k,i}(K_k1)=\ell_i+\frac{k-1}{2}\ell_i^2.
+\]
+Since
+$\sum_i\ell_i^2=k-2(k-1)s+(k-2)s^2+p_2$,
+we obtain
+\begin{equation}\label{var:eq:K2}
+ q_k=\frac{k(k+1)}2-k(k-1)s
+                   +\frac{(k-1)^2}{2}p_2+(k-1)(k-2)e_2.
+\end{equation}
+
+\begin{theorem}
+For\label{var:thm:bounds} each dimension in the table below,
+$M_k\geq R_k(f_k)>R_k(q_k)$, with the indicated exact values.
+Moreover, $R_k(f_k)$ exceeds both elementary quotients in
+\eqref{var:eq:elementary}.
+\begin{center}
+\begin{tabular}{rcc}
+\toprule
+$k$&$R_k(f_k)$&$R_k(q_k)$\\
+\midrule
+8&$208428/90311$&$760976/337987$\\
+9&$319425/134071$&$73611/31759$\\
+10&$351824/143565$&$38788/16333$\\
+11&$1021955/408036$&$31207/12872$\\
+12&$1928/753$&$203928/82631$\\
+\bottomrule
+\end{tabular}
+\end{center}
+In particular,
+\[
+ M_8>\frac{23}{10},\quad M_9>\frac{119}{50},\quad
+ M_{10}>\frac{49}{20},\quad M_{11}>\frac52,\quad M_{12}>\frac{64}{25}.
+\]
+\end{theorem}
+
+\begin{proof}
+Put $c=(100,u_k,v_k,w_k)^{\mathsf T}$.
+The displayed integers in \eqref{var:eq:scaled} result from the finite sums
+\begin{align}
+ D_k&=\sum_{a,b=0}^3 c_ac_bN_{ab}(k)
+                  \frac{(k+4)!}{(k+d_a+d_b)!},\label{var:eq:Dsum}\\
+ E_k&=\sum_{a,b=0}^3 c_ac_bP_{ab}(k)
+                  \frac{(k+5)!}{(k+d_a+d_b+1)!}.
+ \label{var:eq:Esum}
+\end{align}
+Equations~\eqref{var:eq:matrix-quotient} and~\eqref{var:eq:scaled} give
+$R_k(f_k)=E_k/((k+5)D_k)$, proving the middle column.
+Substitution of the four coefficients in \eqref{var:eq:K2} into
+\eqref{var:eq:matrix-quotient} gives the last column.
+The differences between those two columns, in increasing order of $k$, are
+\[
+ \frac{10186100}{180615053},\quad
+ \frac{39359742}{608280127},\quad
+ \frac{177742172}{2344847145},\quad
+ \frac{105256327}{1313059848},\quad
+ \frac{5754784}{62221143}.
+\]
+All are positive.
+The lower bounds for $M_k$ follow from \eqref{var:eq:variational}.
+To obtain the final five inequalities, subtract the proposed fraction
+from the corresponding middle-column fraction.
+After multiplication by the positive denominators, the differences have
+numerators $7127,16801,1795,3730,8$, respectively.
+Each of these five simpler fractions exceeds $3k/(k+3)$ in its dimension.
+For $k\geq8$, one also has $3k/(k+3)>2k/(k+1)$.
+This proves the comparisons with \eqref{var:eq:elementary}.
+\end{proof}
+
+For example, in dimension twelve the complete construction is
+\[
+ f_{12}=100-200s+118p_2+196e_2
+       =100(1-s)^2+20p_2-2s^2.
+\]
+Its mass is $361440/16!$ and its energy is $15732480/17!$.
+Thus
+\[
+ R_{12}(f_{12})=\frac{15732480}{17\cdot361440}
+             =\frac{1928}{753},\qquad
+ \frac{1928}{753}-\frac{64}{25}=\frac8{18825}>0.
+\]
+A test function need not be nonnegative.
+At the boundary point $t_1=\cdots=t_{12}=1/12$, this polynomial equals
+$20/12-2=-1/3$, whereas at the origin it equals $100$.
+Both values persist with their signs at nearby interior points.
+The variational domain permits this change of sign.
+
+The trial coefficients are integers, and no square root enters their
+Rayleigh quotients.  Unit normalization would instead replace $f_k$ by
+$\sqrt{(k+4)!/D_k}\,f_k$, whose coefficients need not be rational.
+All the inequalities above concern the specified continuum operator in
+one of five fixed finite dimensions.  They do not identify its exact norm
+or the largest quotient among all quadratic polynomials.
+
+
+\subsection{Smooth functions with the same strict inequality}
+
+Coordinate sampling requires functions defined pointwise, and arithmetic
+comparisons often require support away from every face.
+The polynomial trials can be replaced by explicit smooth functions with
+this support property while retaining any strict lower bound below their
+quotients.
+Let $\mathcal X_k=C_c^\infty(\Delta_k^\circ;\mathbb R)$ denote the smooth
+real functions with compact support in the simplex interior, extended by
+zero to $\mathbb R^k$.
+Use the norm
+\[
+ \norm F_{\mathcal X}
+ =\sup_{t\in[0,1]^k}\left(|F(t)|+\sum_i|\partial_iF(t)|\right).
+\]
+We construct the required functions and bound this norm.
+
+Define
+\[
+ h(x)=\begin{cases}e^{-1/x},&x>0,\\0,&x\leq0,\end{cases}
+ \qquad
+ \chi(x)=\frac{h(x-1)}{h(x-1)+h(2-x)}.
+\]
+The denominator is positive for every real $x$.
+Every derivative of $h$ from the right is a finite sum of powers of
+$x^{-1}$ times $e^{-1/x}$, and tends to zero at the origin.
+Indeed, $y^ne^{-y}\to0$ follows from
+$e^y\geq y^{n+1}/(n+1)!$ for $y>0$.
+Thus $h$ and $\chi$ are smooth.
+The function $\chi$ takes values in $[0,1]$, equals zero for $x\leq1$,
+and equals one for $x\geq2$.
+Moreover, $|\chi'|\leq4$.
+To check this bound, write $v=x-1\in(0,1)$.
+The derivative is
+\[
+ \chi'(x)=\frac{h'(v)h(1-v)+h(v)h'(1-v)}{(h(v)+h(1-v))^2}.
+\]
+Here $0\leq h'(u)\leq4e^{-2}$ for $u>0$, by maximizing
+$y^2e^{-y}$.  At least one of $v,1-v$ is at least $1/2$, so
+$h(v)+h(1-v)\geq e^{-2}$.  The numerator is at most
+$4e^{-2}(h(v)+h(1-v))$, giving the stated bound.
+Outside $(1,2)$ the derivative is zero.
+
+For $0<\varepsilon\leq1/[4(k+1)]$, define the smooth cutoff and the
+modified polynomial by
+\begin{equation}\label{bridge:eq:cutoff}
+ \Xi_\varepsilon(t)
+ =\chi\left(\frac{1-s}{\varepsilon}\right)
+                  \prod_{i=1}^k\chi\left(\frac{t_i}{\varepsilon}\right),
+ \qquad F_\varepsilon=\Xi_\varepsilon f.
+\end{equation}
+The product vanishes unless every coordinate and the slack are at least
+$\varepsilon$.  Hence $F_\varepsilon\in\mathcal X_k$.
+For a nonzero polynomial $f$, choose constants $C>0$ and $D\geq0$ with
+$|f|\leq C$ and $|\partial_i f|\leq D$ on $\Delta_k$, and put
+$I=\norm f^2>0$ and $q=R_k(f)$.
+For $f=100+us+vp_2+we_2$, valid choices are
+\begin{equation}\label{bridge:eq:CD}
+ C=100+|u|+|v|+|w|/2,\qquad D=|u|+2|v|+|w|.
+\end{equation}
+Indeed, $s,p_2\leq1$, $e_2\leq1/2$,
+$\partial_i p_2=2t_i$, and $\partial_i e_2=s-t_i$.
+
+\begin{lemma}
+The\label{bridge:lem:cutoff} function in \eqref{bridge:eq:cutoff} satisfies
+\begin{equation}\label{bridge:eq:cutoff-error}
+ \norm{F_\varepsilon-f}^2
+ \leq\frac{2(k+1)C^2\varepsilon}{(k-1)!},\qquad
+ \norm{F_\varepsilon}_{\mathcal X}
+ \leq C+kD+\frac{8kC}{\varepsilon}.
+\end{equation}
+If $e=\norm{F_\varepsilon-f}/\norm f\leq1/4$, then
+\begin{equation}\label{bridge:eq:rayleigh-error}
+ \norm{F_\varepsilon}^2\geq(1-e)^2I>0,
+ \qquad |R_k(F_\varepsilon)-q|\leq8ke.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The cutoff equals one when all coordinates and the slack are at least
+$2\varepsilon$.  For each coordinate, the region
+$0\leq t_i<2\varepsilon$ has measure at most
+$2\varepsilon/(k-1)!$, by integrating its slices.
+The region $0\leq1-s<2\varepsilon$ has measure
+\[
+ \frac{1-(1-2\varepsilon)^k}{k!}
+ \leq\frac{2\varepsilon}{(k-1)!}.
+\]
+The equality follows by dilating the simplex, and the inequality follows
+from $1-(1-z)^k\leq kz$ for $0\leq z\leq1$.
+Taking the union of these $k+1$ regions proves the first estimate.
+Each derivative of $\Xi_\varepsilon$ has two terms, one from its
+coordinate factor and one from its slack factor.
+Thus $|\partial_i\Xi_\varepsilon|\leq8/\varepsilon$.
+The product rule proves the second estimate.
+
+Write $F=F_\varepsilon$.
+The triangle inequality gives $(1-e)\norm f\leq\norm F\leq(1+e)\norm f$.
+Since $\norm{K_k}\leq k$,
+\[
+ |\ip F{K_kF}-\ip f{K_kf}|\leq ke(2+e)I,
+ \qquad |\norm F^2-I|\leq e(2+e)I.
+\]
+Subtract the two Rayleigh quotients and use $0\leq q\leq k$ to obtain
+\[
+ |R_k(F)-q|\leq\frac{2ke(2+e)}{(1-e)^2}\leq8ke
+                         \qquad(0\leq e\leq1/4).
+\]
+This also proves that $F$ is nonzero.
+\end{proof}
+
+\begin{proposition}
+Let\label{bridge:prop:smooth} $a$ be a real number with $0\leq a<q$.
+Set $g=q-a>0$ and
+\begin{equation}\label{bridge:eq:choices}
+ \eta=\min\left\{\frac14,\frac{g}{16k}\right\},\qquad
+ \varepsilon=\min\left\{\frac1{4(k+1)},
+                    \frac{(k-1)!I\eta^2}{2(k+1)C^2}\right\}.
+\end{equation}
+The width satisfies $0<\varepsilon\leq1/[4(k+1)]$.
+Then the explicitly defined $F=F_\varepsilon\in\mathcal X_k$ satisfies
+\begin{equation}\label{bridge:eq:strict-smooth}
+ R_k(F)\geq a+\frac g2>a,\qquad
+ \norm F^2\geq J:=(1-\eta)^2I,
+ \qquad \norm F_{\mathcal X}\leq A:=C+kD+\frac{8kC}{\varepsilon}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Since $g,I,C$ are positive, both entries defining $\eta$ and both entries
+defining $\varepsilon$ are positive.  Thus the cutoff has the stated
+positive width and belongs to $\mathcal X_k$.
+The first estimate in \eqref{bridge:eq:cutoff-error} gives $e\leq\eta$.
+Then \eqref{bridge:eq:rayleigh-error} gives
+$R_k(F)\geq q-8k\eta\geq q-g/2=a+g/2$.
+The remaining bounds are the other conclusions of
+Lemma~\ref{bridge:lem:cutoff}.
+\end{proof}
+
+\subsection{A conditional counting inequality}
+
+The strict inequality just obtained can pass to finite weighted sums
+when their mass and energy errors are controlled.
+We specify the required comparison before drawing a counting conclusion.
+For positive integers $N$, let $\Omega_N$ be a finite set and let
+$\nu_N:\Omega_N\to\{0,1,\ldots,k\}$ be an integer-valued count.
+Let $\mathcal V_N:\mathcal X_k\to\mathbb R^{\Omega_N}$ be a linear map,
+where the target uses counting measure.
+For $G\in\mathcal X_k$, define
+\[
+ \mathscr S_{1,N}(G)=\sum_{n\in\Omega_N}|(\mathcal V_NG)(n)|^2,
+ \qquad
+ \mathscr S_{2,N}(G)=\sum_{n\in\Omega_N}\nu_N(n)|(\mathcal V_NG)(n)|^2.
+\]
+Fix $0<\vartheta\leq1$, an integer $m\geq0$, and one of the nonzero
+polynomial trials with $q=R_k(f)>2m/\vartheta$.
+Apply Proposition~\ref{bridge:prop:smooth} with $a=2m/\vartheta$.
+This fixes $g,\eta,\varepsilon,F,J,A$ before $N$ varies.
+Now fix
+\begin{equation}\label{bridge:eq:rho-choice}
+ \delta=\frac{\vartheta g}{8k},\qquad
+ \rho=\frac\vartheta2-\delta,\qquad
+ \Gamma=\frac{\vartheta g}{8}>0.
+\end{equation}
+Since $0<g\leq q\leq k$, one has $0<\delta\leq\vartheta/8<\vartheta/2$.
+In particular $\rho>0$.
+
+Assume there are positive numbers $\mathcal C_N$, a positive sequence
+$d_N\to\infty$, constants $\alpha_1,\alpha_2>0$, and an integer $N_0$
+such that, for $N\geq N_0$ and $G\in\mathcal X_k$,
+\begin{align}
+ \left|\frac{\mathscr S_{1,N}(G)}{\mathcal C_N}-\norm G^2\right|
+ &\leq\frac{\alpha_1}{d_N}\norm G_{\mathcal X}^2,
+ \label{bridge:eq:mass-assumption}\\
+ \left|\frac{\mathscr S_{2,N}(G)}{\rho\mathcal C_N}-\ip G{K_kG}\right|
+ &\leq\frac{\alpha_2}{d_N}\norm G_{\mathcal X}^2.
+ \label{bridge:eq:energy-assumption}
+\end{align}
+These are additional assumptions about the finite maps and counts.
+
+\begin{theorem}
+Under\label{bridge:thm:counting} these assumptions, every $N\geq N_0$ with
+\begin{equation}\label{bridge:eq:N-condition}
+ d_N\geq\max\left\{\frac{2\alpha_1A^2}{J},
+                \frac{2(\rho\alpha_2+m\alpha_1)A^2}{\Gamma J}\right\}
+\end{equation}
+has an element $n\in\Omega_N$ with $\nu_N(n)\geq m+1$.
+\end{theorem}
+
+\begin{proof}
+Put $r=R_k(F)$ and $I_F=\norm F^2\geq J$.
+Equations~\eqref{bridge:eq:strict-smooth} and~\eqref{bridge:eq:rho-choice}
+give
+\[
+ \rho r-m
+ =\frac\vartheta2r-m-\delta r
+ \geq\frac{\vartheta g}{4}-\delta k
+ =\Gamma.
+\]
+Here $r\leq k$ follows from the actual operator bound.
+The mass comparison and \eqref{bridge:eq:N-condition} give
+$\mathscr S_{1,N}(F)\geq\mathcal C_NJ/2>0$.
+The two comparisons also give
+\begin{align*}
+ \mathscr S_{2,N}(F)-m\mathscr S_{1,N}(F)
+ &\geq\mathcal C_N\left((\rho r-m)I_F
+       -\frac{(\rho\alpha_2+m\alpha_1)A^2}{d_N}\right)\\
+ &\geq\frac{\mathcal C_N\Gamma J}{2}>0.
+\end{align*}
+If every count were at most $m$, the defining nonnegative weights would
+instead give $\mathscr S_{2,N}(F)\leq m\mathscr S_{1,N}(F)$.
+Thus some count exceeds $m$, and its integer value is at least $m+1$.
+\end{proof}
+
+For $m=1$, define $\vartheta_k=2/R_k(f_k)$ from the exact trial values in
+Theorem~\ref{var:thm:bounds}.
+The numerical condition $\vartheta R_k(f_k)>2$ is precisely
+$\vartheta>\vartheta_k$, with
+\begin{equation}\label{bridge:eq:theta-table}
+\begin{array}{c|ccccc}
+ k&8&9&10&11&12\\ \hline
+ \vartheta_k&\dfrac{90311}{104214}&\dfrac{268142}{319425}&
+ \dfrac{143565}{175912}&\dfrac{816072}{1021955}&\dfrac{753}{964}
+\end{array}
+\end{equation}
+Each threshold lies strictly between $1/2$ and $1$.
+These finite-dimensional values therefore do not satisfy the $m=1$
+condition when $\vartheta\leq1/2$.
+At $\vartheta=4/5$, the required quotient is $5/2$.
+The exact values give
+\[
+ R_{11}(f_{11})-\frac52=\frac{1865}{408036}>0,\qquad
+ R_{12}(f_{12})-\frac52=\frac{91}{1506}>0.
+\]
+The comparison polynomials $q_k=K_k^2 1$ instead give
+\[
+ R_{11}(q_{11})-\frac52=-\frac{973}{12872},\qquad
+ R_{12}(q_{12})-\frac52=-\frac{5299}{165262}.
+\]
+Thus both new trials cross this particular strict threshold.
+For example, at $k=12$ and $\vartheta=4/5$ one has
+\[
+ g=\frac{1928}{753}-\frac52=\frac{91}{1506},\qquad
+ \delta=\frac{91}{180720},\qquad
+ \rho=\frac{72197}{180720},\qquad
+ \Gamma=\frac{91}{15060}.
+\]
+The formulas above specify a single smooth function $F$ and a sufficient
+lower bound on $d_N$ in terms of the assumed comparison constants.
+No assertion about particular counts follows without the two comparison
+assumptions.
+
+\section{The arithmetic comparison maps}
+
+Write $\mu$ for the M\"obius function: $\mu(n)=0$ when a squared prime
+divides $n$, and $\mu(n)=(-1)^r$ when $n$ is a product of $r$ distinct
+primes, with $\mu(1)=1$.
+
+
+The continuum function will determine coefficients through logarithmic
+point values.  The transform following those values is finite and invertible.
+It is useful to see this transform before imposing an asymptotic regime.
+Write $\varphi(q)=|(\mathbb Z/q\mathbb Z)^\times|$ for Euler's totient.
+
+\begin{example}
+Take\label{ex:mobius} $k=1$, $W=2$, and divisor support $\{1,3,5\}$, corresponding to a
+cutoff $R=6$.  The transforms from values $y$ to coefficients $\lambda$
+and back are
+\[
+ L=\begin{pmatrix}1&1/2&1/4\\0&-3/2&0\\0&0&-5/4\end{pmatrix},
+ \qquad
+ U=\begin{pmatrix}1&1/3&1/5\\0&-2/3&0\\0&0&-4/5\end{pmatrix},
+ \qquad UL=LU=I.
+\]
+For $y=(1,1,1)$, this gives $\lambda=(7/4,-3/2,-5/4)$.
+With shift $0$, $N=10$, and $v_0=1$, the interval contains
+$11,13,15,17,19$.  The incidence values are
+$7/4,7/4,-1,7/4,7/4$.  Therefore
+\[
+             S_1=53/4,\qquad S_2=49/4,\qquad S_2/S_1=49/53.
+\]
+The residue-density expression $(N/W)\sum_r y_r^2/\varphi(r)=35/4$
+differs from the exact $S_1$.  Replacing an integer count by its density
+requires an error estimate.
+\end{example}
+
+For the asymptotic comparison, fix distinct nonnegative shifts
+$\mathcal H$, assumed admissible, and a real number $0<\vartheta\leq1$.
+The additional analytic hypothesis is that the primes have
+\emph{level of distribution $\vartheta$}: for every $A>0$,
+\begin{equation}\label{eq:lod}
+ \sum_{q\leq x^\vartheta}\max_{\gcd(a,q)=1}
+ \left|\pi(x;q,a)-\frac{\pi(x)}{\varphi(q)}\right|
+       \ll_A\frac{x}{(\log x)^A}.
+\end{equation}
+Here $\pi(x;q,a)$ counts primes at most $x$ congruent to $a$ modulo $q$,
+$\pi(x)$ counts all primes at most $x$.
+The implied constant may depend on $A$ and $\vartheta$.
+This is the convention in \cite[(1.3), p.~384]{Maynard}.
+
+Fix $0<\delta<\vartheta/2$ and put $\rho=\vartheta/2-\delta$.
+For sufficiently large positive integers $N$, set
+\[
+ D_0=\log\log\log N,\qquad W_N=\prod_{p\leq D_0}p,
+ \qquad R_N=N^\rho.
+\]
+All logarithms are natural.  Choose any admissible class $v_0(N)$
+modulo $W_N$, and use it in the definition of $I_N$.
+Since the shifts are fixed, $W_N$ contains every prime factor of
+$\Delta_{\mathcal H}$ for all sufficiently large $N$.
+Also $W_N\leq D_0^{D_0}=N^{o(1)}$, so $I_N$ is then nonempty.
+The coefficient space is $\Lambda_N=\mathbb R^{\mathcal D_N}$, where
+\[
+ \mathcal D_N=\left\{\boldsymbol d\in\mathbb N^k:
+ d_1\cdots d_k<R_N,\quad
+ \mu^2(d_1\cdots d_k)=1,\quad
+ \gcd(d_1\cdots d_k,W_N)=1\right\}.
+\]
+The set $\mathcal D_N$ is closed under coordinatewise divisors.
+Let $Y_N$ be another copy of $\mathbb R^{\mathcal D_N}$, whose coordinates
+are denoted by $\boldsymbol r$.
+
+Define linear maps $L_N:Y_N\to\Lambda_N$ and $U_N:\Lambda_N\to Y_N$ by
+\begin{align}
+ (L_Ny)_{\boldsymbol d}
+ &=\left(\prod_i\mu(d_i)d_i\right)
+   \sum_{\substack{\boldsymbol r\in\mathcal D_N\\d_i\mid r_i\ \forall i}}
+               \frac{y_{\boldsymbol r}}{\prod_i\varphi(r_i)},\label{eq:mobius-L}\\
+ (U_N\lambda)_{\boldsymbol r}
+ &=\left(\prod_i\mu(r_i)\varphi(r_i)\right)
+   \sum_{\substack{\boldsymbol d\in\mathcal D_N\\r_i\mid d_i\ \forall i}}
+               \frac{\lambda_{\boldsymbol d}}{\prod_i d_i}.
+               \label{eq:mobius-U}
+\end{align}
+To verify $U_NL_N=I$, substitute the first sum into the second.
+For fixed $\boldsymbol r\mid\boldsymbol s$, the intermediate sum is
+\[
+ \prod_i\sum_{r_i\mid d_i\mid s_i}\mu(d_i)
+   =\left(\prod_i\mu(r_i)\right)\mathbf1_{\boldsymbol r=\boldsymbol s}.
+\]
+Squarefreeness permits $\mu(r_iv)=\mu(r_i)\mu(v)$ here, and
+$\sum_{v\mid m}\mu(v)=\mathbf1_{m=1}$ follows by expanding
+$\prod_{p\mid m}(1-1)$.  The remaining factors cancel.
+Finite-dimensional invertibility then gives $L_NU_N=I$ as well.
+These are the transforms in \cite[(5.7)--(5.8), p.~393]{Maynard}.
+
+Use the space $\mathcal X_k$ and its norm defined before
+Lemma~\ref{bridge:lem:cutoff}.  This norm controls the point values
+needed for sampling.
+For $\boldsymbol r\in\mathcal D_N$, put
+\[
+ x_N(\boldsymbol r)=
+ \left(\frac{\log r_1}{\log R_N},\ldots,
+       \frac{\log r_k}{\log R_N}\right),\qquad
+ (P_NF)_{\boldsymbol r}=F(x_N(\boldsymbol r)).
+\]
+The coefficient map and the normalized counting-space map are
+\begin{equation}\label{eq:spine-map}
+ E_N=L_NP_N:\mathcal X_k\longrightarrow\Lambda_N,
+ \qquad J_N=C_N^{-1/2}T_NE_N:\mathcal X_k\longrightarrow\ell^2(I_N),
+\end{equation}
+where $\ell^2(I_N)$ uses counting measure, $T_N$ is the incidence map,
+and
+\[
+ C_N=\frac{\varphi(W_N)^kN(\log R_N)^k}{W_N^{k+1}}>0.
+\]
+Formula~\eqref{eq:mobius-L} makes $E_N$ the exact coefficient map in
+\cite[Proposition 4.1, pp.~388--389]{Maynard}.
+
+\section{Uniform comparison of the two forms}
+
+Let $M_{R_{\mathcal H}}$ act on $\ell^2(I_N)$ by multiplication by
+$R_{\mathcal H}(n)$.  Define symmetric bilinear forms on $\mathcal X_k$ by
+\[
+ a_N(F,G)=\langle J_NF,J_NG\rangle,\qquad
+ b_N(F,G)=\rho^{-1}
+          \langle J_NF,M_{R_{\mathcal H}}J_NG\rangle.
+\]
+Their diagonal values are the normalized exact sums
+\[
+ a_N(F,F)=S_1(E_NF)/C_N,\qquad
+ b_N(F,F)=S_2(E_NF)/(\rho C_N).
+\]
+The factor $\rho=\log R_N/\log N$ is fixed before taking a limit.
+
+\begin{theorem}[Comparison on the smooth space]\label{thm:forms}
+Assume \eqref{eq:lod} and fix $k,\mathcal H,\vartheta,\delta$ as above.
+There are constants $c_1,c_2>0$ and an integer $N_0$, independent of
+$F,G\in\mathcal X_k$, such that for $N\geq N_0$,
+\begin{align}
+ |a_N(F,G)-\langle F,G\rangle|
+ &\leq\frac{c_1}{D_0}\|F\|_{\mathcal X}\|G\|_{\mathcal X},
+                                                       \label{eq:mass-error}\\
+ |b_N(F,G)-\langle F,K_kG\rangle|
+ &\leq\frac{c_2}{D_0}\|F\|_{\mathcal X}\|G\|_{\mathcal X}.
+                                                       \label{eq:prime-error}
+\end{align}
+In particular, these forms converge in the norm of bounded bilinear forms
+on the normed space $\mathcal X_k$.
+\end{theorem}
+
+\begin{proof}
+The arithmetic input is the additive estimate in
+\cite[Lemmas 6.2--6.3, pp.~401--404]{Maynard}, with the fixed parameters
+specified on pp.~387 and 391.  In the present notation it states
+\begin{align*}
+ |S_1(E_NF)-C_N\|F\|_2^2|
+   &\leq d_1C_N\|F\|_{\mathcal X}^2/D_0,\\
+ |S_{2,i}(E_NF)-\rho C_N\|T_iF\|_2^2|
+   &\leq d_{2,i}C_N\|F\|_{\mathcal X}^2/D_0.
+\end{align*}
+Here $S_{2,i}$ uses just the $i$th prime indicator.  The constants and
+the lower bound on $N$ are independent of $F$.
+The function class used here is contained in the smooth class of those
+lemmas.  Their additive estimates apply even when a fibre integral is zero.
+Summing the second inequality and dividing by $\rho C_N$ gives the
+quadratic estimates for $a_N$ and $b_N$.
+
+For completeness, let $q$ be either error form and suppose
+$|q(F,F)|\leq d\|F\|_{\mathcal X}^2/D_0$.
+For nonzero $F,G$, put $f=F/\|F\|_{\mathcal X}$ and
+$g=G/\|G\|_{\mathcal X}$.  Polarization gives
+\[
+ |q(f,g)|=\tfrac14|q(f+g,f+g)-q(f-g,f-g)|\leq2d/D_0.
+\]
+Rescaling proves the stated estimates, with
+$c_1=2d_1$ and $c_2=2\rho^{-1}\sum_i d_{2,i}$.
+If either function is zero, the result is immediate.
+\end{proof}
+
+The arithmetic input is stronger than fixed-function relative asymptotics.
+Its constants control all smooth functions through one specified norm.
+The place where \eqref{eq:lod} enters is also explicit: the expanded prime
+sum counts progressions with moduli
+\[
+                 q=W_N\prod_i\operatorname{lcm}(d_i,e_i)
+                      <W_NR_N^2<N^\vartheta
+\]
+for sufficiently large $N$.
+The strict exponent loss $2\delta$ absorbs $W_N$.
+Maynard's estimates (5.19)--(5.20) control the progression errors under
+\eqref{eq:lod}.  CRT alone supplies no such estimate.
+The constants $d_1,d_{2,i}$ above are the implied constants of the cited
+arithmetic estimates.  No numerical values for them or for $N_0$ are
+asserted here.
+
+\subsection{From forms to operators}
+
+Let $V\subset\mathcal X_k$ be a nonzero finite-dimensional subspace.
+Its $L^2$ geometry controls point values through the finite number
+\[
+ \beta_V=\sup_{0\ne F\in V}\frac{\|F\|_{\mathcal X}}{\|F\|_2}.
+\]
+For an $L^2$-orthonormal basis $e_1,\ldots,e_d$ of $V$,
+$\beta_V^2\leq\sum_{j=1}^d\|e_j\|_{\mathcal X}^2$ by Cauchy--Schwarz.
+Let $P_V:H_k\to V$ be the orthogonal projection, and set
+$K_V=P_VK_k|_V$.  Define operators $G_{N,V},H_{N,V}:V\to V$ by
+\[
+ \langle F,G_{N,V}G\rangle=a_N(F,G),\qquad
+ \langle F,H_{N,V}G\rangle=b_N(F,G).
+\]
+These definitions use the $L^2$ inner product on $V$.
+
+\begin{theorem}[Quantitative finite-dimensional comparison]\label{thm:galerkin}
+In the setting of Theorem~\ref{thm:forms}, put
+\[
+ \varepsilon=\frac{c_1\beta_V^2}{D_0},\qquad
+ \eta=\frac{c_2\beta_V^2}{D_0}.
+\]
+If $N\geq N_0$ and $\varepsilon<1$, then $G_{N,V}$ is positive definite
+and both $J_N|_V$ and $E_N|_V$ are injective.
+The positive self-adjoint operator
+\[
+ Q_{N,V}=G_{N,V}^{-1/2}H_{N,V}G_{N,V}^{-1/2}:V\to V
+\]
+satisfies
+\begin{equation}\label{eq:spine-bound}
+ \|Q_{N,V}-K_V\|
+ \leq\frac{\eta+k\varepsilon}{1-\varepsilon}.
+\end{equation}
+If $r_V=\max_{0\ne F\in V}\langle F,K_kF\rangle/\|F\|_2^2$, then
+\[
+ \left|\rho^{-1}
+       \max_{0\ne\lambda\in E_N(V)}\frac{S_2(\lambda)}{S_1(\lambda)}
+        -r_V\right|
+ \leq\frac{\eta+k\varepsilon}{1-\varepsilon}.
+\]
+\end{theorem}
+
+\begin{proof}
+The form bounds give
+$\|G_{N,V}-I\|\leq\varepsilon$ and
+$\|H_{N,V}-K_V\|\leq\eta$.
+Thus $a_N(F,F)\geq(1-\varepsilon)\|F\|_2^2$ on $V$.
+This proves positivity and injectivity.
+
+Write $D=G_{N,V}^{-1/2}$ and $s=(1-\varepsilon)^{-1/2}$.
+The spectrum of $G_{N,V}$ lies in $[1-\varepsilon,1+\varepsilon]$.
+Consequently $\|D\|\leq s$ and $\|D-I\|\leq s-1$.
+The latter follows because
+$1-(1+\varepsilon)^{-1/2}\leq(1-\varepsilon)^{-1/2}-1$.
+Now
+\[
+ Q_{N,V}-K_V=D(H_{N,V}-K_V)D+(D-I)K_VD+K_V(D-I).
+\]
+Using $\|K_V\|\leq k$ gives
+\[
+ \|Q_{N,V}-K_V\|
+ \leq\eta s^2+k(s-1)(s+1)
+ =\frac{\eta+k\varepsilon}{1-\varepsilon}.
+\]
+Substituting $F=G_{N,V}^{-1/2}u$ in $b_N(F,F)/a_N(F,F)$
+identifies its maximum with $\|Q_{N,V}\|$.
+The coefficient map is injective on $V$, so this is exactly the displayed
+maximum over $E_N(V)$.  Finally,
+$|\|Q_{N,V}\|-\|K_V\||\leq\|Q_{N,V}-K_V\|$.
+\end{proof}
+
+This construction also specifies an isometry into the finite counting
+space.  Namely,
+\[
+ Z_{N,V}=J_N|_V\,G_{N,V}^{-1/2}:V\longrightarrow\ell^2(I_N)
+\]
+satisfies $Z_{N,V}^*Z_{N,V}=I$, and
+\[
+ Q_{N,V}=\rho^{-1}Z_{N,V}^*M_{R_{\mathcal H}}Z_{N,V}.
+\]
+The finite operator is therefore a specified compression of prime-count
+multiplication.  Estimate~\eqref{eq:spine-bound} compares this compression
+with the simplex operator on the same Hilbert space $V$.
+
+\begin{corollary}[A dense sequence of finite comparisons]\label{cor:diagonal}
+Let $V_1\subset V_2\subset\cdots\subset\mathcal X_k$ be nonzero
+finite-dimensional subspaces with dense union in $H_k$.
+Put $\beta_j=\beta_{V_j}$.  Choose integers $j(N)\to\infty$ such that
+\[
+                    \beta_{j(N)}^2/D_0(N)\longrightarrow0.
+\]
+For sufficiently large $N$, extend $Q_{N,V_{j(N)}}$ by zero on
+$V_{j(N)}^\perp$ to obtain $\widehat K_N:H_k\to H_k$.
+Then
+\[
+ \widehat K_NF\longrightarrow K_kF\quad(F\in H_k),\qquad
+ \|\widehat K_N\|\longrightarrow M_k,
+\]
+and
+\[
+ \rho^{-1}\max_{0\ne\lambda\in E_N(V_{j(N)})}
+              \frac{S_2(\lambda)}{S_1(\lambda)}\longrightarrow M_k.
+\]
+For $k\geq2$, nevertheless
+$\|\widehat K_N-K_k\|\geq M_{k-1}\geq1$ for every $N$.
+\end{corollary}
+
+\begin{proof}
+Write $P_j=P_{V_j}$.  The estimate in Theorem~\ref{thm:galerkin} gives
+\[
+                 \|\widehat K_N-P_{j(N)}K_kP_{j(N)}\|\longrightarrow0.
+\]
+Nestedness and density imply $P_jF\to F$ for every $F\in H_k$.
+Hence
+\[
+ \|P_jK_kP_jF-K_kF\|
+ \leq k\|P_jF-F\|+\|(P_j-I)K_kF\|\longrightarrow0.
+\]
+The Ritz maxima $r_{V_j}$ are nondecreasing and at most $M_k$.
+Given a unit vector with Rayleigh value greater than $M_k-\tau$,
+its normalized projections eventually have Rayleigh values greater than
+$M_k-2\tau$.  Thus $r_{V_j}\to M_k$.
+The same error estimate now proves both limits of maxima.
+Corollary~\ref{all:cor:compact-distance} proves the norm lower bound.
+Apply $\widehat K_N-K_k$ to a singular sequence at $M_{k-1}$;
+the finite-rank term vanishes in norm.
+
+Such sequences $V_j$ exist by the density proved in
+Proposition~\ref{prop:simplex} and separability of $L^2$.
+Such a diagonal also exists.  For sufficiently large $N$, take
+\[
+ j(N)=\max\{1\leq j\leq\lfloor D_0(N)\rfloor:
+                          \beta_j^2\leq\sqrt{D_0(N)}\}.
+\]
+Every fixed $j$ eventually satisfies both restrictions.
+Thus $j(N)\to\infty$, and the form errors are bounded by constants
+times $D_0^{-1/2}$ along this choice.
+\end{proof}
+
+\section{Limits of the comparison}
+
+The regularity restriction has an exact finite obstruction.
+For any fixed $N$, the sampling nodes $x_N(\mathcal D_N)$ form a finite
+set.  Choose a ball in $\Delta_k^\circ$ avoiding that set, and a nonzero
+smooth function supported in the ball.  After normalization it gives
+\begin{equation}\label{eq:sampling-obstruction}
+ \|F_N\|_2=1,\qquad P_NF_N=E_NF_N=J_NF_N=0,
+ \qquad a_N(F_N,F_N)=0.
+\end{equation}
+Thus the mass forms cannot converge uniformly on the smooth $L^2$ unit
+sphere.  Point values also depend on representatives of $L^2$ classes.
+They do not define a map on $H_k$.  At an interior sampling node,
+shrinking smooth bumps with fixed value demonstrate unbounded point
+evaluation in the $L^2$ norm.  For sufficiently large $N$, such a node
+exists: apply \eqref{eq:mass-error} to one fixed nonzero interior function.
+The resulting positive mass form forces a nonzero sample in the interior.
+
+For comparison, on $\ell^2(\mathbb N)$ let
+$C_ne_j=\mathbf1_{j=n}e_j$.  Then $C_nx\to0$ for every $x$, whereas
+$\|C_n\|=1$.  Strong convergence by itself does not control maximal
+Rayleigh values.  Corollary~\ref{cor:diagonal} obtains that control from
+\eqref{eq:spine-bound} and the dense compressions.
+Likewise, $De_j=(1-1/j)e_j$ has norm one without a norm eigenvector.
+Its compression to $\operatorname{span}(e_1,\ldots,e_n)$ has maximum
+$1-1/n$.  Convergence of finite maxima therefore does not prove attainment.
+For each finite $k$, Theorem~\ref{all:thm:all-dimensions} supplies
+the additional spectral bound and strict dimension inequality that prove attainment.
+
+\subsection{The unrestricted coefficient problem}
+
+Put
+\[
+ \mathcal R_N=\rho^{-1}
+       \max_{\lambda\in\Lambda_N\setminus\ker T_N}
+                           \frac{S_2(\lambda)}{S_1(\lambda)}.
+\]
+The finite principle and Corollary~\ref{cor:diagonal} imply
+\[
+              M_k\leq\liminf_{N\to\infty}\mathcal R_N
+                    \leq\limsup_{N\to\infty}\mathcal R_N\leq k/\rho.
+\]
+The upper bound $M_k$ for the last limit requires further control on
+all coefficient directions.  The following criterion states that control
+on the quotient where the mass form is a norm.
+
+\begin{proposition}[A sufficient condition for the full maximum]
+Let\label{prop:full-criterion} $\mathcal Q_N=\Lambda_N/\ker T_N$, with norm
+$\|[\lambda]\|_N^2=S_1(\lambda)/C_N$.
+Suppose there are linear maps $R_N^\sharp:\mathcal Q_N\to H_k$ and
+numbers $u_N,v_N\geq0$ tending to zero such that, for every $z\in\mathcal Q_N$,
+\begin{align*}
+ \|R_N^\sharp z\|_2^2&\leq(1+u_N)\|z\|_N^2,\\
+ \frac{S_2(\lambda)}{\rho C_N}
+    &\leq\langle R_N^\sharp z,K_kR_N^\sharp z\rangle
+                       +v_N\|z\|_N^2\quad(z=[\lambda]).
+\end{align*}
+Then $\mathcal R_N\to M_k$.
+\end{proposition}
+
+\begin{proof}
+Both $S_1$ and $S_2$ depend only on the class modulo $\ker T_N$.
+For $\|z\|_N=1$, the two assumptions give
+$S_2(\lambda)/(\rho C_N)\leq M_k(1+u_N)+v_N$.
+Take the maximum and combine this upper bound with the preceding liminf.
+\end{proof}
+
+The maps and uniform inequalities in this proposition are additional
+hypotheses.  Theorem~\ref{thm:forms} verifies the needed comparison only
+on the specified smooth families.
+It does not construct $R_N^\sharp$ on the entire quotient.
+Theorem~\ref{acfr:full-one} supplies such a reconstruction when $k=1$.
+For $k\geq2$, control of the full quotient remains a separate requirement.
+The positive maximizer of $K_k$ also supplies no such map.
+Its $L^2$ construction in Theorem~\ref{all:thm:iteration} does not define point
+values for an arbitrary equivalence class or a coefficient reconstruction.
+
+\subsection{A strict prime threshold}
+
+The limiting comparison has a direct consequence with fixed quantifiers.
+Assume \eqref{eq:lod}, and let $m$ be a nonnegative integer.
+If $M_k>2m/\vartheta$, choose first $F\in\mathcal X_k$ with
+\[
+ r(F)=\langle F,K_kF\rangle/\|F\|_2^2>2m/\vartheta.
+\]
+Then choose a fixed $0<\delta<\vartheta/2$ small enough that
+$(\vartheta/2-\delta)r(F)>m$.
+Theorem~\ref{thm:forms} gives
+\[
+                 \frac{S_2(E_NF)}{S_1(E_NF)}\longrightarrow\rho r(F)>m.
+\]
+For every sufficiently large $N$, Proposition~\ref{prop:finite} supplies
+an integer $n\in[N,2N)$ with at least $m+1$ prime translates.
+Taking disjoint intervals proves that there are infinitely many such integers.
+This is the strict threshold in \cite[Proposition 4.2, pp.~389--390]{Maynard}.
+Bombieri--Vinogradov supplies \eqref{eq:lod} for every
+$\vartheta<1/2$ in this convention.  Consequently $M_k>4m$ suffices,
+by choosing $2m/M_k<\vartheta<1/2$ before fixing $F$ and $\delta$.
+
+
+\subsection{The five polynomial thresholds}
+
+The polynomial bounds give concrete sufficient distribution exponents.
+The cutoff in Proposition~\ref{bridge:prop:smooth} supplies a function
+in the actual smooth space used by the coefficient map $E_N$.
+
+\begin{corollary}
+Fix\label{bridge:cor:prime} $k\in\{8,9,10,11,12\}$ and a fixed admissible set
+$\mathcal H$ of $k$ distinct nonnegative shifts.
+Let $0<\vartheta\leq1$ satisfy the distribution hypothesis
+\eqref{eq:lod} and the strict inequality
+\[
+                         \vartheta>\vartheta_k,
+\]
+where $\vartheta_k$ is the corresponding fraction in
+\eqref{bridge:eq:theta-table}.
+Then infinitely many integers $n$ have at least two primes among
+$n+h_1,\ldots,n+h_k$.
+\end{corollary}
+
+\begin{proof}
+Take the explicit polynomial $f_k$ in \eqref{var:eq:trials} and put
+$q=R_k(f_k)$, $m=1$, and $g=q-2/\vartheta>0$.
+Choose $C,D$ by \eqref{bridge:eq:CD}, and use its exact mass
+$I=D_k/(k+4)!$ from \eqref{var:eq:scaled}.
+Equations~\eqref{bridge:eq:choices} and~\eqref{bridge:eq:cutoff}
+then specify a width $0<\varepsilon\leq1/[4(k+1)]$ and a single
+nonzero $F_\varepsilon\in\mathcal X_k$.  Put $F=F_\varepsilon$.
+Fix $\delta,\rho,\Gamma$ by \eqref{bridge:eq:rho-choice}.
+All these choices are made before $N$ varies.
+
+For the finite counting construction in Theorem~\ref{bridge:thm:counting},
+use
+\[
+ \begin{gathered}
+ \Omega_N=I_N,\qquad \nu_N(n)=R_{\mathcal H}(n),\qquad
+ \mathcal V_N=T_NE_N,\\
+ \mathcal C_N=C_N,\qquad d_N=D_0=\log\log\log N.
+ \end{gathered}
+\]
+Here $T_N$ is the divisor-incidence map for $\mathcal D_N$ and $I_N$.
+Its squared values are nonnegative weights, and $\nu_N$ takes integer
+values between zero and $k$.
+The finite sums become exactly
+\[
+ \mathscr S_{1,N}(F)=S_1(E_NF),\qquad
+ \mathscr S_{2,N}(F)=S_2(E_NF).
+\]
+Under \eqref{eq:lod}, Theorem~\ref{thm:forms} gives
+\eqref{bridge:eq:mass-assumption} and~\eqref{bridge:eq:energy-assumption}
+with $\alpha_1=c_1$ and $\alpha_2=c_2$.
+Since $D_0\to\infty$, the explicit condition
+\eqref{bridge:eq:N-condition} holds for every sufficiently large $N$.
+Theorem~\ref{bridge:thm:counting} then gives an $n\in I_N$ with
+$R_{\mathcal H}(n)\geq2$.
+Apply this conclusion on disjoint intervals $[N,2N)$ to obtain infinitely
+many distinct integers.
+\end{proof}
+
+For example, both $k=11$ and $k=12$ permit the conditional choice
+$\vartheta=4/5$.  The explicit cutoff and exponent loss for $k=12$
+were computed above.
+This example assumes \eqref{eq:lod} at $4/5$.
+The constants $c_1,c_2$ and $N_0$ retain their meanings from
+Theorem~\ref{thm:forms}; no numerical values for them are supplied by the
+polynomial calculation.
+All five fractions $\vartheta_k$ exceed $1/2$, so these trials do not reach
+the strict two-prime criterion using only exponents $\vartheta<1/2$.
+
+The comparison identifies a controlled family of finite prime-count
+compressions with the simplex operator in the strong topology.
+It also determines the limiting maxima on that family without assuming an
+attaining eigenfunction.  A full-coefficient upper bound requires the
+uniform reconstruction in Proposition~\ref{prop:full-criterion}.
+The intrinsic spectral argument determines the essential interval and
+attainment for every finite $k$.  These conclusions remain separate from the
+arithmetic reconstruction on the full coefficient quotient.
+
+\input{arithmetic_distribution.tex}
+\input{native_bridge.tex}
+\input{native_consumers.tex}
+\input{global_bridge.tex}
+
+\input{pairing_bridge.tex}
+\input{quotient_reconstruction.tex}
+
+\begin{thebibliography}{2}
+
+\bibitem{Maynard}
+J. Maynard,
+\emph{Small gaps between primes},
+Ann. of Math. (2) \textbf{181} (2015), no.~1, 383--413,
+\href{https://doi.org/10.4007/annals.2015.181.1.7}
+{doi:10.4007/annals.2015.181.1.7}.
+
+\bibitem{Polymath}
+D. H. J. Polymath,
+\emph{Variants of the Selberg sieve, and bounded intervals containing many primes},
+Res. Math. Sci. \textbf{1} (2014), article 12,
+\href{https://doi.org/10.1186/s40687-014-0012-7}
+{doi:10.1186/s40687-014-0012-7}.
+
+\end{thebibliography}
+
+\end{document}

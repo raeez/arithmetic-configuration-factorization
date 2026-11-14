@@ -1,0 +1,437 @@
+\subsection{The pairing of sieve observables with the Fourier boundary}
+\label{acfp:section}
+
+The logarithmic variable used by a sieve function records a divisor.
+It does not record the prime counted by the resulting weight.
+The incidence transform must therefore precede the passage to the prime measure.
+The following construction gives that passage as an exact pairing.
+
+\subsubsection{Removing the higher prime powers}
+
+Fix a smooth function $\eta:\mathbb R\to[0,1]$ which vanishes for
+$t\leq c$, with $0<c<\log2$, and equals one for $t\geq\log2$.
+For a real parameter $\sigma$ and a compact smooth function $f$, define
+\begin{equation}\label{acfp:mobius-test}
+ (\mathcal P_\sigma f)(t)
+   =\eta(t)\sum_{m\geq1}\mu(m)e^{-(m-1)\sigma t}f(mt).
+\end{equation}
+The summand is zero for all sufficiently large $m$, uniformly on $t\geq c$.
+Consequently $\mathcal P_\sigma f$ is compact and smooth.
+The choice of $\eta$ does not affect its pairing with a prime-power measure.
+
+\begin{proposition}[A test map from prime powers to primes]\label{acfp:prime-projection}
+For every compact smooth $f$ and every real $\sigma$,
+\begin{equation}\label{acfp:projection-pairing}
+ \mu_\sigma(\mathcal P_\sigma f)=\nu_\sigma(f).
+\end{equation}
+If $s=\sigma+a\geq1$, then $\mathcal P_\sigma$ extends to a continuous
+linear map $\mathcal S_a\to\mathcal S_a$ and the same identity holds there.
+Under the damping isomorphism,
+\[
+ M_a\mathcal P_\sigma M_a^{-1}=\mathcal Q_s,\qquad
+ (\mathcal Q_sg)(t)
+    =\eta(t)\sum_{m\geq1}\mu(m)e^{-(m-1)st}g(mt).
+\]
+For every pair of nonnegative integers $r,j$, a constant $C_{r,j,s,\eta}$
+satisfies
+\begin{equation}\label{acfp:projection-norm}
+ \sup_t(1+|t|)^r|\partial_t^j\mathcal Q_sg(t)|
+ \leq C_{r,j,s,\eta}
+       \sum_{\ell=0}^j\sup_u(1+|u|)^r|g^{(\ell)}(u)|.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The compact pairing is a finite sum.  Expanding it gives
+\[
+ \sum_{p,j,m\geq1}
+   (\log p)\mu(m)p^{-jm\sigma}f(jm\log p)
+ =\sum_{p,k\geq1}(\log p)p^{-k\sigma}f(k\log p)
+                      \sum_{m\mid k}\mu(m).
+\]
+The inner divisor sum is one for $k=1$ and zero otherwise.
+This proves \eqref{acfp:projection-pairing}.
+No primality test enters the operator $\mathcal P_\sigma$.
+
+Conjugation by $M_a$ gives the stated formula for $\mathcal Q_s$.
+For $t\geq c$, the product rule bounds each derivative of a summand by
+a finite sum of
+\[
+ C_{j,s,\eta}m^j e^{-(m-1)sc}|g^{(\ell)}(mt)|,\qquad 0\leq\ell\leq j.
+\]
+All derivatives of $\eta$ are bounded.
+Also $(1+t)^r\leq(1+mt)^r$ there.
+The convergent series $\sum_{m\geq1}m^j e^{-(m-1)sc}$ proves
+\eqref{acfp:projection-norm} and convergence in every Schwartz seminorm.
+On compact tests, $\nu_\sigma(f)=\nu_s(M_af)$.
+Theorem~\ref{acfd:tempered} therefore extends $\nu_\sigma$ continuously
+to $\mathcal S_a$.
+Theorem~\ref{acfd:exponential-domain} and the bound for $\mathcal Q_s$
+give continuity of the other side of \eqref{acfp:projection-pairing}.
+Density of compact smooth functions extends the identity.
+\end{proof}
+
+\subsubsection{The exact observable map}
+
+Use the finite arithmetic parameters in Theorem~\ref{acfd:exact} and set
+\[
+ \rho=\frac{\log R}{\log N}\in(0,1/2),\qquad
+ C_N=\frac{\varphi(W)^kN(\log R)^k}{W^{k+1}}.
+\]
+Write $\mathcal D_N,\Lambda_N,T_N,I_N$ for the corresponding finite objects.
+In the asymptotic regime, take the previously specified $R=R_N=N^\rho$
+and $W=W_N$, with $\rho>0$ fixed.
+Let $\chi\in C_c^\infty((-1,1);\mathbb R)$ satisfy
+$0\leq\chi\leq1$ and $\chi(0)=1$.
+This $\chi$ denotes the interpolation bump in this subsection.
+Set $H=\max_i h_i$ and $r_N=[4(2N+H+1)]^{-1}$.
+
+For $\lambda,\gamma\in\Lambda_N$ and a real observable
+$w:I_N\to\mathbb R$, define a compact smooth function
+\begin{equation}\label{acfp:observable-map}
+ \begin{split}
+ \mathcal B_{N,\sigma}(\lambda,\gamma;w)(t)
+  ={}&\frac1{\rho C_N}
+    \sum_{i=1}^k\sum_{n\in I_N}
+       w(n)(T_N\lambda)(n)(T_N\gamma)(n)
+       \frac{(n+h_i)^\sigma}{\log(n+h_i)}\\
+     &\hspace{35mm}\cdot
+       \chi\left(\frac{t-\log(n+h_i)}{r_N}\right).
+ \end{split}
+\end{equation}
+The map is bilinear in $(\lambda,\gamma)$ and linear in $w$.
+It contains no prime indicator.
+The domain is the original coefficient space and the original counting space.
+
+\begin{theorem}[An exact pairing with the prime boundary]\label{acfp:exact-observable}
+Let $\sigma,a\geq0$ satisfy $\sigma+a=1$.
+Set
+\[
+ \Theta_N(\lambda,\gamma;w)
+   =\mathcal F^{-1}M_a\mathcal P_\sigma
+                      \mathcal B_{N,\sigma}(\lambda,\gamma;w)
+       \in\mathcal S(\mathbb R).
+\]
+Then
+\begin{equation}\label{acfp:spine}
+ \widehat\mu_1\bigl(\Theta_N(\lambda,\gamma;w)\bigr)
+   =\frac1{\rho C_N}\sum_{n\in I_N}
+       w(n)R_{\mathcal H}(n)(T_N\lambda)(n)(T_N\gamma)(n).
+\end{equation}
+In particular, $\lambda=E_NF$, $\gamma=E_NG$, and $w=1$ give
+the exact prime form $b_N(F,G)$.
+
+The support of $\mathcal B_{N,\sigma}$ lies in
+$[\log N-r_N,\log(2N+H)+r_N]$.
+For $\sigma\geq0$ and each derivative order $j$,
+\begin{equation}\label{acfp:observable-norm}
+ \|\partial_t^j\mathcal B_{N,\sigma}(\lambda,\gamma;w)\|_\infty
+ \leq
+ \frac{k\|w\|_\infty\|\lambda\|_1\|\gamma\|_1}
+      {\rho C_N}
+ \frac{(2N+H)^\sigma}{\log N}\,r_N^{-j}\|\chi^{(j)}\|_\infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Each bump meets just one logarithm of an integer, by the spacing estimate
+in Proposition~\ref{acfd:log-realization}.
+Its pairing with $\nu_\sigma$ is one if its center is a prime and zero otherwise.
+The factor $(n+h_i)^\sigma/\log(n+h_i)$ cancels the mass at that prime.
+Thus the right side of \eqref{acfp:spine} equals
+$\nu_\sigma(\mathcal B_{N,\sigma})$.
+Proposition~\ref{acfp:prime-projection} makes this
+$\mu_\sigma(\mathcal P_\sigma\mathcal B_{N,\sigma})$.
+Since $\sigma+a=1$, Theorem~\ref{acfd:exponential-domain} makes it
+$\mu_1(M_a\mathcal P_\sigma\mathcal B_{N,\sigma})$.
+The Fourier convention then gives the left side exactly, including the
+factor $(2\pi)^{-1}$ in $\mathcal F^{-1}$.
+
+At any center, at most $k$ pairs $(i,n)$ occur.
+Distinct integer centers have disjoint bump supports.
+Also $|T_N\lambda(n)|\leq\|\lambda\|_1$.
+These facts prove \eqref{acfp:observable-norm} and the support statement.
+\end{proof}
+
+\begin{corollary}[The coefficient quotient]\label{acfp:quotient}
+The test maps $\mathcal B_{N,\sigma}$ and $\Theta_N$ descend to
+$\mathcal Q_N\times\mathcal Q_N\times\mathbb R^{I_N}$, where
+$\mathcal Q_N=\Lambda_N/\ker T_N$ has norm
+$\|[\lambda]\|_N=C_N^{-1/2}\|T_N\lambda\|_2$.
+They are continuous for each fixed $N$.
+In particular,
+\[
+ \|\partial_t^j\mathcal B_{N,\sigma}(\lambda,\gamma;w)\|_\infty
+ \leq\frac{k\|w\|_\infty}{\rho}
+ \|[\lambda]\|_N\|[\gamma]\|_N
+ \frac{(2N+H)^\sigma}{\log N}\,r_N^{-j}\|\chi^{(j)}\|_\infty.
+\]
+\end{corollary}
+
+\begin{proof}
+The formula uses a coefficient vector only through its incidence values.
+It therefore has the asserted quotient domain.
+At each $n$, the product of incidence values is bounded by
+$\|T_N\lambda\|_2\|T_N\gamma\|_2$.
+Substitute this bound in the proof of \eqref{acfp:observable-norm}.
+The common compact support bounds every weighted derivative seminorm.
+The continuous maps $M_a$, $\mathcal P_\sigma$, and $\mathcal F^{-1}$
+give continuity of $\Theta_N$.
+\end{proof}
+
+This quotient map has a distributional test space as codomain.
+It does not construct the map $R_N^\sharp:\mathcal Q_N\to H_k$
+or the uniform quadratic inequality in Proposition~\ref{prop:full-criterion}.
+
+For $F,G\in\mathcal X_k$, the composite in Theorem~\ref{acfp:exact-observable}
+is therefore a specified bilinear map from the smooth simplex carrier
+to the Schwartz test space of the prime-power Fourier boundary.
+Under \eqref{eq:lod}, Theorem~\ref{thm:forms} gives
+\begin{equation}\label{acfp:conditional-limit}
+ \widehat\mu_1\bigl(\Theta_N(E_NF,E_NG;1)\bigr)
+       \longrightarrow\langle F,K_kG\rangle.
+\end{equation}
+This is convergence of pairings with a varying family of tests.
+It does not assert convergence of those tests in Schwartz topology.
+
+\subsubsection{A finite first moment on the counting space}
+
+Take $k=1$, $\mathcal H=\{0\}$, $N=256$, $R=4$, $W=2$, and $v=1$.
+Then $\mathcal D_N=\{1,3\}$ and $\rho=1/4$.
+Choose $F\in C_c^\infty((0,1))$ with
+$F(\log3/\log4)=1$.
+A smooth bump about this interior point gives such a function.
+The actual sample vector is $P_NF=(0,1)$, so
+\[
+ L_N=\begin{pmatrix}1&1/2\\0&-3/2\end{pmatrix},\qquad
+ \lambda=E_NF=(1/2,-3/2),\qquad
+ (T_N\lambda)(n)=\frac12-\frac32\mathbf1_{3\mid n}.
+\]
+Among the $128$ odd integers in $[256,512)$, exactly $42$ are divisible by $3$.
+The interval contains $43$ primes, whose sum is $16467$.
+Trial division by $2,3,5,7,11,13,17,19$ determines these counts,
+since $23^2>512$.
+For $w_0(n)=1$ and $w_1(n)=n/N$, finite summation gives
+\[
+\begin{array}{c|cc}
+ & w_0 & w_1\\\hline
+ \displaystyle\sum_{n\in I_N}w_j(n)(T_N\lambda)(n)^2
+       &127/2&381/4\\[1mm]
+ \displaystyle\sum_{p\in I_N\cap\mathbb P}w_j(p)(T_N\lambda)(p)^2
+       &43/4&16467/1024
+\end{array}
+\]
+Here $C_N=128\log2$ and $\rho C_N=32\log2$.
+Thus the exact boundary pairings at $\sigma=a=1/2$ are
+\begin{equation}\label{acfp:finite-moment}
+ \widehat\mu_1(\Theta_N(\lambda,\lambda;w_0))
+       =\frac{43}{128\log2},\qquad
+ \widehat\mu_1(\Theta_N(\lambda,\lambda;w_1))
+       =\frac{16467}{32768\log2}.
+\end{equation}
+The normalized first moment of the prime-weighted counting measure is
+\[
+ \frac{16467}{11008}=\frac32-\frac{45}{11008}.
+\]
+Its mass-weighted counterpart is $3/2$.
+The pairing preserves the exact arithmetic moment, including this difference.
+
+\subsubsection{A nonconstant one-dimensional model}
+
+Take $k=1$, $\mathcal H=\{0\}$, and the polynomial $f(t)=t$ on $[0,1]$.
+Then $T_1f=\int_0^1t\,dt=1/2$, so
+\begin{equation}\label{acfp:linear-model}
+ I_f=\int_0^1t^2\,dt=\frac13,\qquad
+ \langle f,K_1f\rangle=\left(\int_0^1t\,dt\right)^2=\frac14,
+ \qquad R_1(f)=\frac34.
+\end{equation}
+Let
+$\varepsilon_N=\min\{1/8,D_0(N)^{-2/5}\}>0$,
+$F_N=\Xi_{\varepsilon_N}f$, and $\lambda_N=E_NF_N$.
+These are the positive-width functions in Corollary~\ref{acfd:native-polynomial}.
+Assume the same distribution hypothesis and fixed $0<\rho<\vartheta/2$.
+Then the actual finite forms satisfy
+\begin{equation}\label{acfp:linear-limits}
+ \frac{S_1(\lambda_N)}{C_N}\longrightarrow\frac13,\qquad
+ \widehat\mu_1\bigl(\Theta_N(\lambda_N,\lambda_N;1)\bigr)
+       =\frac{S_2(\lambda_N)}{\rho C_N}\longrightarrow\frac14,
+ \qquad
+ \frac{S_2(\lambda_N)}{S_1(\lambda_N)}\longrightarrow\frac{3\rho}4.
+\end{equation}
+The two form limits follow from the quantitative estimates in the proof
+of Theorem~\ref{acfd:moving-cutoff}, applied before dividing the forms.
+
+The constant and linear simplex functions give the full first comparison.
+Put $f_0(t)=1$, $f_1(t)=t$, and
+$\lambda_{j,N}=E_N(\Xi_{\varepsilon_N}f_j)$.
+The two limiting matrices, indexed by $i,j\in\{0,1\}$, are
+\begin{equation}\label{acfp:first-matrices}
+ \left(\frac{S_1(\lambda_{i,N},\lambda_{j,N})}{C_N}\right)_{i,j}
+ \longrightarrow
+ \begin{pmatrix}1&1/2\\1/2&1/3\end{pmatrix},\qquad
+ \left(\widehat\mu_1(\Theta_N(\lambda_{i,N},\lambda_{j,N};1))\right)_{i,j}
+ \longrightarrow
+ \begin{pmatrix}1&1/2\\1/2&1/4\end{pmatrix}.
+\end{equation}
+Indeed, the bilinear error bounds in Theorem~\ref{thm:forms} are
+$O(D_0^{-1}\varepsilon_N^{-2})$ for this fixed pair of polynomials.
+The cutoff errors tend to zero in $L^2$.
+The limiting entries are
+$\int_0^1 f_if_j$ and $(\int_0^1f_i)(\int_0^1f_j)$, respectively.
+The mass matrix has determinant $1/12$, whereas the prime matrix has rank one.
+Thus the boundary pairing matches the fiber form, with its different rank
+and second entry, on these original simplex functions.
+
+There is also an exact arithmetic simplification.
+For every prime $p\in I_N$, a divisor $d<R_N<N$ of $p$ must equal one.
+Hence
+\begin{equation}\label{acfp:one-coordinate}
+ (T_N\lambda_N)(p)=(\lambda_N)_1,\qquad
+ S_2(\lambda_N)
+    =\#(I_N\cap\mathbb P)\left|
+       \sum_{r\in\mathcal D_N}\frac{F_N(\log r/\log R_N)}{\varphi(r)}
+                         \right|^2.
+\end{equation}
+The divisor average is taken before its square weights the primes.
+
+\begin{proposition}[The direct prime-variable substitution fails]\label{acfp:substitution}
+For the same parameters, the expression obtained by substituting the
+prime variable directly into the simplex function is identically zero:
+\[
+ \frac1{\rho C_N}\sum_{p\in I_N\cap\mathbb P}
+                |F_N(\log p/\log R_N)|^2=0.
+\]
+It therefore differs from the actual normalized prime form in
+\eqref{acfp:linear-limits}, whose conditional limit is $1/4$.
+\end{proposition}
+
+\begin{proof}
+Every prime in $I_N$ is at least $N$.
+Since $R_N=N^\rho$ and $\rho<1/2$,
+$\log p/\log R_N\geq1/\rho>1$.
+The zero extension of $F_N$ vanishes there.
+The actual form first applies $L_NP_N$ and then incidence, as in
+\eqref{acfp:one-coordinate}.  Its limit is \eqref{acfp:linear-limits}.
+\end{proof}
+
+\subsubsection{Why the exact tests have no bounded Schwartz limit}
+
+The failure of direct substitution does not invalidate the exact pairing.
+Its moving tests have a quantitative topology obstruction.
+In the preceding model, take $\sigma=a=1/2$, and put
+\[
+ g_N=M_{1/2}\mathcal B_{N,1/2}(\lambda_N,\lambda_N;1),\qquad
+ u_N=\mathcal Q_1g_N,\qquad \Theta_N=\mathcal F^{-1}u_N.
+\]
+These functions are Schwartz.  The function $g_N$ is nonnegative and has
+support in $J_N=[\log N-r_N,\log(2N)+r_N]$.
+The notation $J_N$ in this paragraph denotes this real interval only.
+
+\begin{proposition}[A growing seminorm]\label{acfp:unbounded-tests}
+Under the hypotheses of \eqref{acfp:linear-limits}, there is $c_0>0$
+such that, for all sufficiently large $N$,
+\[
+ \sup_t(1+|t|)^2|g_N(t)|\geq c_0\log N,\qquad
+ \sup_t(1+|t|)^2|u_N(t)|\geq c_0\log N.
+\]
+Consequently neither $(u_N)$ nor $(\Theta_N)$ is bounded in Schwartz space.
+\end{proposition}
+
+\begin{proof}
+The exact pairing and damping identity give
+$\nu_1(g_N)=S_2(\lambda_N)/(\rho C_N)\geq1/8$ eventually.
+The interval $J_N$ has length less than two for large $N$.
+It meets at most three intervals $[j,j+1)$ with integer $j\geq0$.
+The proof of Theorem~\ref{acfd:tempered} therefore gives
+\[
+ \nu_1(J_N)\leq\mu_1(J_N)
+       \leq3e(\log(2N)+3).
+\]
+Positivity now implies
+$\|g_N\|_\infty\geq[24e(\log(2N)+3)]^{-1}$.
+Since every point of its support is at least $\log N-r_N$, its second
+weighted seminorm grows at least as a positive constant times $\log N$.
+
+For $t\in J_N$ and large $N$, one has $t\geq\log2$ and
+$2t>\log(2N)+r_N$.
+Thus $\eta(t)=1$ and $g_N(mt)=0$ for every $m\geq2$.
+Formula \eqref{acfp:mobius-test}, after damping, gives
+$u_N(t)=g_N(t)$ throughout $J_N$.
+The same lower bound applies to $u_N$.
+Fourier transformation is a topological automorphism of Schwartz space,
+so boundedness of $(\Theta_N)$ would imply boundedness of $(u_N)$.
+\end{proof}
+
+\subsubsection{A controlled approach through the holomorphic half-plane}
+
+An unbounded family of tests requires a separate estimate when the
+distribution also varies.
+For the finite data in Theorem~\ref{acfp:exact-observable}, put
+$L_N^{\mathrm{log}}=\log(2N+H)$ and define the nonnegative number
+\begin{equation}\label{acfp:boundary-control}
+ U_N=
+ \frac{k\|w\|_\infty\|\lambda\|_1\|\gamma\|_1}
+      {\rho C_N(1-e^{-c})}
+ \frac{(2N+H)e^{ar_N}}{\log N}
+       (1+L_N^{\mathrm{log}}+r_N)^4.
+\end{equation}
+The constant $c>0$ is the cutoff parameter in
+\eqref{acfp:mobius-test}.
+
+\begin{proposition}[A diagonal logarithmic-derivative pairing]
+\label{acfp:holomorphic-pairing}
+For every $\epsilon>0$, the following ordinary integral converges absolutely:
+\[
+ Z_{N,\epsilon}
+   =\int_{\mathbb R}
+       -\frac{\zeta'(1+\epsilon+i\xi)}{\zeta(1+\epsilon+i\xi)}
+          \Theta_N(\lambda,\gamma;w)(\xi)\,d\xi.
+\]
+It satisfies
+\begin{equation}\label{acfp:holomorphic-error}
+ \left|Z_{N,\epsilon}
+   -\frac1{\rho C_N}\sum_{n\in I_N}
+      w(n)R_{\mathcal H}(n)(T_N\lambda)(n)(T_N\gamma)(n)\right|
+       \leq C_*\epsilon U_N.
+\end{equation}
+For any sequence of the finite data, the explicit choice
+$\epsilon_N=[N(1+U_N)]^{-1}>0$ makes this error at most $C_*/N$.
+For the linear model \eqref{acfp:linear-limits}, this choice gives
+$Z_{N,\epsilon_N}\to1/4$ under its stated distribution hypothesis.
+\end{proposition}
+
+\begin{proof}
+Write $g=M_a\mathcal B_{N,\sigma}(\lambda,\gamma;w)$ and
+$u=\mathcal Q_1g$.
+Then $\widehat\Theta_N=u$.
+The bounded function $G_{1+\epsilon}$ in
+Theorem~\ref{acfd:fourier-boundary} represents
+$\widehat\mu_{1+\epsilon}$, and $\Theta_N$ is integrable.
+Hence the ordinary integral equals
+$\widehat\mu_{1+\epsilon}(\Theta_N)$.
+
+For $t\geq c$ and $m\geq1$, one has
+$(1+t)^4\leq(1+mt)^4$ and
+$e^{-(m-1)t}\leq e^{-(m-1)c}$.
+Since $0\leq\eta\leq1$, the geometric series gives
+\[
+ \sup_t(1+|t|)^4|u(t)|
+       \leq\frac1{1-e^{-c}}\sup_t(1+|t|)^4|g(t)|.
+\]
+On the bump centered at $\log(n+h_i)$, the damping factor is at most
+$(n+h_i)^a e^{ar_N}$.
+Use $\sigma+a=1$, the disjoint supports, and at most $k$ equal centers.
+The resulting fourth seminorm is bounded by $U_N$.
+Equation~\eqref{acfd:boundary-limit} now gives
+$|Z_{N,\epsilon}-\widehat\mu_1(\Theta_N)|\leq C_*\epsilon U_N$.
+The exact pairing proves \eqref{acfp:holomorphic-error}.
+The selected $\epsilon_N$ tends to zero and satisfies
+$\epsilon_NU_N\leq1/N$.
+Finally apply \eqref{acfp:linear-limits}.
+\end{proof}
+
+Equations~\eqref{acfp:conditional-limit} and \eqref{acfp:holomorphic-error}
+compare the simplex fiber form with the prime boundary through incidence
+and a controlled diagonal limit.
+A complete explicit formula still requires its other terms and convergence
+estimates on a common test domain.

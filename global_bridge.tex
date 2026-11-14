@@ -1,0 +1,187 @@
+\subsection{Exponential test spaces and the Fourier boundary}
+\label{acfd:global-domain}
+
+The positive prime-power measure has a global distributional realization
+on an exponential test space.  This realization specifies the damping
+needed before a Schwartz Fourier transform can be taken.
+For Fourier transforms, complexify the test-function spaces and use complex-linear
+distribution pairings.  The finite arithmetic forms remain real.
+
+For $a\in\mathbb R$, let
+\[
+ \mathcal S_a(\mathbb R)=
+ \{f\in C^\infty(\mathbb R;\mathbb C):e^{at}f(t)\in\mathcal S(\mathbb R)\}.
+\]
+Give this space the Fr\'echet topology transported by the isomorphism
+$M_a:\mathcal S_a\to\mathcal S$, $M_af(t)=e^{at}f(t)$.
+Thus its seminorms are
+$\sup_t(1+|t|)^r|\partial_t^j(e^{at}f(t))|$, for integers $r,j\geq0$.
+Let $\mathcal S_a'$ denote its continuous complex-linear dual.
+Compact smooth functions form a dense subspace.
+
+\begin{theorem}[The damped prime-power distribution]\label{acfd:exponential-domain}
+The positive prime-power distribution $\mu_\sigma$ has a continuous
+extension to $\mathcal S_a$ if and only if $\sigma+a\geq1$.
+When this condition holds, the extension is unique and
+\begin{equation}\label{acfd:typed-damping}
+ \mu_\sigma=M_a'\mu_{\sigma+a},\qquad
+ \mathcal J_a\mu_\sigma=\mu_{\sigma+a},\qquad
+ (\mathcal J_a T)(g)=T(e^{-at}g).
+\end{equation}
+Here $M_a':\mathcal S'\to\mathcal S_a'$ is the transpose and
+$\mathcal J_a:\mathcal S_a'\to\mathcal S'$ is its inverse.
+For $C_*=e\sum_{j\geq1}j^{-2}$, one has
+\[
+ |\mu_\sigma(f)|\leq
+ C_*\sup_t(1+|t|)^3|e^{at}f(t)|.
+\]
+\end{theorem}
+
+\begin{proof}
+On compact smooth functions, the identity
+\[
+ \mu_\sigma(e^{-at}g)=\mu_{\sigma+a}(g)
+\]
+holds term by term in the locally finite atomic sums.
+If $\sigma+a\geq1$, Theorem~\ref{acfd:tempered} proves the estimate and
+therefore the continuous extension through $M_a$.
+Density gives uniqueness.
+Conversely, a continuous extension on $\mathcal S_a$ would give a tempered
+extension of $\mu_{\sigma+a}$ by composition with $M_a^{-1}$.
+The same theorem excludes this when $\sigma+a<1$.
+\end{proof}
+
+For $g\in\mathcal S(\mathbb R)$, fix the Fourier convention
+\[
+ \widehat g(\xi)=\int_{\mathbb R}e^{-it\xi}g(t)\,dt,
+ \qquad
+ \widehat T(g)=T(\widehat g)\quad(T\in\mathcal S').
+\]
+The inverse Fourier transform on functions has factor $(2\pi)^{-1}$
+and exponential $e^{it\xi}$.
+Repeated differentiation and integration by parts prove continuity of the
+Fourier map on $\mathcal S$.  More explicitly,
+\[
+ \|\xi^r\partial_\xi^j\widehat g\|_\infty
+    \leq\|\partial_t^r(t^jg)\|_{L^1}
+       \qquad(r,j\in\mathbb Z_{\geq0}).
+\]
+The product rule bounds the right side by a finite sum of Schwartz
+seminorms, after integration against $(1+|t|)^{-2}$.
+
+\begin{theorem}[A distributional boundary of the logarithmic derivative]
+\label{acfd:fourier-boundary}
+For real $s>1$, define $\zeta(z)=\sum_{n\geq1}n^{-z}$ on
+$\operatorname{Re}z>1$.  Then $\widehat\mu_s$ is represented by the smooth function
+\begin{equation}\label{acfd:dirichlet-fourier}
+ G_s(\xi)=\sum_{p,m\geq1}(\log p)p^{-m(s+i\xi)}
+              =-\frac{\zeta'(s+i\xi)}{\zeta(s+i\xi)}.
+\end{equation}
+Every derivative series converges uniformly in $\xi\in\mathbb R$.
+As $\epsilon\downarrow0$,
+\begin{equation}\label{acfd:boundary-limit}
+ G_{1+\epsilon}\longrightarrow\widehat\mu_1
+                 \quad\text{in the strong topology of }\mathcal S',
+ \qquad
+ |(\widehat\mu_{1+\epsilon}-\widehat\mu_1)(g)|
+       \leq C_*\epsilon\sup_t(1+|t|)^4|\widehat g(t)|.
+\end{equation}
+In particular, for the critical weight $\sigma=1/2$, there is the typed sequence
+\[
+ \mu_{1/2}\in\mathcal S_{1/2}'
+ \xrightarrow{\ \mathcal J_{1/2}\ }
+ \mu_1\in\mathcal S'
+ \xrightarrow{\ \mathcal F\ }
+ \widehat\mu_1\in\mathcal S'.
+\]
+The first distribution belongs to the exponential dual stated here.
+It has no extension to the unweighted Schwartz space.
+\end{theorem}
+
+\begin{proof}
+Unique factorization assigns at most one prime base to each prime power.
+For every nonnegative integer $j$,
+\[
+ \sum_{p,m\geq1}(\log p)(m\log p)^j p^{-ms}
+       \leq\sum_{n\geq2}\frac{(\log n)^{j+1}}{n^s}<\infty.
+\]
+The last convergence follows by an integral comparison.
+This proves the derivative convergence and justifies Fubini in the Fourier pairing.
+
+For $\operatorname{Re}z>1$, absolute convergence and unique factorization give
+\[
+ \zeta(z)=\prod_p(1-p^{-z})^{-1}
+     =\exp\left(\sum_p\sum_{m\geq1}\frac{p^{-mz}}m\right).
+\]
+The last sum and its derivative converge locally uniformly in that half-plane.
+The exponential is nonzero.  Differentiation proves
+\eqref{acfd:dirichlet-fourier}.
+
+For $\epsilon>0$, the positive measures satisfy
+$d\mu_{1+\epsilon}(t)=e^{-\epsilon t}d\mu_1(t)$ and have support in $t>0$.
+The inequality $1-e^{-\epsilon t}\leq\epsilon t$ gives
+\[
+ |(\mu_{1+\epsilon}-\mu_1)(u)|
+       \leq\epsilon\mu_1(t|u(t)|)
+       \leq C_*\epsilon\sup_t(1+|t|)^4|u(t)|.
+\]
+Substitute $u=\widehat g$ to obtain \eqref{acfd:boundary-limit}.
+Every bounded subset of $\mathcal S$ has bounded Fourier seminorms.
+The same estimate therefore proves strong convergence in its continuous dual.
+The typed sequence follows from Theorem~\ref{acfd:exponential-domain}.
+\end{proof}
+
+The pole at frequency zero gives a direct normalization check for this boundary.
+For $\operatorname{Re}z>1$, write
+\[
+ \zeta(z)=\frac1{z-1}+H(z),\qquad
+ H(z)=\sum_{n\geq1}
+        \left(n^{-z}-\int_n^{n+1}t^{-z}\,dt\right).
+\]
+For $z$ in a compact subset of $\operatorname{Re}z>0$, each summand is
+bounded by a constant times $n^{-\operatorname{Re}z-1}$.
+Indeed, integrate the derivative $-zt^{-z-1}$ between $n$ and $t$.
+Thus $H$ is holomorphic on that half-plane by locally uniform convergence.
+Near $z=1$, the function $1+(z-1)H(z)$ is nonzero.  Consequently
+\[
+ -\frac{\zeta'(z)}{\zeta(z)}
+       =\frac1{z-1}+A(z)
+\]
+for a holomorphic function $A$ in a neighborhood of one.
+
+\begin{proposition}[The zero-frequency model]\label{acfd:pole-model}
+On some interval $(-r,r)$, the distribution $\widehat\mu_1$ is
+\begin{equation}\label{acfd:pole-sign}
+ \widehat\mu_1
+      =\pi\delta_0-i\,\operatorname{pv}\frac1\xi+A(1+i\xi).
+\end{equation}
+The principal value is defined on compact smooth tests by symmetric
+removal of $(-b,b)$ followed by $b\downarrow0$.
+\end{proposition}
+
+\begin{proof}
+Choose $r$ so that $1+(z-1)H(z)$ is nonzero for $|z-1|<2r$.
+For a test $g\in C_c^\infty((-r,r))$, the holomorphic term converges
+uniformly on its support as $z=1+\epsilon+i\xi$ approaches the line.
+The pole is
+\[
+ \frac1{\epsilon+i\xi}
+   =\frac{\epsilon}{\epsilon^2+\xi^2}
+       -i\frac{\xi}{\epsilon^2+\xi^2}.
+\]
+The first kernel has integral $\pi$, concentrates at zero, and converges
+to $\pi\delta_0$.
+For the second, subtract $g(0)$ times an even compact cutoff equal to one
+near zero.  Its pairing with the odd kernel is zero.
+The remaining test divided by $\xi$ is bounded near zero, so dominated
+convergence gives $\operatorname{pv}(1/\xi)$ with the displayed sign.
+Combine this calculation with \eqref{acfd:boundary-limit}.
+\end{proof}
+
+This construction gives a global distribution and a local pole calculation
+for the arithmetic prime-power source.
+Comparison with the simplex operator $K_k$ requires an identity for
+bilinear forms on specified carriers.
+The following construction gives such a pairing through finite incidence.
+A complete explicit formula also needs its other terms and a common domain
+on which their sum is defined.
